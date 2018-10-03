@@ -14,6 +14,7 @@ class ChatListTableView: UITableView, UITableViewDataSource, UITableViewDelegate
     var msgs: [String] = ["Last message"]
     var imgs: [UIImage] = [UIImage(named: "angry")!]
     
+    // MARK: - Inits
     override init(frame: CGRect, style: UITableView.Style)
     {
         super.init(frame: frame, style: style)
@@ -30,6 +31,7 @@ class ChatListTableView: UITableView, UITableViewDataSource, UITableViewDelegate
         self.dataSource = self
     }
     
+    // MARK: - DataSource and Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return names.count
@@ -46,6 +48,12 @@ class ChatListTableView: UITableView, UITableViewDataSource, UITableViewDelegate
         cell.usernameLabel.text = names[indexPath.row]
         cell.lastMsgLabel.text = msgs[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let selected = self.cellForRow(at: indexPath)
+        selected?.isSelected = false
     }
     
     
