@@ -14,8 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
+        let defaults = UserDefaults.standard
+        let username = defaults.string(forKey: "username") ?? ""
+        let password = defaults.string(forKey: "password") ?? ""
+        
+        if username.isEmpty || password.isEmpty
+        {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
+            {
+                print("Can't instatiate LogInVC!")
+                return true
+            }
+            window?.rootViewController = vc
+        }
         return true
     }
 

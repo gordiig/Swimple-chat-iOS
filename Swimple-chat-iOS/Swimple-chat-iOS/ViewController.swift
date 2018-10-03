@@ -20,7 +20,6 @@ class ViewController: UIViewController
         super.viewDidLoad()
         tableView.appendChats(names: names, msgs: msgs)
     }
-
-
+    
 }
 
