@@ -14,6 +14,8 @@
 		1338A0C221654BFA00C4ECCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1338A0C021654BFA00C4ECCF /* LaunchScreen.storyboard */; };
 		1338A0CD21654BFA00C4ECCF /* Swimple_chat_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0CC21654BFA00C4ECCF /* Swimple_chat_iOSTests.swift */; };
 		1338A0D821654BFA00C4ECCF /* Swimple_chat_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0D721654BFA00C4ECCF /* Swimple_chat_iOSUITests.swift */; };
+		1338A0E621654EDC00C4ECCF /* ChatListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0E521654EDB00C4ECCF /* ChatListTableView.swift */; };
+		1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		1338A0D321654BFA00C4ECCF /* Swimple-chat-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swimple-chat-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1338A0D721654BFA00C4ECCF /* Swimple_chat_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swimple_chat_iOSUITests.swift; sourceTree = "<group>"; };
 		1338A0D921654BFA00C4ECCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1338A0E521654EDB00C4ECCF /* ChatListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableView.swift; sourceTree = "<group>"; };
+		1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				1338A0BE21654BFA00C4ECCF /* Assets.xcassets */,
 				1338A0C021654BFA00C4ECCF /* LaunchScreen.storyboard */,
 				1338A0C321654BFA00C4ECCF /* Info.plist */,
+				1338A0E521654EDB00C4ECCF /* ChatListTableView.swift */,
+				1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */,
 			);
 			path = "Swimple-chat-iOS";
 			sourceTree = "<group>";
@@ -257,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */,
+				1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */,
 				1338A0B821654BF900C4ECCF /* AppDelegate.swift in Sources */,
+				1338A0E621654EDC00C4ECCF /* ChatListTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

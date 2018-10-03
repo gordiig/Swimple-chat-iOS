@@ -8,11 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
+class ViewController: UIViewController
+{
+    @IBOutlet weak var tableView: ChatListTableView!
+    
+    var names = ["Username 1", "Long-long-long username"]
+    var msgs = ["Last message", "long-long-long last message"]
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.appendChats(names: names, msgs: msgs)
     }
 
 
