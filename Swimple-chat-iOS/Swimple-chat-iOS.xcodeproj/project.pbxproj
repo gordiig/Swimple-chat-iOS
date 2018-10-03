@@ -107,17 +107,14 @@
 		1338A0B621654BF900C4ECCF /* Swimple-chat-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1338A0F121656FBA00C4ECCF /* TableViews */,
+				1338A0F021656FA200C4ECCF /* Protocols */,
+				1338A0EF21656F8500C4ECCF /* VCs */,
 				1338A0B721654BF900C4ECCF /* AppDelegate.swift */,
-				1338A0B921654BF900C4ECCF /* ViewController.swift */,
 				1338A0BB21654BF900C4ECCF /* Main.storyboard */,
 				1338A0BE21654BFA00C4ECCF /* Assets.xcassets */,
 				1338A0C021654BFA00C4ECCF /* LaunchScreen.storyboard */,
 				1338A0C321654BFA00C4ECCF /* Info.plist */,
-				1338A0E521654EDB00C4ECCF /* ChatListTableView.swift */,
-				1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */,
-				1338A0E92165654A00C4ECCF /* LogInViewController.swift */,
-				1338A0EB21656AA800C4ECCF /* Alertable.swift */,
-				1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */,
 			);
 			path = "Swimple-chat-iOS";
 			sourceTree = "<group>";
@@ -138,6 +135,41 @@
 				1338A0D921654BFA00C4ECCF /* Info.plist */,
 			);
 			path = "Swimple-chat-iOSUITests";
+			sourceTree = "<group>";
+		};
+		1338A0EF21656F8500C4ECCF /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				1338A0E92165654A00C4ECCF /* LogInViewController.swift */,
+				1338A0B921654BF900C4ECCF /* ViewController.swift */,
+				1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		1338A0F021656FA200C4ECCF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1338A0EB21656AA800C4ECCF /* Alertable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1338A0F121656FBA00C4ECCF /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				1338A0F221656FC700C4ECCF /* Cells */,
+				1338A0E521654EDB00C4ECCF /* ChatListTableView.swift */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
+		1338A0F221656FC700C4ECCF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
