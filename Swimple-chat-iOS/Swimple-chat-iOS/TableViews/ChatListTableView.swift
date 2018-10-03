@@ -10,9 +10,9 @@ import UIKit
 
 class ChatListTableView: UITableView, UITableViewDataSource, UITableViewDelegate
 {
-    var names: [String] = ["Username"]
-    var msgs: [String] = ["Last message"]
-    var imgs: [UIImage] = [UIImage(named: "angry")!]
+    var names: [String] = []
+    var msgs: [String] = []
+    var imgs: [UIImage] = []
     
     // MARK: - Inits
     override init(frame: CGRect, style: UITableView.Style)

@@ -31,5 +31,17 @@ class ViewController: UIViewController, Alerable
         present(vc, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let idx = tableView.indexPathForSelectedRow?.row ?? 0
+        guard let vc = segue.destination as? ChatViewController else
+        {
+            alert(title: "Segue error", message: "Something wrong in pewpare for segue!")
+            return
+        }
+        
+        vc.navigationItem.title = names[idx]
+    }
+    
 }
 
