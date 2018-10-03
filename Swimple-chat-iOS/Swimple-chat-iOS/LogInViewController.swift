@@ -43,7 +43,7 @@ class LogInViewController: UIViewController, Alerable
         defaults.set(username, forKey: "username")
         defaults.set(password, forKey: "password")
         
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChatListVC") as? ViewController else
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
         {
             print("Can't instatiate VC!")
             alert(title: "Error in instatiate", message: "Can't instatiate ChatListVC")
