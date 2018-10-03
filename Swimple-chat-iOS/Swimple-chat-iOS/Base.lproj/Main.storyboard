@@ -89,50 +89,58 @@
             </objects>
             <point key="canvasLocation" x="1100" y="-294.60269865067471"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="vh4-gD-tGh">
             <objects>
-                <viewController id="dle-4A-Jo2" sceneMemberID="viewController">
+                <viewController id="dle-4A-Jo2" customClass="ChatViewController" customModule="Swimple_chat_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M7a-mh-BVJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWM-Fq-YzW">
-                                <rect key="frame" x="0.0" y="632" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QCU-YD-y4D">
-                                        <rect key="frame" x="8" y="2" width="151" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig8-Np-Kbr">
-                                        <rect key="frame" x="167" y="2" width="200" height="31"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig8-Np-Kbr">
+                                        <rect key="frame" x="337" y="10" width="30" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="JPy-Bk-yu4"/>
+                                            <constraint firstAttribute="width" constant="30" id="KmH-Sd-DUx"/>
+                                        </constraints>
                                         <state key="normal" image="send"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="leading" secondItem="QCU-YD-y4D" secondAttribute="trailing" constant="8" id="0YV-rS-Abi"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ig8-Np-Kbr" secondAttribute="trailing" constant="8" id="4Bg-xE-GVe"/>
-                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="leading" secondItem="EWM-Fq-YzW" secondAttribute="leading" constant="8" id="DTZ-YM-aUW"/>
-                                    <constraint firstAttribute="height" constant="35" id="EDP-h0-Hoj"/>
-                                    <constraint firstAttribute="bottom" secondItem="QCU-YD-y4D" secondAttribute="bottom" constant="2" id="Q6A-60-hpC"/>
-                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" constant="2" id="QMO-CM-bkZ"/>
-                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" constant="2" id="a02-F5-xkF"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ig8-Np-Kbr" secondAttribute="bottom" constant="2" id="maC-cu-kLl"/>
+                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="leading" secondItem="EWM-Fq-YzW" secondAttribute="leading" id="7N2-XB-CAb"/>
+                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="leading" secondItem="QCU-YD-y4D" secondAttribute="trailing" constant="8" id="E1t-KO-ab0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ig8-Np-Kbr" secondAttribute="trailing" constant="8" id="HVn-zh-GAm"/>
+                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" constant="10" id="XBs-6l-4fm"/>
+                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="leading" secondItem="QCU-YD-y4D" secondAttribute="trailing" constant="8" id="YS4-Bu-SkF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ig8-Np-Kbr" secondAttribute="bottom" constant="9" id="gHh-Ta-qEW"/>
+                                    <constraint firstAttribute="bottom" secondItem="QCU-YD-y4D" secondAttribute="bottom" id="ise-MQ-704"/>
+                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" id="k4d-p1-G9C"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="heW-Q9-fEw" firstAttribute="trailing" secondItem="EWM-Fq-YzW" secondAttribute="trailing" id="X2Z-bx-37R"/>
-                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="eo1-b2-bbA"/>
-                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="bottom" secondItem="heW-Q9-fEw" secondAttribute="bottom" id="vuu-CX-xFz"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="trailing" secondItem="heW-Q9-fEw" secondAttribute="trailing" id="s38-N1-FBY"/>
+                            <constraint firstItem="heW-Q9-fEw" firstAttribute="bottom" secondItem="EWM-Fq-YzW" secondAttribute="bottom" id="wqU-Ls-c4E"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="zUW-Hi-cX0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="heW-Q9-fEw"/>
                     </view>
+                    <connections>
+                        <outlet property="msgTextField" destination="QCU-YD-y4D" id="Uvy-BR-80O"/>
+                        <outlet property="sendButton" destination="Ig8-Np-Kbr" id="cyB-dO-YKU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9lw-OY-lrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
