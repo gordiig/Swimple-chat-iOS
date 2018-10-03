@@ -88,6 +88,41 @@
             </objects>
             <point key="canvasLocation" x="1100" y="-294.60269865067471"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="ZUj-Rh-deP">
+            <objects>
+                <viewController id="BQ3-hE-IkC" customClass="SettingsViewController" customModule="Swimple_chat_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SeZ-MM-z8N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkE-gs-uxn">
+                                <rect key="frame" x="135.5" y="76" width="104" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Log out">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButtonPressed:" destination="BQ3-hE-IkC" eventType="touchUpInside" id="ezc-At-bRE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OkE-gs-uxn" firstAttribute="top" secondItem="aMY-4v-5m9" secondAttribute="top" constant="56" id="2hO-Hu-XQ0"/>
+                            <constraint firstItem="OkE-gs-uxn" firstAttribute="centerX" secondItem="SeZ-MM-z8N" secondAttribute="centerX" id="ry9-cw-vVH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aMY-4v-5m9"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="ioO-v9-KNa"/>
+                    <connections>
+                        <outlet property="logOutButton" destination="OkE-gs-uxn" id="c97-rX-bgn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SHk-IO-TaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1100" y="392"/>
+        </scene>
         <!--LogInVC-->
         <scene sceneID="DGI-Ac-z4Q">
             <objects>
@@ -178,6 +213,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Oo6-dW-TIh"/>
+                        <segue destination="BQ3-hE-IkC" kind="relationship" relationship="viewControllers" id="iY0-E8-mjB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JT-7R-vmY" userLabel="First Responder" sceneMemberID="firstResponder"/>

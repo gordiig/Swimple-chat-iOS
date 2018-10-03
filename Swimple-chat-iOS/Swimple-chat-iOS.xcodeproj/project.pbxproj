@@ -18,6 +18,7 @@
 		1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */; };
 		1338A0EA2165654A00C4ECCF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0E92165654A00C4ECCF /* LogInViewController.swift */; };
 		1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0EB21656AA800C4ECCF /* Alertable.swift */; };
+		1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		1338A0E92165654A00C4ECCF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		1338A0EB21656AA800C4ECCF /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */,
 				1338A0E92165654A00C4ECCF /* LogInViewController.swift */,
 				1338A0EB21656AA800C4ECCF /* Alertable.swift */,
+				1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */,
 			);
 			path = "Swimple-chat-iOS";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			files = (
 				1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */,
 				1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */,
+				1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */,
 				1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */,
 				1338A0B821654BF900C4ECCF /* AppDelegate.swift in Sources */,
 				1338A0EA2165654A00C4ECCF /* LogInViewController.swift in Sources */,
