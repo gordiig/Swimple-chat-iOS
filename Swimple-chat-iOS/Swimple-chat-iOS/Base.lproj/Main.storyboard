@@ -89,62 +89,105 @@
             </objects>
             <point key="canvasLocation" x="2039.2" y="-294.60269865067471"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Chat-->
         <scene sceneID="vh4-gD-tGh">
             <objects>
-                <viewController id="dle-4A-Jo2" customClass="ChatViewController" customModule="Swimple_chat_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9lw-OY-lrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Chat" hidesBottomBarWhenPushed="YES" id="dle-4A-Jo2" customClass="ChatViewController" customModule="Swimple_chat_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M7a-mh-BVJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWM-Fq-YzW">
-                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWM-Fq-YzW" userLabel="MessageView">
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QCU-YD-y4D">
-                                        <rect key="frame" x="0.0" y="0.0" width="329" height="50"/>
+                                        <rect key="frame" x="8" y="8" width="321" height="54"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig8-Np-Kbr">
-                                        <rect key="frame" x="337" y="10" width="30" height="31"/>
+                                        <rect key="frame" x="337" y="20" width="30" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="JPy-Bk-yu4"/>
                                             <constraint firstAttribute="width" constant="30" id="KmH-Sd-DUx"/>
                                         </constraints>
                                         <state key="normal" image="send"/>
+                                        <connections>
+                                            <action selector="sendButtonPressed:" destination="dle-4A-Jo2" eventType="touchUpInside" id="McT-0L-1Pa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="leading" secondItem="EWM-Fq-YzW" secondAttribute="leading" id="7N2-XB-CAb"/>
-                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="leading" secondItem="QCU-YD-y4D" secondAttribute="trailing" constant="8" id="E1t-KO-ab0"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ig8-Np-Kbr" secondAttribute="trailing" constant="8" id="HVn-zh-GAm"/>
-                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" constant="10" id="XBs-6l-4fm"/>
-                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="leading" secondItem="QCU-YD-y4D" secondAttribute="trailing" constant="8" id="YS4-Bu-SkF"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ig8-Np-Kbr" secondAttribute="bottom" constant="9" id="gHh-Ta-qEW"/>
-                                    <constraint firstAttribute="bottom" secondItem="QCU-YD-y4D" secondAttribute="bottom" id="ise-MQ-704"/>
-                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" id="k4d-p1-G9C"/>
+                                    <constraint firstAttribute="bottom" secondItem="QCU-YD-y4D" secondAttribute="bottom" constant="8" id="4sx-uP-PGS"/>
+                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="leading" secondItem="EWM-Fq-YzW" secondAttribute="leading" constant="8" id="5yg-2g-a7m"/>
+                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" constant="20" id="Exr-gi-K20"/>
+                                    <constraint firstItem="Ig8-Np-Kbr" firstAttribute="leading" secondItem="QCU-YD-y4D" secondAttribute="trailing" constant="8" id="Rk5-lb-AeI"/>
+                                    <constraint firstItem="QCU-YD-y4D" firstAttribute="top" secondItem="EWM-Fq-YzW" secondAttribute="top" constant="8" id="gPp-9v-Sra"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ig8-Np-Kbr" secondAttribute="trailing" constant="8" id="hfo-52-W2r"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ig8-Np-Kbr" secondAttribute="bottom" constant="19" id="zwt-TT-NDH"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRY-qt-4cd" userLabel="ChatView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="533"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_b" translatesAutoresizingMaskIntoConstraints="NO" id="fnY-RY-7FU">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="533"/>
+                                    </imageView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpQ-5P-ElH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="533"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDJ-uz-1y2" userLabel="ContentView">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="QDJ-uz-1y2" firstAttribute="top" secondItem="cpQ-5P-ElH" secondAttribute="top" id="Bnb-x5-ENZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="QDJ-uz-1y2" secondAttribute="bottom" id="VhD-1v-i3T"/>
+                                            <constraint firstAttribute="trailing" secondItem="QDJ-uz-1y2" secondAttribute="trailing" id="Xxt-RK-8CV"/>
+                                            <constraint firstItem="QDJ-uz-1y2" firstAttribute="leading" secondItem="cpQ-5P-ElH" secondAttribute="leading" id="oDK-d4-TYp"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="cpQ-5P-ElH" firstAttribute="top" secondItem="bRY-qt-4cd" secondAttribute="top" id="1py-yi-sWW"/>
+                                    <constraint firstAttribute="trailing" secondItem="cpQ-5P-ElH" secondAttribute="trailing" id="5Dv-Ym-tAe"/>
+                                    <constraint firstItem="fnY-RY-7FU" firstAttribute="leading" secondItem="bRY-qt-4cd" secondAttribute="leading" id="Cus-62-U0a"/>
+                                    <constraint firstItem="fnY-RY-7FU" firstAttribute="top" secondItem="bRY-qt-4cd" secondAttribute="top" id="TnE-u5-Kpj"/>
+                                    <constraint firstAttribute="trailing" secondItem="fnY-RY-7FU" secondAttribute="trailing" id="ebJ-ej-YGE"/>
+                                    <constraint firstAttribute="bottom" secondItem="cpQ-5P-ElH" secondAttribute="bottom" id="iib-RU-BMG"/>
+                                    <constraint firstItem="cpQ-5P-ElH" firstAttribute="leading" secondItem="bRY-qt-4cd" secondAttribute="leading" id="jq0-xE-l6F"/>
+                                    <constraint firstAttribute="bottom" secondItem="fnY-RY-7FU" secondAttribute="bottom" id="npR-ve-1Ak"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="trailing" secondItem="heW-Q9-fEw" secondAttribute="trailing" id="s38-N1-FBY"/>
-                            <constraint firstItem="heW-Q9-fEw" firstAttribute="bottom" secondItem="EWM-Fq-YzW" secondAttribute="bottom" id="wqU-Ls-c4E"/>
-                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="zUW-Hi-cX0"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="bottom" secondItem="heW-Q9-fEw" secondAttribute="bottom" id="8RE-L7-O80"/>
+                            <constraint firstItem="bRY-qt-4cd" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="AYQ-JX-3Te"/>
+                            <constraint firstItem="bRY-qt-4cd" firstAttribute="top" secondItem="heW-Q9-fEw" secondAttribute="top" id="B89-Yg-2Ke"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="FOP-4U-mY8"/>
+                            <constraint firstItem="QDJ-uz-1y2" firstAttribute="width" secondItem="M7a-mh-BVJ" secondAttribute="width" id="OCf-Ab-7rX"/>
+                            <constraint firstItem="QDJ-uz-1y2" firstAttribute="height" secondItem="M7a-mh-BVJ" secondAttribute="height" priority="250" id="aB9-xo-Las"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="top" secondItem="bRY-qt-4cd" secondAttribute="bottom" id="cA0-Cr-zHA"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="trailing" secondItem="heW-Q9-fEw" secondAttribute="trailing" id="ecg-jP-OSW"/>
+                            <constraint firstItem="heW-Q9-fEw" firstAttribute="trailing" secondItem="bRY-qt-4cd" secondAttribute="trailing" id="gpj-Dy-3v8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="heW-Q9-fEw"/>
                     </view>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="msgTextField" destination="QCU-YD-y4D" id="Uvy-BR-80O"/>
                         <outlet property="sendButton" destination="Ig8-Np-Kbr" id="cyB-dO-YKU"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9lw-OY-lrU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2972" y="-295.50224887556226"/>
+            <point key="canvasLocation" x="2913" y="-295"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ZUj-Rh-deP">
@@ -299,6 +342,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chat_b" width="640" height="1002"/>
         <image name="send" width="200" height="200"/>
     </resources>
 </document>

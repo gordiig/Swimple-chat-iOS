@@ -20,4 +20,8 @@ class ChatViewController: UIViewController
         msgTextField.layer.cornerRadius = 10
     }
     
+    @IBAction func sendButtonPressed(_ sender: Any)
+    {
+        
+    }
 }
