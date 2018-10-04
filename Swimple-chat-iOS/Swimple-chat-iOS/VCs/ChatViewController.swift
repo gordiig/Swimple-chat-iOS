@@ -12,6 +12,7 @@ class ChatViewController: UIViewController
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
+    @IBOutlet weak var chatTableView: ChatTableView!
     
     override func viewDidLoad()
     {
@@ -22,6 +23,6 @@ class ChatViewController: UIViewController
     
     @IBAction func sendButtonPressed(_ sender: Any)
     {
-        
+        chatTableView.reloadData()
     }
 }
