@@ -12,7 +12,6 @@ class ChatViewController: UIViewController
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
-    @IBOutlet weak var chatTableView: ChatTableView!
     
     override func viewDidLoad()
     {

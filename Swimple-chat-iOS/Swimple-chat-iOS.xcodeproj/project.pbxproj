@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1328C44421668A1B00D744F5 /* MyMessageBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1328C44321668A1B00D744F5 /* MyMessageBubbleTableViewCell.swift */; };
+		1328C44621668A2C00D744F5 /* FriendMessageBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1328C44521668A2C00D744F5 /* FriendMessageBubbleTableViewCell.swift */; };
 		1338A0B821654BF900C4ECCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B721654BF900C4ECCF /* AppDelegate.swift */; };
 		1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B921654BF900C4ECCF /* ViewController.swift */; };
 		1338A0BD21654BF900C4ECCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1338A0BB21654BF900C4ECCF /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1328C44321668A1B00D744F5 /* MyMessageBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageBubbleTableViewCell.swift; sourceTree = "<group>"; };
+		1328C44521668A2C00D744F5 /* FriendMessageBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendMessageBubbleTableViewCell.swift; sourceTree = "<group>"; };
 		1338A0B421654BF900C4ECCF /* Swimple-chat-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swimple-chat-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1338A0B721654BF900C4ECCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1338A0B921654BF900C4ECCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				1338A0E72165509600C4ECCF /* ChatListTableViewCell.swift */,
+				1328C44321668A1B00D744F5 /* MyMessageBubbleTableViewCell.swift */,
+				1328C44521668A2C00D744F5 /* FriendMessageBubbleTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -306,8 +312,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1328C44421668A1B00D744F5 /* MyMessageBubbleTableViewCell.swift in Sources */,
 				1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */,
 				1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */,
+				1328C44621668A2C00D744F5 /* FriendMessageBubbleTableViewCell.swift in Sources */,
 				1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */,
 				1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */,
 				1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */,

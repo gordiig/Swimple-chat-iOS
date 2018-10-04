@@ -134,7 +134,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendMessageBubble" rowHeight="70" id="ui8-rk-F69">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendMessageBubble" rowHeight="70" id="ui8-rk-F69" customClass="FriendMessageBubbleTableViewCell" customModule="Swimple_chat_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ui8-rk-F69" id="g4G-ZK-clC">
@@ -164,8 +164,12 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="qJD-7s-5dk" secondAttribute="trailing" constant="8" id="hqh-T9-JGo"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImage" destination="wwQ-s5-29c" id="BnT-KV-Hk7"/>
+                                            <outlet property="messageLabel" destination="qJD-7s-5dk" id="3Ed-4x-uMO"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyMessageBubble" rowHeight="70" id="HH6-d9-vCJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyMessageBubble" rowHeight="70" id="HH6-d9-vCJ" customClass="MyMessageBubbleTableViewCell" customModule="Swimple_chat_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="98" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HH6-d9-vCJ" id="cRv-jg-EsS">
@@ -195,6 +199,10 @@
                                                 <constraint firstItem="oOK-Q0-aB6" firstAttribute="leading" secondItem="ADf-cF-xfr" secondAttribute="trailing" constant="8" id="qkL-Q8-P38"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImage" destination="oOK-Q0-aB6" id="D7Y-hO-k3n"/>
+                                            <outlet property="messageLabel" destination="ADf-cF-xfr" id="u1m-wR-NkL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
