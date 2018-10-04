@@ -13,6 +13,12 @@ class ChatViewController: UIViewController
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
     
+    let messages = [
+        "Ji, glad to see you again! How is your ancle?",
+        "Long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message",
+        "Q, GG, WP"
+    ]
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -20,8 +26,9 @@ class ChatViewController: UIViewController
         msgTextField.layer.cornerRadius = 10
     }
     
+    
     @IBAction func sendButtonPressed(_ sender: Any)
     {
-        chatTableView.reloadData()
+        
     }
 }
