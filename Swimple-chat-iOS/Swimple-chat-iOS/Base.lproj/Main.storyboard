@@ -130,63 +130,58 @@
                                     <constraint firstAttribute="bottom" secondItem="Ig8-Np-Kbr" secondAttribute="bottom" constant="19" id="zwt-TT-NDH"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rO7-iG-v04" customClass="ChatTableView" customModule="Swimple_chat_iOS" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c6R-WB-zDb">
                                 <rect key="frame" x="0.0" y="64" width="375" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatTableViewCell" rowHeight="75" id="pGu-w8-yBG" customClass="ChatTableViewCell" customModule="Swimple_chat_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="ui8-rk-F69">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pGu-w8-yBG" id="pEA-4x-BGy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ui8-rk-F69" id="g4G-ZK-clC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U1b-4P-YHR">
-                                                    <rect key="frame" x="8" y="2" width="70.5" height="70.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wwQ-s5-29c">
+                                                    <rect key="frame" x="8" y="8" width="53.5" height="53.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="U1b-4P-YHR" secondAttribute="height" multiplier="1:1" id="2we-X7-bQm"/>
+                                                        <constraint firstAttribute="width" secondItem="wwQ-s5-29c" secondAttribute="height" multiplier="1:1" id="g9e-Ye-Y6d"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZ7-rB-PEa">
-                                                    <rect key="frame" x="86.5" y="19" width="265.5" height="37"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJD-7s-5dk">
+                                                    <rect key="frame" x="69.5" y="19" width="282.5" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DZ7-rB-PEa" secondAttribute="trailing" constant="8" id="Lxn-sM-zEo"/>
-                                                <constraint firstItem="DZ7-rB-PEa" firstAttribute="top" secondItem="pEA-4x-BGy" secondAttribute="topMargin" constant="8" id="N7H-sp-Rm3"/>
-                                                <constraint firstAttribute="bottom" secondItem="U1b-4P-YHR" secondAttribute="bottom" constant="2" id="TDs-Pe-3VV"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="DZ7-rB-PEa" secondAttribute="bottom" constant="8" id="XvM-BF-fbk"/>
-                                                <constraint firstItem="DZ7-rB-PEa" firstAttribute="leading" secondItem="U1b-4P-YHR" secondAttribute="trailing" constant="8" id="isr-YC-xta"/>
-                                                <constraint firstItem="U1b-4P-YHR" firstAttribute="leading" secondItem="pEA-4x-BGy" secondAttribute="leading" constant="8" id="qfc-vh-3lz"/>
-                                                <constraint firstItem="U1b-4P-YHR" firstAttribute="top" secondItem="pEA-4x-BGy" secondAttribute="top" constant="2" id="qla-ET-9aa"/>
+                                                <constraint firstItem="wwQ-s5-29c" firstAttribute="top" secondItem="g4G-ZK-clC" secondAttribute="top" constant="8" id="EII-iv-n2B"/>
+                                                <constraint firstItem="qJD-7s-5dk" firstAttribute="top" secondItem="g4G-ZK-clC" secondAttribute="topMargin" constant="8" id="HZi-uC-d1d"/>
+                                                <constraint firstItem="qJD-7s-5dk" firstAttribute="leading" secondItem="wwQ-s5-29c" secondAttribute="trailing" constant="8" id="LbU-7N-wYQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="wwQ-s5-29c" secondAttribute="bottom" constant="8" id="NmU-sU-Zee"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qJD-7s-5dk" secondAttribute="bottom" constant="8" id="QBo-Kf-BZF"/>
+                                                <constraint firstItem="wwQ-s5-29c" firstAttribute="leading" secondItem="g4G-ZK-clC" secondAttribute="leading" constant="8" id="RHH-W0-45f"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qJD-7s-5dk" secondAttribute="trailing" constant="8" id="hqh-T9-JGo"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="avatarImageView" destination="U1b-4P-YHR" id="33A-9g-bRO"/>
-                                            <outlet property="messageLabel" destination="DZ7-rB-PEa" id="ShH-fx-iyL"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rO7-iG-v04" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="5UP-Wz-dw6"/>
+                            <constraint firstItem="c6R-WB-zDb" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="3xm-bH-6gQ"/>
                             <constraint firstItem="EWM-Fq-YzW" firstAttribute="bottom" secondItem="heW-Q9-fEw" secondAttribute="bottom" id="8RE-L7-O80"/>
+                            <constraint firstItem="heW-Q9-fEw" firstAttribute="trailing" secondItem="c6R-WB-zDb" secondAttribute="trailing" id="Cgi-9L-L1t"/>
                             <constraint firstItem="EWM-Fq-YzW" firstAttribute="leading" secondItem="heW-Q9-fEw" secondAttribute="leading" id="FOP-4U-mY8"/>
+                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="top" secondItem="c6R-WB-zDb" secondAttribute="bottom" id="Rl3-I4-qw8"/>
                             <constraint firstItem="EWM-Fq-YzW" firstAttribute="trailing" secondItem="heW-Q9-fEw" secondAttribute="trailing" id="ecg-jP-OSW"/>
-                            <constraint firstItem="EWM-Fq-YzW" firstAttribute="top" secondItem="rO7-iG-v04" secondAttribute="bottom" id="gBU-mt-aSa"/>
-                            <constraint firstItem="heW-Q9-fEw" firstAttribute="trailing" secondItem="rO7-iG-v04" secondAttribute="trailing" id="ukD-Jp-oz1"/>
-                            <constraint firstItem="rO7-iG-v04" firstAttribute="top" secondItem="heW-Q9-fEw" secondAttribute="top" id="yfb-2M-zM0"/>
+                            <constraint firstItem="c6R-WB-zDb" firstAttribute="top" secondItem="heW-Q9-fEw" secondAttribute="top" id="guI-Ma-2EN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="heW-Q9-fEw"/>
                     </view>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="chatTableView" destination="rO7-iG-v04" id="g2u-aW-xXC"/>
                         <outlet property="msgTextField" destination="QCU-YD-y4D" id="Uvy-BR-80O"/>
                         <outlet property="sendButton" destination="Ig8-Np-Kbr" id="cyB-dO-YKU"/>
                     </connections>
