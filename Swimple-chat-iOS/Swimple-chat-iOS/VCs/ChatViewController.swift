@@ -8,14 +8,14 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class ChatViewController: UIViewController, Alerable, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
     
     var messages = [
-        "Ji, glad to see you again! How is your head?",
+        "Hi, glad to see you again! How is your head?",
         "Long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message",
         "Q, GG, WP",
         "Anoteher long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message"
@@ -64,6 +64,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
         {
             print("Can't dequeue ChatBubbleTableViewCell")
+            alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
             return UITableViewCell()
         }
         
@@ -79,10 +80,25 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
+    // MARK: - Alertable
+    func alert(title: String, message: String)
+    {
+        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        vc.addAction(alertAction)
+        present(vc, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func sendButtonPressed(_ sender: Any)
     {
         let text = msgTextField.text ?? ""
-        if text.isEmpty { return }
+        if text.isEmpty
+        {
+            alert(title: "No message", message: "You can't send empty message!")
+            return
+        }
+        
         messages.append(text)
     }
 }
