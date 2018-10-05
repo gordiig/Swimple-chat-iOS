@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, Alerable, UITableViewDataSource, UITableViewDelegate
+class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
@@ -78,17 +78,6 @@ class ChatViewController: UIViewController, Alerable, UITableViewDataSource, UIT
         let selected = tableView.cellForRow(at: indexPath)
         selected?.isSelected = false
     }
-    
-    
-    // MARK: - Alertable
-    func alert(title: String, message: String)
-    {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        vc.addAction(alertAction)
-        present(vc, animated: true, completion: nil)
-    }
-    
     
     @IBAction func sendButtonPressed(_ sender: Any)
     {

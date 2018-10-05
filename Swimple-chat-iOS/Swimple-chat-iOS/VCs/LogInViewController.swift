@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, Alerable
+class LogInViewController: AlertableViewController
 {
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -55,14 +55,5 @@ class LogInViewController: UIViewController, Alerable
     @IBAction func signUpButtonPressed(_ sender: Any)
     {
         alert(title: "Not implemented yet", message: "Not implemented yet!")
-    }
-    
-    
-    func alert(title: String, message: String)
-    {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        vc.addAction(alertAction)
-        present(vc, animated: true, completion: nil)
     }
 }

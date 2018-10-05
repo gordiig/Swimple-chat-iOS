@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, Alerable
+class SettingsViewController: AlertableViewController
 {
     
     @IBOutlet weak var logOutButton: UIButton!
@@ -32,14 +32,6 @@ class SettingsViewController: UIViewController, Alerable
             alert(title: "Error in instatiate", message: "Can't instatiate LogInVC")
             return
         }
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func alert(title: String, message: String)
-    {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        vc.addAction(alertAction)
         present(vc, animated: true, completion: nil)
     }
 }
