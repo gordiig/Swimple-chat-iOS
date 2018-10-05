@@ -17,6 +17,9 @@ class ChatBubbleTableViewCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
+        self.layer.cornerRadius = 20
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor.lightGray.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)

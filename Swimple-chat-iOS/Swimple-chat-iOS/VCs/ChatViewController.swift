@@ -32,9 +32,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         chatTableView.estimatedRowHeight = 70
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    // MARK: - UITableView
+    
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -45,7 +57,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return UITableViewCell()
         }
         
-        let row = indexPath.row
+        let row = indexPath.section
         cell.configure(message: messages[row])
         return cell
     }
