@@ -14,12 +14,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var msgTextField: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
     
-    let messages = [
+    var messages = [
         "Ji, glad to see you again! How is your head?",
         "Long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message",
         "Q, GG, WP",
         "Anoteher long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message"
     ]
+    {
+        didSet(val)
+        {
+            chatTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad()
     {
@@ -46,7 +52,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
-        return 8
+        return 4
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat
+    {
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -71,6 +81,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func sendButtonPressed(_ sender: Any)
     {
-        
+        let text = msgTextField.text ?? ""
+        if text.isEmpty { return }
+        messages.append(text)
     }
 }
