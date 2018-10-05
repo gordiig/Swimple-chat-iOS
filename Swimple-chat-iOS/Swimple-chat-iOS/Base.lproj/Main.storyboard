@@ -148,7 +148,7 @@
                                                         <constraint firstAttribute="width" secondItem="kx4-tq-oso" secondAttribute="height" multiplier="1:1" id="jnG-t2-1qA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXS-Ch-xE8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat message" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXS-Ch-xE8">
                                                     <rect key="frame" x="69.5" y="19" width="282.5" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -156,13 +156,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kx4-tq-oso" secondAttribute="bottom" constant="8" id="0jb-ib-QfC"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mXS-Ch-xE8" secondAttribute="bottom" constant="8" id="3lq-8O-KPN"/>
-                                                <constraint firstItem="kx4-tq-oso" firstAttribute="top" secondItem="L8B-Tb-Aca" secondAttribute="top" constant="8" id="7f1-hD-tcf"/>
                                                 <constraint firstItem="kx4-tq-oso" firstAttribute="leading" secondItem="L8B-Tb-Aca" secondAttribute="leading" constant="8" id="9QJ-le-kms"/>
-                                                <constraint firstAttribute="bottom" secondItem="kx4-tq-oso" secondAttribute="bottom" constant="8" id="AuO-mN-ewr"/>
+                                                <constraint firstItem="kx4-tq-oso" firstAttribute="centerY" secondItem="L8B-Tb-Aca" secondAttribute="centerY" id="NiI-3F-ElH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mXS-Ch-xE8" secondAttribute="trailing" constant="8" id="OyH-32-ztl"/>
                                                 <constraint firstItem="mXS-Ch-xE8" firstAttribute="leading" secondItem="kx4-tq-oso" secondAttribute="trailing" constant="8" id="RlP-0z-7DP"/>
                                                 <constraint firstItem="mXS-Ch-xE8" firstAttribute="top" secondItem="L8B-Tb-Aca" secondAttribute="topMargin" constant="8" id="YvI-iK-xU8"/>
+                                                <constraint firstItem="kx4-tq-oso" firstAttribute="top" relation="greaterThanOrEqual" secondItem="L8B-Tb-Aca" secondAttribute="top" constant="8" id="uJi-I4-hMT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

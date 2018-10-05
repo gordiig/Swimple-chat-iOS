@@ -15,9 +15,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var chatTableView: UITableView!
     
     let messages = [
-        "Ji, glad to see you again! How is your ancle?",
+        "Ji, glad to see you again! How is your head?",
         "Long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message",
-        "Q, GG, WP"
+        "Q, GG, WP",
+        "Anoteher long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message"
     ]
     
     override func viewDidLoad()
@@ -27,6 +28,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         chatTableView.delegate = self
         chatTableView.dataSource = self
+        chatTableView.rowHeight = UITableView.automaticDimension
+        chatTableView.estimatedRowHeight = 70
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
