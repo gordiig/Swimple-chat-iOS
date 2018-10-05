@@ -22,7 +22,6 @@ class ChatBubbleTableViewCell: UITableViewCell
     override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
-        isSelected = false
     }
     
     func configure(message: String, img: UIImage? = nil)

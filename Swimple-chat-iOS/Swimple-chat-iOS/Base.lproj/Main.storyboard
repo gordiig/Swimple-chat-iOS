@@ -28,7 +28,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="my8-nL-NiI">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="100x100" translatesAutoresizingMaskIntoConstraints="NO" id="my8-nL-NiI">
                                                     <rect key="frame" x="8" y="2" width="65.5" height="65.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65.5" id="b7U-H7-1T7"/>
@@ -144,6 +144,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="100x100" translatesAutoresizingMaskIntoConstraints="NO" id="kx4-tq-oso">
                                                     <rect key="frame" x="8" y="8" width="53.5" height="53.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="53.5" id="idX-3J-v1e"/>
                                                         <constraint firstAttribute="width" secondItem="kx4-tq-oso" secondAttribute="height" multiplier="1:1" id="jnG-t2-1qA"/>
                                                     </constraints>
                                                 </imageView>
