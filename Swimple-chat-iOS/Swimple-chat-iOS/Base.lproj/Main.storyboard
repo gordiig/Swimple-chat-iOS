@@ -171,6 +171,42 @@
                                             <outlet property="messageLabel" destination="mXS-Ch-xE8" id="Ts1-T3-Mr5"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyChatBubbleTableViewCell" rowHeight="70" id="zbB-gM-YDF" customClass="MyChatBubbleTableViewCell" customModule="Swimple_chat_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="98" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zbB-gM-YDF" id="WFe-ln-lVz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="100x100" translatesAutoresizingMaskIntoConstraints="NO" id="oaW-b8-Odm">
+                                                    <rect key="frame" x="313" y="8" width="54" height="54"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="54" id="e2Z-Ar-LzU"/>
+                                                        <constraint firstAttribute="width" secondItem="oaW-b8-Odm" secondAttribute="height" multiplier="1:1" id="wqD-uU-fRC"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My chat message" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xce-84-7qn">
+                                                    <rect key="frame" x="23" y="19" width="282" height="32"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xce-84-7qn" firstAttribute="leading" secondItem="WFe-ln-lVz" secondAttribute="leadingMargin" constant="8" id="DnL-S4-xlG"/>
+                                                <constraint firstItem="oaW-b8-Odm" firstAttribute="centerY" secondItem="WFe-ln-lVz" secondAttribute="centerY" id="Ffx-eb-rXX"/>
+                                                <constraint firstItem="xce-84-7qn" firstAttribute="top" secondItem="WFe-ln-lVz" secondAttribute="topMargin" constant="8" id="Uv9-ga-QBc"/>
+                                                <constraint firstAttribute="trailing" secondItem="oaW-b8-Odm" secondAttribute="trailing" constant="8" id="cxr-ap-x1w"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xce-84-7qn" secondAttribute="bottom" constant="8" id="fsg-sh-PYn"/>
+                                                <constraint firstItem="oaW-b8-Odm" firstAttribute="leading" secondItem="xce-84-7qn" secondAttribute="trailing" constant="8" id="oIg-R7-NlA"/>
+                                                <constraint firstItem="oaW-b8-Odm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WFe-ln-lVz" secondAttribute="top" constant="8" id="t4q-F7-8e5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="oaW-b8-Odm" id="kds-cj-RM9"/>
+                                            <outlet property="messageLabel" destination="xce-84-7qn" id="NsP-1d-uPx"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

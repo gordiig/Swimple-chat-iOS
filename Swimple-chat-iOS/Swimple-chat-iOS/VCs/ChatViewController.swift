@@ -61,16 +61,30 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
-        {
-            print("Can't dequeue ChatBubbleTableViewCell")
-            alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
-            return UITableViewCell()
-        }
-        
         let row = indexPath.section
-        cell.configure(message: messages[row])
-        return cell
+        
+        if row % 2 == 1
+        {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
+            {
+                print("Can't dequeue ChatBubbleTableViewCell")
+                alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
+                return UITableViewCell()
+            }
+            cell.configure(message: messages[row])
+            return cell
+        }
+        else
+        {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyChatBubbleTableViewCell") as? MyChatBubbleTableViewCell else
+            {
+                print("Can't dequeue MyChatBubbleTableViewCell")
+                alert(title: "Dequeue error", message: "Can't dequeue MyChatBubbleTableViewCell")
+                return UITableViewCell()
+            }
+            cell.configure(message: messages[row])
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
