@@ -12,6 +12,7 @@ class ChatViewController: UIViewController
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
+    @IBOutlet weak var chatTableView: UITableView!
     
     let messages = [
         "Ji, glad to see you again! How is your ancle?",
