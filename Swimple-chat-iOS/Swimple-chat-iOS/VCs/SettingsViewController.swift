@@ -33,9 +33,14 @@ class SettingsViewController: AlertableViewController
 
     @IBAction func logOutButtonPressed(_ sender: Any)
     {
+        let cUser = CurrentUser.getInstance()
+        cUser.clear()
+        
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "username")
         defaults.removeObject(forKey: "password")
+        defaults.removeObject(forKey: "ip")
+        defaults.removeObject(forKey: "avatarImg")
         
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
         {

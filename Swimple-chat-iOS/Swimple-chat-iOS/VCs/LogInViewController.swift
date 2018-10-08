@@ -39,10 +39,6 @@ class LogInViewController: AlertableViewController
             return
         }
         
-        let defaults = UserDefaults.standard
-        defaults.set(username, forKey: "username")
-        defaults.set(password, forKey: "password")
-        
         let cUser = CurrentUser.getInstance()
         cUser.configure(username: username, password: password, ip: "ip there", avatarImg: UIImage(named: "angry"))
         

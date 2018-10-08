@@ -20,13 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let username = defaults.string(forKey: "username") ?? ""
         let password = defaults.string(forKey: "password") ?? ""
         let ip = defaults.string(forKey: "ip") ?? ""
-        let imgData = defaults.data(forKey: "avatarImg") ?? Data(capacity: 0)
+        let imgData = defaults.data(forKey: "avatarImg")
+        let img = (imgData == nil) ? (UIImage(named: User.stdImageName)) : (UIImage(data: imgData!))
         
         if username.isEmpty || password.isEmpty
         {
-            let cUser = CurrentUser.getInstance()
-            cUser.configure(username: username, password: password, ip: ip, avatarImg: UIImage(data: imgData))
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
             {
@@ -35,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.rootViewController = vc
         }
+        else
+        {
+            let cUser = CurrentUser.getInstance()
+            cUser.configure(username: username, password: password, ip: ip, avatarImg: img)
+        }
+        
         return true
     }
 
@@ -46,6 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        let cUser = CurrentUser.getInstance()
+        let defaults = UserDefaults.standard
+        defaults.set(cUser.username, forKey: "username")
+        defaults.set(cUser.password, forKey: "password")
+        defaults.set(cUser.ip, forKey: "ip")
+        defaults.set(cUser.avatarImg.pngData(), forKey: "avatarImg")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

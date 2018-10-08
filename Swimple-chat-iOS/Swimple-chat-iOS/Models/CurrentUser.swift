@@ -41,4 +41,12 @@ class CurrentUser: User
             self.avatarImg = img
         }
     }
+    
+    func clear()
+    {
+        username = ""
+        password = ""
+        ip = ""
+        avatarImg = UIImage(named: User.stdImageName)!
+    }
 }
