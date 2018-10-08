@@ -43,6 +43,9 @@ class LogInViewController: AlertableViewController
         defaults.set(username, forKey: "username")
         defaults.set(password, forKey: "password")
         
+        let cUser = CurrentUser.getInstance()
+        cUser.configure(username: username, password: password, ip: "ip there")
+        
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
         {
             print("Can't instatiate VC!")

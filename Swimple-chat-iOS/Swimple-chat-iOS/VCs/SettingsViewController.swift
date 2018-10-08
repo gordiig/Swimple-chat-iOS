@@ -10,14 +10,20 @@ import UIKit
 
 class SettingsViewController: AlertableViewController
 {
-    
     @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        let cUser = CurrentUser.getInstance()
+        usernameLabel.text = cUser.username
+        passwordLabel.text = cUser.password
     }
     
 
