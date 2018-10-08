@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if username.isEmpty || password.isEmpty
         {
             let cUser = CurrentUser.getInstance()
-            cUser.configure(username: username, password: password, ip: "ip here")
+            cUser.configure(username: username, password: password, ip: "ip here", avatarImg: UIImage(named: "angry"))
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
