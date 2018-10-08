@@ -19,17 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         let username = defaults.string(forKey: "username") ?? ""
         let password = defaults.string(forKey: "password") ?? ""
+        let ip = defaults.string(forKey: "ip") ?? ""
+        let imgData = defaults.data(forKey: "avatarImg") ?? Data(capacity: 0)
         
         if username.isEmpty || password.isEmpty
         {
             let cUser = CurrentUser.getInstance()
-            cUser.configure(username: username, password: password, ip: "ip here", avatarImg: UIImage(named: "angry"))
+            cUser.configure(username: username, password: password, ip: ip, avatarImg: UIImage(data: imgData))
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
             {
                 print("Can't instatiate LogInVC!")
-                return true
+                return false
             }
             window?.rootViewController = vc
         }
@@ -57,7 +59,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

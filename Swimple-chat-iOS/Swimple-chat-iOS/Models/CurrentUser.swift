@@ -36,6 +36,9 @@ class CurrentUser: User
         self.username = username
         self.password = password
         self.ip = ip
-        self.avatarImg = avatarImg
+        if let img = avatarImg
+        {
+            self.avatarImg = img
+        }
     }
 }
