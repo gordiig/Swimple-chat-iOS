@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, Alerable
+class ViewController: AlertableViewController
 {
     @IBOutlet weak var tableView: ChatListTableView!
     
@@ -19,16 +19,6 @@ class ViewController: UIViewController, Alerable
     {
         super.viewDidLoad()
         tableView.appendChats(names: names, msgs: msgs)
-    }
-    
-    
-    
-    func alert(title: String, message: String)
-    {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        vc.addAction(alertAction)
-        present(vc, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
