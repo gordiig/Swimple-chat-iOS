@@ -38,6 +38,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         chatTableView.dataSource = self
         chatTableView.rowHeight = UITableView.automaticDimension
         chatTableView.estimatedRowHeight = 70
+        chatTableView.keyboardDismissMode = .interactive
         
         let rightButton = UIBarButtonItem(title: "Camera", style: .plain, target: self, action: #selector(cameraButtonPressed))
         self.navigationItem.rightBarButtonItem = rightButton
@@ -45,9 +46,6 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         self.msgTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
-        tap.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tap)
     }
     
     
@@ -85,7 +83,8 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     
     func textViewDidChange(_ textView: UITextView)
     {
-        self.sendButton.isEnabled = !textView.text.isEmpty
+        let text = textView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.sendButton.isEnabled = !text.isEmpty
     }
     
     
@@ -160,7 +159,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     
     @IBAction func sendButtonPressed(_ sender: Any)
     {
-        let text = msgTextField.text!
+        let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         messages.append(text)
     }
 }
