@@ -13,6 +13,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var messages = [
         "Hi, glad to see you again! How is your head?",
@@ -24,6 +25,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         didSet(val)
         {
             chatTableView.reloadData()
+            self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
         }
     }
     
@@ -39,13 +41,45 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         
         let rightButton = UIBarButtonItem(title: "Camera", style: .plain, target: self, action: #selector(cameraButtonPressed))
         self.navigationItem.rightBarButtonItem = rightButton
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    // MARK: - TextView work
+    @objc func keyboardWillShow(notification: Notification)
+    {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else
+        {
+            alert(title: "Error in keyboard size!", message: "Can't get keyboard size!")
+            return
+        }
+        let height = keyboardFrame.cgRectValue.height
+        
+        self.bottomConstraint.constant = -height
+        UIView.animate(withDuration: 0.5)
+        {
+            self.view.layoutIfNeeded()
+        }
+        self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
+        
+        
+    }
+    
+    @objc func keyboardWillHide(notification: Notification)
+    {
+        self.bottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.5)
+        {
+            self.view.layoutIfNeeded()
+        }
     }
     
     
     // MARK: - Transition to camera
     @objc func cameraButtonPressed(sender: AnyObject)
     {
-//        self.alert(title: "Camera pressed", message: "Camera button was pressed!")
         let storyboard = self.storyboard!
         guard let destVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else
         {

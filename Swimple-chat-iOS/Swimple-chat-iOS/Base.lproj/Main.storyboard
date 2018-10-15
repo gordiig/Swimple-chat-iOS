@@ -221,9 +221,13 @@
                             <constraint firstItem="EWM-Fq-YzW" firstAttribute="top" secondItem="HOJ-hH-Pru" secondAttribute="bottom" id="xyf-6f-GVj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="heW-Q9-fEw"/>
+                        <connections>
+                            <action selector="backgroundTap:" destination="dle-4A-Jo2" eventType="touchDown" id="qhx-B0-cUW"/>
+                        </connections>
                     </view>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="8RE-L7-O80" id="GTz-Ui-waF"/>
                         <outlet property="chatTableView" destination="HOJ-hH-Pru" id="PCf-5v-6HP"/>
                         <outlet property="msgTextField" destination="QCU-YD-y4D" id="Uvy-BR-80O"/>
                         <outlet property="sendButton" destination="Ig8-Np-Kbr" id="cyB-dO-YKU"/>
