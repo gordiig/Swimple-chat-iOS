@@ -45,7 +45,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
-//        tap.cancelsTouchesInView = false
+        tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
     }
     
