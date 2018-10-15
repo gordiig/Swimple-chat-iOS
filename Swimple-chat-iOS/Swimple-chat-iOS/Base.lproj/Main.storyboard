@@ -463,6 +463,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FRJ-mG-G2X" customClass="CameraPreviewView" customModule="Swimple_chat_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYo-xA-t2E">
                                 <rect key="frame" x="102" y="581" width="171" height="78"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="55"/>
@@ -473,24 +477,21 @@
                                     <action selector="dismissButtonPressed:" destination="SAy-eA-dBV" eventType="touchUpInside" id="G79-AK-bVc"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KOC-lu-S89">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="FRJ-mG-G2X" firstAttribute="top" secondItem="Qxr-Od-pFK" secondAttribute="top" id="66E-hS-yR2"/>
                             <constraint firstItem="sYo-xA-t2E" firstAttribute="centerX" secondItem="RsE-Et-qxf" secondAttribute="centerX" id="IZ6-Yw-VHF"/>
-                            <constraint firstItem="KOC-lu-S89" firstAttribute="top" secondItem="Qxr-Od-pFK" secondAttribute="top" id="Oio-sc-XKk"/>
+                            <constraint firstItem="Qxr-Od-pFK" firstAttribute="trailing" secondItem="FRJ-mG-G2X" secondAttribute="trailing" id="K2f-rT-TxK"/>
                             <constraint firstItem="Qxr-Od-pFK" firstAttribute="bottom" secondItem="sYo-xA-t2E" secondAttribute="bottom" constant="8" id="Wp7-4X-DTp"/>
-                            <constraint firstItem="Qxr-Od-pFK" firstAttribute="trailing" secondItem="KOC-lu-S89" secondAttribute="trailing" id="ej0-Vo-j2V"/>
-                            <constraint firstItem="KOC-lu-S89" firstAttribute="leading" secondItem="Qxr-Od-pFK" secondAttribute="leading" id="n4p-PY-lYi"/>
-                            <constraint firstItem="Qxr-Od-pFK" firstAttribute="bottom" secondItem="KOC-lu-S89" secondAttribute="bottom" id="v2Z-sY-u0W"/>
+                            <constraint firstItem="Qxr-Od-pFK" firstAttribute="bottom" secondItem="FRJ-mG-G2X" secondAttribute="bottom" id="fLH-Yh-vJP"/>
+                            <constraint firstItem="FRJ-mG-G2X" firstAttribute="leading" secondItem="Qxr-Od-pFK" secondAttribute="leading" id="juH-1Z-Ouo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qxr-Od-pFK"/>
                     </view>
                     <connections>
-                        <outlet property="cameraView" destination="KOC-lu-S89" id="omu-a1-Ne6"/>
                         <outlet property="dismissButton" destination="sYo-xA-t2E" id="YLb-Im-aa1"/>
+                        <outlet property="previewView" destination="FRJ-mG-G2X" id="lb8-60-kAk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WiX-Nk-qac" userLabel="First Responder" sceneMemberID="firstResponder"/>
