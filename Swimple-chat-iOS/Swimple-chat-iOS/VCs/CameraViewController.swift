@@ -64,7 +64,7 @@ class CameraViewController: AlertableViewController, AVCaptureVideoDataOutputSam
         
         let outputDevice = AVCaptureVideoDataOutput()
         outputDevice.setSampleBufferDelegate(self, queue: self.videoDataPocessingQueue)
-        outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
+//        outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
         if captureSession.canAddOutput(outputDevice)
         {
             captureSession.addOutput(outputDevice)
