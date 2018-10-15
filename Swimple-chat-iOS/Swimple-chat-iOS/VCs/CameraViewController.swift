@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: AlertableViewController
+class CameraViewController: AlertableViewController, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -23,6 +23,7 @@ class CameraViewController: AlertableViewController
     let micDevice = AVCaptureDevice.default(.builtInMicrophone, for: .audio, position: .unspecified)
     var videoDeviceInput: AVCaptureDeviceInput!
     var micDeviceInput: AVCaptureDeviceInput!
+    var videoDataPocessingQueue = DispatchQueue(label: "videoDataProcessingQueue")
     
     override func viewDidLoad()
     {
@@ -60,6 +61,14 @@ class CameraViewController: AlertableViewController
         }
         self.micDeviceInput = micDeviceInput
         captureSession.addInput(micDeviceInput)
+        
+        let outputDevice = AVCaptureVideoDataOutput()
+        outputDevice.setSampleBufferDelegate(self, queue: self.videoDataPocessingQueue)
+        outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
+        if captureSession.canAddOutput(outputDevice)
+        {
+            captureSession.addOutput(outputDevice)
+        }
         
         captureSession.commitConfiguration()
     }
@@ -131,5 +140,12 @@ class CameraViewController: AlertableViewController
     {
         captureSession.stopRunning()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Saving video data
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
+    {
+        print("Captured output from \(connection.description)")
     }
 }
