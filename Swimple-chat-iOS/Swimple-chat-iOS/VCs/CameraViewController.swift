@@ -22,6 +22,8 @@ class CameraViewController: AlertableViewController
         
         self.configureCaptureSession()
         self.previewView.videoPreviewLayer.session = self.captureSession
+        
+        captureSession.startRunning()
     }
     
     func configureCaptureSession()
@@ -82,6 +84,7 @@ class CameraViewController: AlertableViewController
     
     @IBAction func dismissButtonPressed(_ sender: Any)
     {
+        captureSession.stopRunning()
         self.dismiss(animated: true, completion: nil)
     }
 }
