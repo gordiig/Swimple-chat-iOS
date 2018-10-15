@@ -13,8 +13,13 @@ class CameraViewController: AlertableViewController
 {
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var changeCamButton: UIButton!
     
     var captureSession = AVCaptureSession()
+    var videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+    let micDevice = AVCaptureDevice.default(.builtInMicrophone, for: .audio, position: .unspecified)
+    var videoDeviceInput: AVCaptureDeviceInput!
+    var micDeviceInput: AVCaptureDeviceInput!
     
     override func viewDidLoad()
     {
@@ -31,21 +36,21 @@ class CameraViewController: AlertableViewController
         self.captureSession.beginConfiguration()
         
         self.checkPrivacyStatus(for: .video)
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .unspecified)
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), captureSession.canAddInput(videoDeviceInput) else
         {
             self.alert(title: "Error configuring capture session", message: "Can't create videoDeviceInput!")
             return
         }
+        self.videoDeviceInput = videoDeviceInput
         captureSession.addInput(videoDeviceInput)
         
         self.checkPrivacyStatus(for: .audio)
-        let micDevice = AVCaptureDevice.default(.builtInMicrophone, for: .audio, position: .unspecified)
         guard let micDeviceInput = try? AVCaptureDeviceInput(device: micDevice!), captureSession.canAddInput(micDeviceInput) else
         {
             self.alert(title: "Error configuring capture session", message: "Can't create micDeviceInput!")
             return
         }
+        self.micDeviceInput = micDeviceInput
         captureSession.addInput(micDeviceInput)
         
         captureSession.commitConfiguration()
@@ -80,6 +85,38 @@ class CameraViewController: AlertableViewController
                 }
             }
         }
+    }
+    
+    func changeCamera()
+    {
+        self.captureSession.beginConfiguration()
+        self.captureSession.removeInput(videoDeviceInput)
+        
+        if videoDevice?.position == .front
+        {
+            self.videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        }
+        else
+        {
+            self.videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+        }
+        
+        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), captureSession.canAddInput(videoDeviceInput) else
+        {
+            self.alert(title: "Error configuring capture session", message: "Can't create videoDeviceInput!")
+            return
+        }
+        self.videoDeviceInput = videoDeviceInput
+        captureSession.addInput(videoDeviceInput)
+        
+        self.captureSession.commitConfiguration()
+    }
+    
+    
+    // MARK: - Buttons
+    @IBAction func changeCamButtonPressed(_ sender: Any)
+    {
+        self.changeCamera()
     }
     
     @IBAction func dismissButtonPressed(_ sender: Any)
