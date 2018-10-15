@@ -10,7 +10,7 @@ import UIKit
 
 class CameraViewController: AlertableViewController
 {
-    @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var cameraView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
     
     override func viewDidLoad()
