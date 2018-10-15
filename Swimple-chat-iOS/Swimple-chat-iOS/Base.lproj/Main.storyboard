@@ -455,6 +455,53 @@
             </objects>
             <point key="canvasLocation" x="1100" y="-294.60269865067471"/>
         </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="CAI-hf-8Lp">
+            <objects>
+                <viewController id="SAy-eA-dBV" customClass="CameraViewController" customModule="Swimple_chat_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RsE-Et-qxf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RW3-w7-JyA" userLabel="CameraView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wg5-aE-5lG">
+                                        <rect key="frame" x="124.5" y="579" width="126" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                        <state key="normal" title="Dismiss">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dismissButtonPressed:" destination="SAy-eA-dBV" eventType="touchUpInside" id="uog-YI-sxN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="wg5-aE-5lG" firstAttribute="centerX" secondItem="RW3-w7-JyA" secondAttribute="centerX" id="Wky-4q-9x1"/>
+                                    <constraint firstAttribute="bottom" secondItem="wg5-aE-5lG" secondAttribute="bottom" constant="8" id="xlW-Kl-E3K"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RW3-w7-JyA" firstAttribute="top" secondItem="Qxr-Od-pFK" secondAttribute="top" id="4z6-VS-Yev"/>
+                            <constraint firstItem="RW3-w7-JyA" firstAttribute="leading" secondItem="Qxr-Od-pFK" secondAttribute="leading" id="UgB-j2-ZwE"/>
+                            <constraint firstItem="Qxr-Od-pFK" firstAttribute="trailing" secondItem="RW3-w7-JyA" secondAttribute="trailing" id="vF5-hQ-E44"/>
+                            <constraint firstItem="Qxr-Od-pFK" firstAttribute="bottom" secondItem="RW3-w7-JyA" secondAttribute="bottom" id="xD2-5m-XEI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qxr-Od-pFK"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="RW3-w7-JyA" id="COg-ru-QS0"/>
+                        <outlet property="dismissButton" destination="wg5-aE-5lG" id="im2-KY-0jg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WiX-Nk-qac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3812" y="-296"/>
+        </scene>
     </scenes>
     <resources>
         <image name="100x100" width="100" height="100"/>
