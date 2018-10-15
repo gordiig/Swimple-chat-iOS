@@ -44,6 +44,9 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+//        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
     
     
@@ -63,8 +66,6 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
             self.view.layoutIfNeeded()
         }
         self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
-        
-        
     }
     
     @objc func keyboardWillHide(notification: Notification)
@@ -74,6 +75,11 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer)
+    {
+        self.msgTextField.resignFirstResponder()
     }
     
     
