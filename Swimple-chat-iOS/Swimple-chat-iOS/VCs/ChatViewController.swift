@@ -36,10 +36,29 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         chatTableView.dataSource = self
         chatTableView.rowHeight = UITableView.automaticDimension
         chatTableView.estimatedRowHeight = 70
+        
+        let rightButton = UIBarButtonItem(title: "Camera", style: .plain, target: self, action: #selector(cameraButtonPressed))
+        self.navigationItem.rightBarButtonItem = rightButton
     }
     
-    // MARK: - UITableView
     
+    // MARK: - Transition to camera
+    @objc func cameraButtonPressed(sender: AnyObject)
+    {
+//        self.alert(title: "Camera pressed", message: "Camera button was pressed!")
+        let storyboard = self.storyboard!
+        guard let destVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else
+        {
+            print("Can't instatiate VC!")
+            alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
+            return
+        }
+        
+        self.present(destVC, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - UITableView
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return messages.count

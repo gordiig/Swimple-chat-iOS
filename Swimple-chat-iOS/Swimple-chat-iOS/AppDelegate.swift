@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         let username = defaults.string(forKey: "username") ?? ""
         let password = defaults.string(forKey: "password") ?? ""
+        let ip = defaults.string(forKey: "ip") ?? ""
+        let imgData = defaults.data(forKey: "avatarImg")
+        let img = (imgData == nil) ? (UIImage(named: User.stdImageName)) : (UIImage(data: imgData!))
         
         if username.isEmpty || password.isEmpty
         {
@@ -26,10 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
             {
                 print("Can't instatiate LogInVC!")
-                return true
+                return false
             }
             window?.rootViewController = vc
         }
+        else
+        {
+            let cUser = CurrentUser.getInstance()
+            cUser.configure(username: username, password: password, ip: ip, avatarImg: img)
+        }
+        
         return true
     }
 
@@ -41,6 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        let cUser = CurrentUser.getInstance()
+        let defaults = UserDefaults.standard
+        defaults.set(cUser.username, forKey: "username")
+        defaults.set(cUser.password, forKey: "password")
+        defaults.set(cUser.ip, forKey: "ip")
+        defaults.set(cUser.avatarImg.pngData(), forKey: "avatarImg")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -54,7 +70,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
