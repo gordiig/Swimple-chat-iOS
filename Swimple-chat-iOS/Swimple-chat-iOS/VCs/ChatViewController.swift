@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate
+class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
@@ -42,6 +42,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         let rightButton = UIBarButtonItem(title: "Camera", style: .plain, target: self, action: #selector(cameraButtonPressed))
         self.navigationItem.rightBarButtonItem = rightButton
         
+        self.msgTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
@@ -80,6 +81,11 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     @objc func hideKeyboard(_ sender: UITapGestureRecognizer)
     {
         self.msgTextField.resignFirstResponder()
+    }
+    
+    func textViewDidChange(_ textView: UITextView)
+    {
+        self.sendButton.isEnabled = !textView.text.isEmpty
     }
     
     
@@ -154,13 +160,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     
     @IBAction func sendButtonPressed(_ sender: Any)
     {
-        let text = msgTextField.text ?? ""
-        if text.isEmpty
-        {
-            alert(title: "No message", message: "You can't send empty message!")
-            return
-        }
-        
+        let text = msgTextField.text!
         messages.append(text)
     }
 }
