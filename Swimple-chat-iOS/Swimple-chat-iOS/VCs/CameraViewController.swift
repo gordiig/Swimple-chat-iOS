@@ -14,6 +14,9 @@ class CameraViewController: AlertableViewController
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var changeCamButton: UIButton!
+    @IBOutlet weak var changeCamBlurView: UIVisualEffectView!
+    
+    override var prefersStatusBarHidden: Bool { return true } 
     
     var captureSession = AVCaptureSession()
     var videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
@@ -25,12 +28,17 @@ class CameraViewController: AlertableViewController
     {
         super.viewDidLoad()
         
+        self.changeCamBlurView.layer.cornerRadius = 10
+        self.changeCamBlurView.clipsToBounds = true
+        
         self.configureCaptureSession()
         self.previewView.videoPreviewLayer.session = self.captureSession
         
         captureSession.startRunning()
     }
     
+    
+    // MARK: - AVFoundation
     func configureCaptureSession()
     {
         self.captureSession.beginConfiguration()
