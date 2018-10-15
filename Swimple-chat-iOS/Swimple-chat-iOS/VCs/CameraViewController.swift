@@ -146,6 +146,11 @@ class CameraViewController: AlertableViewController, AVCaptureVideoDataOutputSam
     // MARK: - Saving video data
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
-        print("Captured output from \(connection.description)")
+//        print("Captured output from \(connection.description)")
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
+    {
+        print("Captured output was dropped from connection \"\(connection.description)\"")
     }
 }
