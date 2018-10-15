@@ -22,6 +22,8 @@
 		1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0F3216572E000C4ECCF /* ChatViewController.swift */; };
 		13B84E48216B705700AEF305 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E47216B705700AEF305 /* User.swift */; };
 		13B84E4A216B714200AEF305 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E49216B714200AEF305 /* CurrentUser.swift */; };
+		13B8729021745E5200022C37 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B8728F21745E5200022C37 /* CameraViewController.swift */; };
+		13B872952174A6EE00022C37 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B872942174A6EE00022C37 /* CameraPreviewView.swift */; };
 		13FB0DE4216764AD0059280C /* ChatBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB0DE3216764AD0059280C /* ChatBubbleTableViewCell.swift */; };
 		13FB0DE621676B860059280C /* AlertableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB0DE521676B860059280C /* AlertableViewController.swift */; };
 		13FB0DE82167B3B70059280C /* MyChatBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB0DE72167B3B70059280C /* MyChatBubbleTableViewCell.swift */; };
@@ -66,6 +68,8 @@
 		1338A0F3216572E000C4ECCF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		13B84E47216B705700AEF305 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		13B84E49216B714200AEF305 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		13B8728F21745E5200022C37 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		13B872942174A6EE00022C37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		13FB0DE3216764AD0059280C /* ChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
 		13FB0DE521676B860059280C /* AlertableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertableViewController.swift; sourceTree = "<group>"; };
 		13FB0DE72167B3B70059280C /* MyChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		1338A0B621654BF900C4ECCF /* Swimple-chat-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				13B872912174A65900022C37 /* Views */,
 				13B84E46216B703900AEF305 /* Models */,
 				1338A0F121656FBA00C4ECCF /* TableViews */,
 				1338A0F021656FA200C4ECCF /* Protocols */,
@@ -158,6 +163,7 @@
 				1338A0B921654BF900C4ECCF /* ViewController.swift */,
 				1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */,
 				1338A0F3216572E000C4ECCF /* ChatViewController.swift */,
+				13B8728F21745E5200022C37 /* CameraViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -196,6 +202,14 @@
 				13B84E49216B714200AEF305 /* CurrentUser.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		13B872912174A65900022C37 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13B872942174A6EE00022C37 /* CameraPreviewView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +345,7 @@
 			files = (
 				1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */,
 				13FB0DE621676B860059280C /* AlertableViewController.swift in Sources */,
+				13B872952174A6EE00022C37 /* CameraPreviewView.swift in Sources */,
 				1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */,
 				1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */,
 				1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */,
@@ -340,6 +355,7 @@
 				13B84E48216B705700AEF305 /* User.swift in Sources */,
 				1338A0EA2165654A00C4ECCF /* LogInViewController.swift in Sources */,
 				13FB0DE4216764AD0059280C /* ChatBubbleTableViewCell.swift in Sources */,
+				13B8729021745E5200022C37 /* CameraViewController.swift in Sources */,
 				1338A0E621654EDC00C4ECCF /* ChatListTableView.swift in Sources */,
 				13B84E4A216B714200AEF305 /* CurrentUser.swift in Sources */,
 			);
