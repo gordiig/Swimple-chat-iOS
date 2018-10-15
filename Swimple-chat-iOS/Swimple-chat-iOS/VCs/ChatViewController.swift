@@ -45,8 +45,16 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     // MARK: - Transition to camera
     @objc func cameraButtonPressed(sender: AnyObject)
     {
-        self.alert(title: "Camera pressed", message: "Camera button was pressed!")
+//        self.alert(title: "Camera pressed", message: "Camera button was pressed!")
+        let storyboard = self.storyboard!
+        guard let destVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else
+        {
+            print("Can't instatiate VC!")
+            alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
+            return
+        }
         
+        self.present(destVC, animated: true, completion: nil)
     }
     
     
