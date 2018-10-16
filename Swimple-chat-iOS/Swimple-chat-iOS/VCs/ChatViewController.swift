@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate
+class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var messages = [
         "Hi, glad to see you again! How is your head?",
@@ -24,6 +25,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         didSet(val)
         {
             chatTableView.reloadData()
+            self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
         }
     }
     
@@ -36,10 +38,72 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         chatTableView.dataSource = self
         chatTableView.rowHeight = UITableView.automaticDimension
         chatTableView.estimatedRowHeight = 70
+        chatTableView.keyboardDismissMode = .interactive
+        
+        let rightButton = UIBarButtonItem(title: "Camera", style: .plain, target: self, action: #selector(cameraButtonPressed))
+        self.navigationItem.rightBarButtonItem = rightButton
+        
+        self.msgTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    // MARK: - UITableView
     
+    // MARK: - TextView work
+    @objc func keyboardWillShow(notification: Notification)
+    {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else
+        {
+            alert(title: "Error in keyboard size!", message: "Can't get keyboard size!")
+            return
+        }
+        let height = keyboardFrame.cgRectValue.height
+        
+        self.bottomConstraint.constant = -height
+        UIView.animate(withDuration: 0.5)
+        {
+            self.view.layoutIfNeeded()
+        }
+        self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification)
+    {
+        self.bottomConstraint.constant = 0
+        UIView.animate(withDuration: 0.5)
+        {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func hideKeyboard(_ sender: UITapGestureRecognizer)
+    {
+        self.msgTextField.resignFirstResponder()
+    }
+    
+    func textViewDidChange(_ textView: UITextView)
+    {
+        let text = textView.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.sendButton.isEnabled = !text.isEmpty
+    }
+    
+    
+    // MARK: - Transition to camera
+    @objc func cameraButtonPressed(sender: AnyObject)
+    {
+        let storyboard = self.storyboard!
+        guard let destVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else
+        {
+            print("Can't instatiate VC!")
+            alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
+            return
+        }
+        
+        self.present(destVC, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - UITableView
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return messages.count
@@ -61,16 +125,30 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
-        {
-            print("Can't dequeue ChatBubbleTableViewCell")
-            alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
-            return UITableViewCell()
-        }
-        
         let row = indexPath.section
-        cell.configure(message: messages[row])
-        return cell
+        
+        if row % 2 == 1
+        {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
+            {
+                print("Can't dequeue ChatBubbleTableViewCell")
+                alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
+                return UITableViewCell()
+            }
+            cell.configure(message: messages[row])
+            return cell
+        }
+        else
+        {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyChatBubbleTableViewCell") as? MyChatBubbleTableViewCell else
+            {
+                print("Can't dequeue MyChatBubbleTableViewCell")
+                alert(title: "Dequeue error", message: "Can't dequeue MyChatBubbleTableViewCell")
+                return UITableViewCell()
+            }
+            cell.configure(message: messages[row])
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -81,13 +159,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     
     @IBAction func sendButtonPressed(_ sender: Any)
     {
-        let text = msgTextField.text ?? ""
-        if text.isEmpty
-        {
-            alert(title: "No message", message: "You can't send empty message!")
-            return
-        }
-        
+        let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         messages.append(text)
     }
 }
