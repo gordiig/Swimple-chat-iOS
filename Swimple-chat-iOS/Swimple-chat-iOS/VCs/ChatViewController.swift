@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import Starscream
 
-class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate
+class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, WebSocketDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var messages = [
+    var messages: [String] = [
         "Hi, glad to see you again! How is your head?",
         "Long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message",
         "Q, GG, WP",
@@ -28,6 +29,8 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
             self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
         }
     }
+    
+    let socket = WebSocket(url: URL(string: "ws://85.255.1.214:8082")!)
     
     override func viewDidLoad()
     {
@@ -46,6 +49,9 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         self.msgTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        socket.delegate = self
+        socket.connect()
     }
     
     
@@ -161,5 +167,34 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     {
         let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         messages.append(text)
+        self.socket.write(string: text)
     }
+    
+    
+    // Mark: Websockets
+    func websocketDidConnect(socket: WebSocketClient)
+    {
+        alert(title: "Websocket connected", message: "Websocket has connected to server!")
+        print("Websocket has connected to server!")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?)
+    {
+        alert(title: "Websocket connected", message: "Websocket has connected to server!")
+        print("Websocket has connected to server!")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String)
+    {
+        alert(title: "Websocket", message: "Websocket has recieved message!")
+        print("Websocket has recieved message!")
+        self.messages.append(text)
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data)
+    {
+        alert(title: "Websocket", message: "Websocket has recieved data!")
+        print("Websocket has recieved data!")
+    }
+    
 }

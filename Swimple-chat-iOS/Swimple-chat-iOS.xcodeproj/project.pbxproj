@@ -20,6 +20,7 @@
 		1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0EB21656AA800C4ECCF /* Alertable.swift */; };
 		1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */; };
 		1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0F3216572E000C4ECCF /* ChatViewController.swift */; };
+		1377A76D21768284006FDE2C /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137B4BF121768278001B9BB0 /* Starscream.framework */; };
 		13B84E48216B705700AEF305 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E47216B705700AEF305 /* User.swift */; };
 		13B84E4A216B714200AEF305 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E49216B714200AEF305 /* CurrentUser.swift */; };
 		13B8729021745E5200022C37 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B8728F21745E5200022C37 /* CameraViewController.swift */; };
@@ -66,6 +67,7 @@
 		1338A0EB21656AA800C4ECCF /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1338A0F3216572E000C4ECCF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		137B4BF121768278001B9BB0 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		13B84E47216B705700AEF305 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		13B84E49216B714200AEF305 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		13B8728F21745E5200022C37 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
@@ -80,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1377A76D21768284006FDE2C /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +110,7 @@
 				1338A0CB21654BFA00C4ECCF /* Swimple-chat-iOSTests */,
 				1338A0D621654BFA00C4ECCF /* Swimple-chat-iOSUITests */,
 				1338A0B521654BF900C4ECCF /* Products */,
+				137B4BEC21767F7E001B9BB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +199,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		137B4BEC21767F7E001B9BB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				137B4BF121768278001B9BB0 /* Starscream.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		13B84E46216B703900AEF305 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +234,7 @@
 				1338A0B021654BF900C4ECCF /* Sources */,
 				1338A0B121654BF900C4ECCF /* Frameworks */,
 				1338A0B221654BF900C4ECCF /* Resources */,
+				137B4BF0217680BF001B9BB0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -337,6 +350,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		137B4BF0217680BF001B9BB0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1338A0B021654BF900C4ECCF /* Sources */ = {
@@ -534,6 +569,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JY87QHRL3J;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Swimple-chat-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -552,6 +591,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JY87QHRL3J;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Swimple-chat-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
