@@ -8,13 +8,30 @@
 
 import Foundation
 
-class ChatRooms: NSObject
+class ChatRooms
 {
-    private(set) static var rooms: [ChatRoom] = []
+    private(set) var rooms: [ChatRoom] = []
+    private static var _instance: ChatRooms?
+    
+    private init()
+    {
+        
+    }
+    
+    
+    // MARK: - Singleton work
+    static var `default`: ChatRooms
+    {
+        if _instance == nil
+        {
+            _instance = ChatRooms()
+        }
+        return _instance!
+    }
     
     
     // MARK: - Private
-    private static func addNewRoom(withName name: String, andAppendMessage msg: Message? = nil)
+    private func addNewRoom(withName name: String, andAppendMessage msg: Message? = nil)
     {
         rooms.append(ChatRoom(username: name))
         
@@ -24,9 +41,9 @@ class ChatRooms: NSObject
         }
     }
     
-    private static func searchForRoom(withName searchName: String) -> ChatRoom?
+    private func searchForRoom(withName searchName: String) -> ChatRoom?
     {
-        let filtered = ChatRooms.rooms.filter { (room) -> Bool in
+        let filtered = rooms.filter { (room) -> Bool in
             room.interlocutor == searchName
         }
         
@@ -35,7 +52,7 @@ class ChatRooms: NSObject
     
     
     // MARK: - Public
-    static func appendMessage(_ msg: Message, toChat chatName: String)
+    func appendMessage(_ msg: Message, toChat chatName: String)
     {
         if let room = searchForRoom(withName: chatName)
         {
