@@ -10,22 +10,6 @@ import Foundation
 
 class ChatRooms
 {
-    private class ChatRoom
-    {
-        var interlocutor: String
-        private(set) var messages: [Message] = []
-        
-        init(username interlocutor: String)
-        {
-            self.interlocutor = interlocutor
-        }
-        
-        func appendMessage(_ msg: Message)
-        {
-            messages.append(msg)
-        }
-    }
-    
     private static var rooms: [ChatRoom]!
     
     
