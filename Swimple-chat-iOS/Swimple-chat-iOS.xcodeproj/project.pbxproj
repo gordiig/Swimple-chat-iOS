@@ -10,6 +10,7 @@
 		132D6836217C9F810069DCFE /* ChatRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6835217C9F810069DCFE /* ChatRooms.swift */; };
 		132D6838217C9FC10069DCFE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6837217C9FC10069DCFE /* Message.swift */; };
 		132D683A217CA5320069DCFE /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6839217CA5320069DCFE /* ChatRoom.swift */; };
+		132D6842217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6841217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift */; };
 		1338A0B821654BF900C4ECCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B721654BF900C4ECCF /* AppDelegate.swift */; };
 		1338A0BA21654BF900C4ECCF /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B921654BF900C4ECCF /* ChatListViewController.swift */; };
 		1338A0BD21654BF900C4ECCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1338A0BB21654BF900C4ECCF /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		132D6835217C9F810069DCFE /* ChatRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRooms.swift; sourceTree = "<group>"; };
 		132D6837217C9FC10069DCFE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		132D6839217CA5320069DCFE /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		132D6841217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsDataSourceMediator.swift; sourceTree = "<group>"; };
 		1338A0B421654BF900C4ECCF /* Swimple-chat-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swimple-chat-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1338A0B721654BF900C4ECCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1338A0B921654BF900C4ECCF /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				132D6835217C9F810069DCFE /* ChatRooms.swift */,
 				132D6837217C9FC10069DCFE /* Message.swift */,
 				132D6839217CA5320069DCFE /* ChatRoom.swift */,
+				132D6841217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				13FB0DE82167B3B70059280C /* MyChatBubbleTableViewCell.swift in Sources */,
 				1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */,
 				1338A0B821654BF900C4ECCF /* AppDelegate.swift in Sources */,
+				132D6842217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift in Sources */,
 				13B84E48216B705700AEF305 /* User.swift in Sources */,
 				132D6836217C9F810069DCFE /* ChatRooms.swift in Sources */,
 				1338A0EA2165654A00C4ECCF /* LogInViewController.swift in Sources */,
