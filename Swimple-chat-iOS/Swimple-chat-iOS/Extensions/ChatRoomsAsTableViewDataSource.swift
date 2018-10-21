@@ -12,6 +12,7 @@ import UIKit
 
 extension ChatRooms: UITableViewDataSource
 {
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return ChatRooms.rooms.count
@@ -26,5 +27,6 @@ extension ChatRooms: UITableViewDataSource
         
         let room = ChatRooms.rooms[indexPath.row]
         cell.configure(username: room.interlocutor, lastMessage: room.messages.last?.msg ?? "<#NO MESSAGES#>")
+        return cell
     }
 }

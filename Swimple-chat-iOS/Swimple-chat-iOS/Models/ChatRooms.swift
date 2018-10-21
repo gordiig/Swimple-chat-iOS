@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChatRooms
+class ChatRooms: NSObject
 {
     private(set) static var rooms: [ChatRoom] = []
     
