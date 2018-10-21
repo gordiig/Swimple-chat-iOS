@@ -62,6 +62,8 @@ class ChatRooms
         {
             addNewRoom(withName: chatName, andAppendMessage: msg)
         }
+        
+        NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
     }
     
     func numberOfRooms() -> Int
