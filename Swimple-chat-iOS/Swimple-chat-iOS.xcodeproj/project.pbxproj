@@ -12,7 +12,7 @@
 		132D683A217CA5320069DCFE /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6839217CA5320069DCFE /* ChatRoom.swift */; };
 		132D683D217CA7D30069DCFE /* ChatRoomsAsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D683C217CA7D30069DCFE /* ChatRoomsAsTableViewDataSource.swift */; };
 		1338A0B821654BF900C4ECCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B721654BF900C4ECCF /* AppDelegate.swift */; };
-		1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B921654BF900C4ECCF /* ViewController.swift */; };
+		1338A0BA21654BF900C4ECCF /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0B921654BF900C4ECCF /* ChatListViewController.swift */; };
 		1338A0BD21654BF900C4ECCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1338A0BB21654BF900C4ECCF /* Main.storyboard */; };
 		1338A0BF21654BFA00C4ECCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1338A0BE21654BFA00C4ECCF /* Assets.xcassets */; };
 		1338A0C221654BFA00C4ECCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1338A0C021654BFA00C4ECCF /* LaunchScreen.storyboard */; };
@@ -58,7 +58,7 @@
 		132D683C217CA7D30069DCFE /* ChatRoomsAsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsAsTableViewDataSource.swift; sourceTree = "<group>"; };
 		1338A0B421654BF900C4ECCF /* Swimple-chat-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swimple-chat-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1338A0B721654BF900C4ECCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1338A0B921654BF900C4ECCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1338A0B921654BF900C4ECCF /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		1338A0BC21654BF900C4ECCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1338A0BE21654BFA00C4ECCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1338A0C121654BFA00C4ECCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			children = (
 				13FB0DE521676B860059280C /* AlertableViewController.swift */,
 				1338A0E92165654A00C4ECCF /* LogInViewController.swift */,
-				1338A0B921654BF900C4ECCF /* ViewController.swift */,
+				1338A0B921654BF900C4ECCF /* ChatListViewController.swift */,
 				1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */,
 				1338A0F3216572E000C4ECCF /* ChatViewController.swift */,
 				13B8728F21745E5200022C37 /* CameraViewController.swift */,
@@ -403,7 +403,7 @@
 				13FB0DE621676B860059280C /* AlertableViewController.swift in Sources */,
 				13B872952174A6EE00022C37 /* CameraPreviewView.swift in Sources */,
 				132D6838217C9FC10069DCFE /* Message.swift in Sources */,
-				1338A0BA21654BF900C4ECCF /* ViewController.swift in Sources */,
+				1338A0BA21654BF900C4ECCF /* ChatListViewController.swift in Sources */,
 				1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */,
 				1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */,
 				13FB0DE82167B3B70059280C /* MyChatBubbleTableViewCell.swift in Sources */,

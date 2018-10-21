@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: AlertableViewController
+class ChatListViewController: AlertableViewController
 {
     @IBOutlet weak var tableView: ChatListTableView!
     
