@@ -36,6 +36,7 @@ class ChatListViewController: AlertableViewController, UITableViewDelegate
         cell?.isSelected = false
     }
     
+    
     // MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {

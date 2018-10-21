@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, WebSocketDelegate
+class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate // , WebSocketDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
@@ -30,7 +30,7 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         }
     }
     
-    let socket = WebSocket(url: URL(string: "ws://85.255.1.214:8082")!)
+//    let socket = WebSocket(url: URL(string: "ws://85.255.1.214:8082")!)
     
     override func viewDidLoad()
     {
@@ -50,8 +50,8 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        socket.delegate = self
-        socket.connect()
+//        socket.delegate = self
+//        socket.connect()
     }
     
     
@@ -167,34 +167,34 @@ class ChatViewController: AlertableViewController, UITableViewDataSource, UITabl
     {
         let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         messages.append(text)
-        self.socket.write(string: text)
+//        self.socket.write(string: text)
     }
     
     
-    // Mark: Websockets
-    func websocketDidConnect(socket: WebSocketClient)
-    {
-        alert(title: "Websocket connected", message: "Websocket has connected to server!")
-        print("Websocket has connected to server!")
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?)
-    {
-        alert(title: "Websocket connected", message: "Websocket has connected to server!")
-        print("Websocket has connected to server!")
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String)
-    {
-        alert(title: "Websocket", message: "Websocket has recieved message!")
-        print("Websocket has recieved message!")
-        self.messages.append(text)
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data)
-    {
-        alert(title: "Websocket", message: "Websocket has recieved data!")
-        print("Websocket has recieved data!")
-    }
+//    // Mark: Websockets
+//    func websocketDidConnect(socket: WebSocketClient)
+//    {
+//        alert(title: "Websocket connected", message: "Websocket has connected to server!")
+//        print("Websocket has connected to server!")
+//    }
+//    
+//    func websocketDidDisconnect(socket: WebSocketClient, error: Error?)
+//    {
+//        alert(title: "Websocket connected", message: "Websocket has connected to server!")
+//        print("Websocket has connected to server!")
+//    }
+//    
+//    func websocketDidReceiveMessage(socket: WebSocketClient, text: String)
+//    {
+//        alert(title: "Websocket", message: "Websocket has recieved message!")
+//        print("Websocket has recieved message!")
+//        self.messages.append(text)
+//    }
+//    
+//    func websocketDidReceiveData(socket: WebSocketClient, data: Data)
+//    {
+//        alert(title: "Websocket", message: "Websocket has recieved data!")
+//        print("Websocket has recieved data!")
+//    }
     
 }
