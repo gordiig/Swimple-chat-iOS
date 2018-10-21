@@ -68,4 +68,9 @@ class ChatRooms
     {
         return rooms.count
     }
+    
+    func getRoom(at idx: Int) -> ChatRoom
+    {
+        return rooms[idx]
+    }
 }
