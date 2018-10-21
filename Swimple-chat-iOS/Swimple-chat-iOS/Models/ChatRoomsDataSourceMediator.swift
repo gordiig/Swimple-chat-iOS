@@ -19,6 +19,7 @@ class ChatRoomsDataSourceMediator: NSObject, UITableViewDataSource
         super.init()
         
         dataTableView = tableView
+        tableView.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableViewData), name: .chatRoomsWereChanged, object: nil)
     }
