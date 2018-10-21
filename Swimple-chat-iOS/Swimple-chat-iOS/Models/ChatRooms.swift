@@ -10,7 +10,7 @@ import Foundation
 
 class ChatRooms
 {
-    private static var rooms: [ChatRoom]!
+    private(set) static var rooms: [ChatRoom] = []
     
     
     // MARK: - Private
