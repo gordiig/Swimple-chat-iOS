@@ -10,5 +10,56 @@ import Foundation
 
 class ChatRooms
 {
+    private class ChatRoom
+    {
+        var interlocutor: String
+        private(set) var messages: [Message] = []
+        
+        init(username interlocutor: String)
+        {
+            self.interlocutor = interlocutor
+        }
+        
+        func appendMessage(_ msg: Message)
+        {
+            messages.append(msg)
+        }
+    }
     
+    private static var rooms: [ChatRoom]!
+    
+    
+    // MARK: - Private
+    private static func addNewRoom(withName name: String, andAppendMessage msg: Message? = nil)
+    {
+        rooms.append(ChatRoom(username: name))
+        
+        if let msg = msg
+        {
+            rooms.last?.appendMessage(msg)
+        }
+    }
+    
+    private static func searchForRoom(withName searchName: String) -> ChatRoom?
+    {
+        let filtered = ChatRooms.rooms.filter { (room) -> Bool in
+            room.interlocutor == searchName
+        }
+        
+        return filtered.last
+    }
+    
+    
+    // MARK: - Public
+    static func appendMessage(_ msg: Message, toChat chatName: String)
+    {
+        if let room = searchForRoom(withName: chatName)
+        {
+            room.appendMessage(msg)
+        }
+        else
+        {
+            addNewRoom(withName: chatName, andAppendMessage: msg)
+        }
+    }
 }
