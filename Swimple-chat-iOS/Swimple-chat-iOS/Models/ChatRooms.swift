@@ -63,4 +63,9 @@ class ChatRooms
             addNewRoom(withName: chatName, andAppendMessage: msg)
         }
     }
+    
+    func numberOfRooms() -> Int
+    {
+        return rooms.count
+    }
 }
