@@ -31,9 +31,9 @@ class ChatRooms
     
     
     // MARK: - Private
-    private func addNewRoom(withName name: String, andAppendMessage msg: Message? = nil)
+    private func addNewRoom(withUser user: User, andAppendMessage msg: Message? = nil)
     {
-        rooms.append(ChatRoom(username: name))
+        rooms.append(ChatRoom(username: user))
         
         if let msg = msg
         {
@@ -44,26 +44,29 @@ class ChatRooms
     private func searchForRoom(withName searchName: String) -> ChatRoom?
     {
         let filtered = rooms.filter { (room) -> Bool in
-            room.interlocutor == searchName
+            room.interlocutor.username == searchName
         }
         
         return filtered.last
     }
     
+    private func searchForRoom(withUser user: User) -> ChatRoom?
+    {
+        return searchForRoom(withName: user.username)
+    }
+    
     
     // MARK: - Public
-    func appendMessage(_ msg: Message, toChat chatName: String)
+    func appendMessage(_ msg: Message, toChat user: User)
     {
-        if let room = searchForRoom(withName: chatName)
+        if let room = searchForRoom(withUser: user)
         {
             room.appendMessage(msg)
         }
         else
         {
-            addNewRoom(withName: chatName, andAppendMessage: msg)
+            addNewRoom(withUser: user, andAppendMessage: msg)
         }
-        
-        NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
     }
     
     func numberOfRooms() -> Int

@@ -13,8 +13,16 @@ class ChatListViewController: AlertableViewController, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
     
-    var names = ["Username 1", "Long-long-long username", "And another name for testing notifications ans etc"]
-    var msgs = ["Last message", "long-long-long last message", "Just show this text"]
+    var names = [
+        User(username: "Username1", ip: ""),
+        User(username: "Long-long-long username", ip: ""),
+        User(username: "And another name for testing notifications ans etc", ip: "")
+    ]
+    var msgs = [
+        Message(id: 0, from: "hehe", to: "gege", msg: "Last message"),
+        Message(id: 1, from: "hehehe", to: "gege", msg: "long-long-long last message"),
+        Message(id: 2, from: "hehehe", to: "gege", msg: "Just show this text")
+    ]
     
     override func viewDidLoad()
     {
@@ -23,9 +31,9 @@ class ChatListViewController: AlertableViewController, UITableViewDelegate
         chatRoomsMediator = ChatRoomsDataSourceMediator(tableView)
         tableView.delegate = self
         
-        ChatRooms.default.appendMessage(Message(id: 0, from: "hehe", to: "gege", msg: msgs[0]), toChat: names[0])
-        ChatRooms.default.appendMessage(Message(id: 1, from: "hehehe", to: "gege", msg: msgs[1]), toChat: names[1])
-        ChatRooms.default.appendMessage(Message(id: 2, from: "hehehe", to: "gege", msg: msgs[2]), toChat: names[2])
+        ChatRooms.default.appendMessage(msgs[0], toChat: names[0])
+        ChatRooms.default.appendMessage(msgs[1], toChat: names[1])
+        ChatRooms.default.appendMessage(msgs[2], toChat: names[2])
     }
     
     
@@ -47,7 +55,7 @@ class ChatListViewController: AlertableViewController, UITableViewDelegate
             return
         }
         
-        vc.navigationItem.title = ChatRooms.default.getRoom(at: idx).interlocutor
+        vc.navigationItem.title = ChatRooms.default.getRoom(at: idx).interlocutor.username
     }
     
 }

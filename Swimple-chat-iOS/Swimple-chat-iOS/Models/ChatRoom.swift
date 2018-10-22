@@ -10,10 +10,10 @@ import Foundation
 
 class ChatRoom
 {
-    var interlocutor: String
+    var interlocutor: User
     private(set) var messages: [Message] = []
     
-    init(username interlocutor: String)
+    init(username interlocutor: User)
     {
         self.interlocutor = interlocutor
     }

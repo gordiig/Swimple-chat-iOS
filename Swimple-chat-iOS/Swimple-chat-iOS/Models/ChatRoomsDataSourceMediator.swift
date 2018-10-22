@@ -46,7 +46,7 @@ class ChatRoomsDataSourceMediator: NSObject, UITableViewDataSource
         }
         
         let room = ChatRooms.default.getRoom(at: indexPath.row)
-        cell.configure(username: room.interlocutor, lastMessage: room.messages.last?.msg ?? "No message!")
+        cell.configure(username: room.interlocutor.username, lastMessage: room.messages.last?.msg ?? "No message!")
         return cell
     }
 }
