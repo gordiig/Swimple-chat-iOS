@@ -35,7 +35,7 @@ class ChatRoomsDataSourceMediator: NSObject, UITableViewDataSource
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return ChatRooms.default.numberOfRooms()
+        return ChatRooms.default.numberOfRooms
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -45,7 +45,7 @@ class ChatRoomsDataSourceMediator: NSObject, UITableViewDataSource
             return UITableViewCell()
         }
         
-        let room = ChatRooms.default.getRoom(at: indexPath.row)
+        let room = ChatRooms.default.getRoom(at: indexPath.row)!
         cell.configure(username: room.interlocutor.username, lastMessage: room.messages.last?.msg ?? "No message!")
         return cell
     }

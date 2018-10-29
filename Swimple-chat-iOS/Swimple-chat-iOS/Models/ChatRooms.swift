@@ -69,13 +69,17 @@ class ChatRooms
         }
     }
     
-    func numberOfRooms() -> Int
+    var numberOfRooms: Int
     {
         return rooms.count
     }
     
-    func getRoom(at idx: Int) -> ChatRoom
+    func getRoom(at idx: Int) -> ChatRoom?
     {
+        if idx >= numberOfRooms
+        {
+            return nil
+        }
         return rooms[idx]
     }
     

@@ -55,7 +55,13 @@ class ChatListViewController: AlertableViewController, UITableViewDelegate
             return
         }
         
-        vc.navigationItem.title = ChatRooms.default.getRoom(at: idx).interlocutor.username
+        guard let room = ChatRooms.default.getRoom(at: idx) else
+        {
+            alert(title: "Index error", message: "Wrong index of chat room is given (\(idx))")
+            return
+        }
+        
+        vc.navigationItem.title = room.interlocutor.username
     }
     
 }
