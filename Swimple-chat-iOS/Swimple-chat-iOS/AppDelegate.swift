@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         let username = defaults.string(forKey: "username") ?? ""
         let password = defaults.string(forKey: "password") ?? ""
-        let ip = defaults.string(forKey: "ip") ?? ""
         let imgData = defaults.data(forKey: "avatarImg")
         let img = (imgData == nil) ? (UIImage(named: User.stdImageName)) : (UIImage(data: imgData!))
         
@@ -36,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else
         {
             let cUser = CurrentUser.current
-            cUser.configure(username: username, password: password, ip: ip, avatarImg: img)
+            cUser.configure(username: username, password: password, avatarImg: img)
         }
         
         return true
@@ -55,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         defaults.set(cUser.username, forKey: "username")
         defaults.set(cUser.password, forKey: "password")
-        defaults.set(cUser.ip, forKey: "ip")
         defaults.set(cUser.avatarImg.pngData(), forKey: "avatarImg")
     }
 

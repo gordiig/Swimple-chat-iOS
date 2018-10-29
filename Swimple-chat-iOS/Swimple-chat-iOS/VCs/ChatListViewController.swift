@@ -14,9 +14,9 @@ class ChatListViewController: AlertableViewController, UITableViewDelegate
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
     
     var names = [
-        User(username: "Username1", ip: ""),
-        User(username: "Long-long-long username", ip: ""),
-        User(username: "And another name for testing notifications ans etc", ip: "")
+        User(username: "Username1"),
+        User(username: "Long-long-long username"),
+        User(username: "And another name for testing notifications ans etc")
     ]
     var msgs = [
         Message(id: 0, from: "hehe", to: "gege", msg: "Last message"),

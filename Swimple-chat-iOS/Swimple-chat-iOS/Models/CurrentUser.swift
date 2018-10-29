@@ -27,14 +27,13 @@ class CurrentUser: User
     private init()
     {
         self.password = "init"
-        super.init(username: "init", ip: "init")
+        super.init(username: "init")
     }
 
-    func configure(username: String, password: String, ip: String, avatarImg: UIImage? = nil)
+    func configure(username: String, password: String, avatarImg: UIImage? = nil)
     {
         self.username = username
         self.password = password
-        self.ip = ip
         if let img = avatarImg
         {
             self.avatarImg = img
@@ -45,7 +44,6 @@ class CurrentUser: User
     {
         username = ""
         password = ""
-        ip = ""
         avatarImg = UIImage(named: User.stdImageName)!
     }
 }

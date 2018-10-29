@@ -14,12 +14,10 @@ class User
     static let stdImageName = "angry"
     var username: String
     var avatarImg: UIImage
-    var ip: String
     
-    init(username: String, ip: String, avatarImg: UIImage? = nil)
+    init(username: String, avatarImg: UIImage? = nil)
     {
         self.username = username
-        self.ip = ip
         if let img = avatarImg
         {
             self.avatarImg = img

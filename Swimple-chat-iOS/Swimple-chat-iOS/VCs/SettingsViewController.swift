@@ -14,7 +14,6 @@ class SettingsViewController: AlertableViewController
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var ipLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -26,7 +25,6 @@ class SettingsViewController: AlertableViewController
         let cUser = CurrentUser.current
         usernameLabel.text = cUser.username
         passwordLabel.text = cUser.password
-        ipLabel.text = cUser.ip
         avatarImageView.image = cUser.avatarImg
     }
     
