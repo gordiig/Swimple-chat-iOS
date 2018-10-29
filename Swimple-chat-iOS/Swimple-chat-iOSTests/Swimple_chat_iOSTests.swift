@@ -58,7 +58,6 @@ class Swimple_chat_iOSTests: XCTestCase
         cUser.configure(username: "User1", password: "Password")
         XCTAssert(cUser.username == "User1", "Current user's username is not \"User1\"!")
         XCTAssert(cUser.password == "Password", "Current user's password is not \"Password\"!")
-        XCTAssert(cUser.avatarImg == UIImage(named: CurrentUser.stdImageName), "Current user's avatar is not standart!")
         
         cUser.configure(username: cUser.username, password: cUser.password, avatarImg: UIImage(named: "send"))
         XCTAssert(cUser.avatarImg != UIImage(named: CurrentUser.stdImageName), "Current user's avatar is still the same!")
@@ -88,6 +87,9 @@ class Swimple_chat_iOSTests: XCTestCase
         
         rooms.appendMessage(msg5, toChat: user3)
         XCTAssert(rooms.numberOfRooms == 3, "Didn't appent third room to the rooms!")
+        
+        rooms.clear()
+        XCTAssert(rooms.numberOfRooms == 0, "Didn't clear rooms by .clear() command!")
     }
 
 }
