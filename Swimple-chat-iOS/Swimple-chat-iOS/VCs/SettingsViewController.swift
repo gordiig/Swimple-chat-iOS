@@ -23,7 +23,7 @@ class SettingsViewController: AlertableViewController
     
     override func viewDidAppear(_ animated: Bool)
     {
-        let cUser = CurrentUser.getInstance()
+        let cUser = CurrentUser.current
         usernameLabel.text = cUser.username
         passwordLabel.text = cUser.password
         ipLabel.text = cUser.ip
@@ -33,7 +33,7 @@ class SettingsViewController: AlertableViewController
 
     @IBAction func logOutButtonPressed(_ sender: Any)
     {
-        let cUser = CurrentUser.getInstance()
+        let cUser = CurrentUser.current
         cUser.clear()
         
         let defaults = UserDefaults.standard

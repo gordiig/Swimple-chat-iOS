@@ -14,21 +14,20 @@ class CurrentUser: User
     private static var instance: CurrentUser! = nil
     var password: String
     
-    private init()
-    {
-        self.password = "init"
-        super.init(username: "init", ip: "init")
-    }
-
-    
     // MARK: - Singleton work
-    class func getInstance() -> CurrentUser
+    static var current: CurrentUser
     {
         if CurrentUser.instance == nil
         {
             CurrentUser.instance = CurrentUser()
         }
         return CurrentUser.instance
+    }
+    
+    private init()
+    {
+        self.password = "init"
+        super.init(username: "init", ip: "init")
     }
 
     func configure(username: String, password: String, ip: String, avatarImg: UIImage? = nil)
