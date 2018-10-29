@@ -78,4 +78,9 @@ class ChatRooms
     {
         return rooms[idx]
     }
+    
+    func clear()
+    {
+        rooms = []
+    }
 }
