@@ -13,13 +13,23 @@ class SignUpViewController: AlertableViewController
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        view.addGestureRecognizer(tapRecognizer)
     }
 
-    @IBAction func registerButtonPressed(_ sender: Any) {
+    @objc func onTap(_ sender: Any)
+    {
+        self.resignFirstResponder()
+        view.endEditing(true)
+    }
+    
+    
+    @IBAction func registerButtonPressed(_ sender: Any)
+    {
+        
     }
 }

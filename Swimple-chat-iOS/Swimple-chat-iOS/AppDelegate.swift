@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Can't instatiate LogInVC!")
                 return false
             }
-            window?.rootViewController = vc
+            let navigationController = UINavigationController(rootViewController: vc)
+            window?.rootViewController = navigationController
         }
         
         return true

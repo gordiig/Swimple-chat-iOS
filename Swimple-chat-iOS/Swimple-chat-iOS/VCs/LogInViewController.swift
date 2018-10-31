@@ -53,6 +53,6 @@ class LogInViewController: AlertableViewController
     
     @IBAction func signUpButtonPressed(_ sender: Any)
     {
-        alert(title: "Not implemented yet", message: "Not implemented yet!")
+//        alert(title: "Not implemented yet", message: "Not implemented yet!")
     }
 }
