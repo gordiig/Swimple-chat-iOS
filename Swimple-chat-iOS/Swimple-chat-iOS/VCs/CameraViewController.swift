@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: AlertableViewController, AVCaptureVideoDataOutputSampleBufferDelegate
+class CameraViewController: MyViewController, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var dismissButton: UIButton!

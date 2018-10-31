@@ -8,9 +8,8 @@
 
 import UIKit
 
-class LogInViewController: AlertableViewController
+class LogInViewController: MyViewController
 {
-    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
@@ -19,9 +18,7 @@ class LogInViewController: AlertableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-    
     
     @IBAction func logInButtonPressed(_ sender: Any)
     {

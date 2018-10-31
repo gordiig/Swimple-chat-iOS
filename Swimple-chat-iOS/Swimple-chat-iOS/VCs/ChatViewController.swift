@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-class ChatViewController: AlertableViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate // , WebSocketDelegate
+class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate // , WebSocketDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!

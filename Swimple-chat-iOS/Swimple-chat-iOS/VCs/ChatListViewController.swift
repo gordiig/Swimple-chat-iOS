@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatListViewController: AlertableViewController, UITableViewDelegate
+class ChatListViewController: MyViewController, UITableViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: AlertableViewController
+class SettingsViewController: MyViewController
 {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var logOutButton: UIButton!
@@ -34,17 +34,12 @@ class SettingsViewController: AlertableViewController
         let cUser = CurrentUser.current
         cUser.clear()
         
-//        let defaults = UserDefaults.standard
-//        defaults.removeObject(forKey: "username")
-//        defaults.removeObject(forKey: "password")
-//        defaults.removeObject(forKey: "ip")
-//        defaults.removeObject(forKey: "avatarImg")
-        
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
         {
             alert(title: "Error in instatiate", message: "Can't instatiate LogInVC")
             return
         }
-        present(vc, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: vc)
+        present(navigationController, animated: true, completion: nil)
     }
 }
