@@ -26,8 +26,22 @@ class CurrentUser: User
     
     private init()
     {
-        self.password = "init"
-        super.init(username: "init")
+        let defaults = UserDefaults.standard
+        
+        let username = defaults.object(forKey: "username") as? String
+        let password = defaults.object(forKey: "password") as? String
+        let avatarImg = defaults.object(forKey: "avatarImg") as? Data
+        
+        if username == nil || password == nil || avatarImg == nil
+        {
+            self.password = "init"
+            super.init(username: "init")
+        }
+        else
+        {
+            self.password = password!
+            super.init(username: username!, avatarImg: UIImage(data: avatarImg!))
+        }
     }
 
     func configure(username: String, password: String, avatarImg: UIImage? = nil)
@@ -40,8 +54,25 @@ class CurrentUser: User
         }
     }
     
+    func saveToUserDefaults()
+    {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "username")
+        defaults.removeObject(forKey: "password")
+        defaults.removeObject(forKey: "avatarImg")
+        
+        defaults.set(self.username, forKey: "username")
+        defaults.set(self.password, forKey: "password")
+        defaults.set(self.avatarImg.pngData(), forKey: "avatarImg")
+    }
+    
     func clear()
     {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "username")
+        defaults.removeObject(forKey: "password")
+        defaults.removeObject(forKey: "avatarImg")
+        
         username = ""
         password = ""
         avatarImg = UIImage(named: User.stdImageName)!

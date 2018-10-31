@@ -16,13 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
-        let defaults = UserDefaults.standard
-        let username = defaults.string(forKey: "username") ?? ""
-        let password = defaults.string(forKey: "password") ?? ""
-        let imgData = defaults.data(forKey: "avatarImg")
-        let img = (imgData == nil) ? (UIImage(named: User.stdImageName)) : (UIImage(data: imgData!))
-        
-        if username.isEmpty || password.isEmpty
+        let cUser = CurrentUser.current
+        if cUser.username.isEmpty || cUser.password.isEmpty
         {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
@@ -32,11 +27,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.rootViewController = vc
         }
-        else
-        {
-            let cUser = CurrentUser.current
-            cUser.configure(username: username, password: password, avatarImg: img)
-        }
+        
+//        let defaults = UserDefaults.standard
+//        let username = defaults.string(forKey: "username") ?? ""
+//        let password = defaults.string(forKey: "password") ?? ""
+//        let imgData = defaults.data(forKey: "avatarImg")
+//        let img = (imgData == nil) ? (UIImage(named: User.stdImageName)) : (UIImage(data: imgData!))
+//
+//        if username.isEmpty || password.isEmpty
+//        {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            guard let vc = storyboard.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
+//            {
+//                print("Can't instatiate LogInVC!")
+//                return false
+//            }
+//            window?.rootViewController = vc
+//        }
+//        else
+//        {
+//            let cUser = CurrentUser.current
+//            cUser.configure(username: username, password: password, avatarImg: img)
+//        }
         
         return true
     }
@@ -51,10 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         let cUser = CurrentUser.current
-        let defaults = UserDefaults.standard
-        defaults.set(cUser.username, forKey: "username")
-        defaults.set(cUser.password, forKey: "password")
-        defaults.set(cUser.avatarImg.pngData(), forKey: "avatarImg")
+        cUser.saveToUserDefaults()
+//        let defaults = UserDefaults.standard
+//        defaults.set(cUser.username, forKey: "username")
+//        defaults.set(cUser.password, forKey: "password")
+//        defaults.set(cUser.avatarImg.pngData(), forKey: "avatarImg")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
