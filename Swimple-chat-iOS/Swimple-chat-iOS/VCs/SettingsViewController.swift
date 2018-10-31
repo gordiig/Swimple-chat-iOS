@@ -14,7 +14,6 @@ class SettingsViewController: AlertableViewController
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var ipLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -23,24 +22,23 @@ class SettingsViewController: AlertableViewController
     
     override func viewDidAppear(_ animated: Bool)
     {
-        let cUser = CurrentUser.getInstance()
+        let cUser = CurrentUser.current
         usernameLabel.text = cUser.username
         passwordLabel.text = cUser.password
-        ipLabel.text = cUser.ip
         avatarImageView.image = cUser.avatarImg
     }
     
 
     @IBAction func logOutButtonPressed(_ sender: Any)
     {
-        let cUser = CurrentUser.getInstance()
+        let cUser = CurrentUser.current
         cUser.clear()
         
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "username")
-        defaults.removeObject(forKey: "password")
-        defaults.removeObject(forKey: "ip")
-        defaults.removeObject(forKey: "avatarImg")
+//        let defaults = UserDefaults.standard
+//        defaults.removeObject(forKey: "username")
+//        defaults.removeObject(forKey: "password")
+//        defaults.removeObject(forKey: "ip")
+//        defaults.removeObject(forKey: "avatarImg")
         
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
         {

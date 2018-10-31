@@ -39,6 +39,8 @@ class ChatRooms
         {
             rooms.last?.appendMessage(msg)
         }
+        
+        NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
     }
     
     private func searchForRoom(withName searchName: String) -> ChatRoom?
@@ -69,13 +71,23 @@ class ChatRooms
         }
     }
     
-    func numberOfRooms() -> Int
+    var numberOfRooms: Int
     {
         return rooms.count
     }
     
-    func getRoom(at idx: Int) -> ChatRoom
+    func getRoom(at idx: Int) -> ChatRoom?
     {
+        if idx >= numberOfRooms
+        {
+            return nil
+        }
         return rooms[idx]
+    }
+    
+    func clear()
+    {
+        rooms = []
+        NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
     }
 }

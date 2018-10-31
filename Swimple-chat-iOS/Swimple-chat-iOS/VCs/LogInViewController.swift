@@ -39,8 +39,8 @@ class LogInViewController: AlertableViewController
             return
         }
         
-        let cUser = CurrentUser.getInstance()
-        cUser.configure(username: username, password: password, ip: "ip there", avatarImg: UIImage(named: "angry"))
+        let cUser = CurrentUser.current
+        cUser.configure(username: username, password: password, avatarImg: UIImage(named: User.stdImageName))
         
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
         {
