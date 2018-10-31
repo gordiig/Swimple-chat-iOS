@@ -91,5 +91,17 @@ class Swimple_chat_iOSTests: XCTestCase
         rooms.clear()
         XCTAssert(rooms.numberOfRooms == 0, "Didn't clear rooms by .clear() command!")
     }
+    
+    // MARK: - 4 Unit test, class ChatRoom
+    func testChatRoom()
+    {
+        let chatRoom = ChatRoom(username: user1)
+        XCTAssert(chatRoom.interlocutor.username == user1.username, "Chat room has been creates with wrong user")
+        XCTAssert(chatRoom.messages.count == 0, "Chat room has been created with messages")
+        
+        chatRoom.appendMessage(msg1)
+        XCTAssert(chatRoom.messages.count == 1, "Chat room appended more or less than 1 message")
+        XCTAssert(chatRoom.messages.last!.msg == msg1.msg, "Chat room appended wrong message")
+    }
 
 }
