@@ -116,12 +116,15 @@ class Swimple_chat_iOSTests: XCTestCase
         XCTAssert(tableView.dataSource === mediator, "TableView's data source is not mediator!")
         
         NotificationCenter.default.addObserver(self, selector: #selector(notificationCounterIncrement), name: .chatRoomsWereChanged, object: nil)
-        
         let rooms = ChatRooms.default
+        
         rooms.appendMessage(msg1, toChat: user1)
         XCTAssert(notificationCounter == 1, "Notification didn't came to self")
+        XCTAssert(tableView.numberOfRows(inSection: 0) == 1, "Data mediator didn't put new chat to table view!")
+        
         rooms.clear()
         XCTAssert(notificationCounter == 2, "Notification didn't came to self")
+        XCTAssert(tableView.numberOfRows(inSection: 0) == 0, "Data mediator didn't delete chat from table view!")
         
         NotificationCenter.default.removeObserver(self)
     }
