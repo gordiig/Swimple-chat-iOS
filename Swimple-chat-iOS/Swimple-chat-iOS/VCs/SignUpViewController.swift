@@ -21,6 +21,20 @@ class SignUpViewController: MyViewController
     
     @IBAction func registerButtonPressed(_ sender: Any)
     {
+        let username = usernameTextField.text ?? ""
+        if username.isEmpty
+        {
+            alert(title: "Enter username!", message: "You can't register without username")
+            return
+        }
         
+        let password = passwordTextField.text ?? ""
+        if password.isEmpty
+        {
+            alert(title: "Enter password!", message: "You can't register without password")
+            return
+        }
+        
+        alert(title: "Not implemented yet!", message: "Username: \(username) \nPassword: \(password)")
     }
 }
