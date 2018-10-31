@@ -8,11 +8,15 @@
 
 import UIKit
 
-class AlertableViewController: UIViewController, Alerable
+class MyViewController: UIViewController, Alerable
 {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.onTap))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
     }
     
     func alert(title: String, message: String)
@@ -22,4 +26,10 @@ class AlertableViewController: UIViewController, Alerable
         vc.addAction(alertAction)
         present(vc, animated: true, completion: nil)
     }
+    
+    @objc func onTap(_ sender: UITapGestureRecognizer)
+    {
+        self.view.endEditing(true)
+    }
+    
 }

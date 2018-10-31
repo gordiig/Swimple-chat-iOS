@@ -25,4 +25,13 @@ class ChatListTableViewCell: UITableViewCell
         // Configure the view for the selected state
     }
 
+    func configure(username: String, lastMessage: String, image: UIImage? = nil)
+    {
+        usernameLabel.text = username
+        lastMsgLabel.text = lastMessage
+        if let image = image
+        {
+            img.image = image
+        }
+    }
 }

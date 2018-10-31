@@ -8,9 +8,8 @@
 
 import UIKit
 
-class LogInViewController: AlertableViewController
+class LogInViewController: MyViewController
 {
-    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
@@ -19,9 +18,7 @@ class LogInViewController: AlertableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-    
     
     @IBAction func logInButtonPressed(_ sender: Any)
     {
@@ -39,8 +36,8 @@ class LogInViewController: AlertableViewController
             return
         }
         
-        let cUser = CurrentUser.getInstance()
-        cUser.configure(username: username, password: password, ip: "ip there", avatarImg: UIImage(named: "angry"))
+        let cUser = CurrentUser.current
+        cUser.configure(username: username, password: password, avatarImg: UIImage(named: User.stdImageName))
         
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
         {
@@ -53,6 +50,6 @@ class LogInViewController: AlertableViewController
     
     @IBAction func signUpButtonPressed(_ sender: Any)
     {
-        alert(title: "Not implemented yet", message: "Not implemented yet!")
+//        alert(title: "Not implemented yet", message: "Not implemented yet!")
     }
 }
