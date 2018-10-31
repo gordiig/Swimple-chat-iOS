@@ -34,8 +34,8 @@ class CurrentUser: User
         
         if username == nil || password == nil || avatarImg == nil
         {
-            self.password = "init"
-            super.init(username: "init")
+            self.password = ""
+            super.init(username: "")
         }
         else
         {
