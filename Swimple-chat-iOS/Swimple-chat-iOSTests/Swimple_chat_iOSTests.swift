@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import UIKit
 @testable import Swimple_chat_iOS
 
 class Swimple_chat_iOSTests: XCTestCase
@@ -20,6 +21,8 @@ class Swimple_chat_iOSTests: XCTestCase
     let msg3 = Message(id: 2, from: "user1", to: "user0", msg: "msg3")
     let msg4 = Message(id: 3, from: "user2", to: "user0", msg: "msg4")
     let msg5 = Message(id: 4, from: "user3", to: "user0", msg: "msg5")
+    
+    var notificationCounter = 0
     
     override class func setUp()
     {
@@ -102,6 +105,30 @@ class Swimple_chat_iOSTests: XCTestCase
         chatRoom.appendMessage(msg1)
         XCTAssert(chatRoom.messages.count == 1, "Chat room appended more or less than 1 message")
         XCTAssert(chatRoom.messages.last!.msg == msg1.msg, "Chat room appended wrong message")
+    }
+    
+    // MARK: - 5 Unit test, class ChatRoomsDataMediador
+    func testChatRoomsDataMediator()
+    {
+        self.notificationCounter = 0
+        let tableView = UITableView()
+        let mediator = ChatRoomsDataSourceMediator(tableView)
+        XCTAssert(tableView.dataSource === mediator, "TableView's data source is not mediator!")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(notificationCounterIncrement), name: .chatRoomsWereChanged, object: nil)
+        
+        let rooms = ChatRooms.default
+        rooms.appendMessage(msg1, toChat: user1)
+        XCTAssert(notificationCounter == 1, "Notification didn't came to self")
+        rooms.clear()
+        XCTAssert(notificationCounter == 2, "Notification didn't came to self")
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func notificationCounterIncrement()
+    {
+        self.notificationCounter += 1
     }
 
 }
