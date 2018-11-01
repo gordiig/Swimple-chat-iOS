@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import AVFoundation
 
 class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
@@ -20,21 +21,24 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     private var micDeviceInput: AVCaptureDeviceInput!
     private let extractorQueue = DispatchQueue(label: "extractorQueue")
     
-    private weak var alertDelegate: Alerable!
+    private let context = CIContext()
     
-    init?(devices: [AVCaptureDevice], alertDelegate: Alerable)
+    weak var alertDelegate: Alerable?
+    weak var outputDelegate: FrameExtractorOutputDelegate?
+    
+    init?(alertDelegate: Alerable?)
     {
         super.init()
         self.alertDelegate = alertDelegate
         
         guard askPermissions(for: .video) else
         {
-            alertDelegate.alert(title: "Permissions error!", message: "Camera permissions denied!")
+            alertDelegate?.alert(title: "Permissions error!", message: "Camera permissions denied!")
             return nil
         }
         guard askPermissions(for: .audio) else
         {
-            alertDelegate.alert(title: "Permissions error!", message: "Microphone permissions denied!")
+            alertDelegate?.alert(title: "Permissions error!", message: "Microphone permissions denied!")
             return nil
         }
         
@@ -66,7 +70,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         guard let backVideoDeviceInput = try? AVCaptureDeviceInput(device: backVideoDevice!), captureSession.canAddInput(backVideoDeviceInput) else
         {
-            alertDelegate.alert(title: "Error in configuring session", message: "Can't create back video device input")
+            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create back camera device input")
             return
         }
         self.backVideoDeviceInput = backVideoDeviceInput
@@ -74,7 +78,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         guard let frontVideoDeviceInput = try? AVCaptureDeviceInput(device: frontVideoDevice!), captureSession.canAddInput(frontVideoDeviceInput) else
         {
-            alertDelegate.alert(title: "Error in configuring session", message: "Can't create front video device input")
+            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create front camera device input")
             return
         }
         self.frontVideoDeviceInput = frontVideoDeviceInput
@@ -82,22 +86,69 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         guard let micDeviceInput = try? AVCaptureDeviceInput(device: micDevice!), captureSession.canAddInput(micDeviceInput) else
         {
-            alertDelegate.alert(title: "Error in configuring session", message: "Can't create microphone device input")
+            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create microphone device input")
             return
         }
         self.micDeviceInput = micDeviceInput
         captureSession.addInput(self.micDeviceInput)
         
-        
+        let outputDevice = AVCaptureVideoDataOutput()
+        outputDevice.setSampleBufferDelegate(self, queue: self.extractorQueue)
+        outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
+        if captureSession.canAddOutput(outputDevice)
+        {
+            captureSession.addOutput(outputDevice)
+        }
         
         captureSession.commitConfiguration()
     }
     
     
-    // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
+    // MARK: - Alert
+    func sendAlertInMainQueue(title: String, message: String)
+    {
+        DispatchQueue.main.async {
+            self.alertDelegate?.alert(title: title, message: message)
+        }
+    }
+    
+    
+    // MARK: - Converting buffer to UIImage
+    private func convertToUIImage(buffer: CMSampleBuffer) -> UIImage?
+    {
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(buffer) else
+        {
+            print("Error in captureOutput!")
+            return nil
+        }
+        let ciImage = CIImage(cvImageBuffer: imageBuffer)
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else
+        {
+            print("Can't get cgImage")
+            return nil
+        }
+        let img = UIImage(cgImage: cgImage)
+        
+        return img
+    }
+    
+    
+    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
-        print("")
+        guard let outputDelegate = self.outputDelegate else
+        {
+            sendAlertInMainQueue(title: "Error in output delegate", message: "Output delegate is missing")
+            return
+        }
+        
+        if let img = convertToUIImage(buffer: sampleBuffer)
+        {
+            DispatchQueue.main.async
+            {
+                outputDelegate.frameExtractor(didOutputFrame: img)
+            }
+        }
     }
     
     func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
