@@ -20,9 +20,9 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     private var micDeviceInput: AVCaptureDeviceInput!
     private let extractorQueue = DispatchQueue(label: "extractorQueue")
     
-    private weak var alertDelegate: MyViewController!
+    private weak var alertDelegate: Alerable!
     
-    init?(devices: [AVCaptureDevice], alertDelegate: MyViewController)
+    init?(devices: [AVCaptureDevice], alertDelegate: Alerable)
     {
         super.init()
         self.alertDelegate = alertDelegate
@@ -38,7 +38,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
             return nil
         }
         
-        self.configureAV()
+        self.configureCaptureSession()
     }
     
     private func askPermissions(for device: AVMediaType) -> Bool
@@ -60,10 +60,49 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         return ans
     }
     
-    private func configureAV()
+    private func configureCaptureSession()
     {
+        captureSession.beginConfiguration()
         
+        guard let backVideoDeviceInput = try? AVCaptureDeviceInput(device: backVideoDevice!), captureSession.canAddInput(backVideoDeviceInput) else
+        {
+            alertDelegate.alert(title: "Error in configuring session", message: "Can't create back video device input")
+            return
+        }
+        self.backVideoDeviceInput = backVideoDeviceInput
+        captureSession.addInput(self.backVideoDeviceInput)
+        
+        guard let frontVideoDeviceInput = try? AVCaptureDeviceInput(device: frontVideoDevice!), captureSession.canAddInput(frontVideoDeviceInput) else
+        {
+            alertDelegate.alert(title: "Error in configuring session", message: "Can't create front video device input")
+            return
+        }
+        self.frontVideoDeviceInput = frontVideoDeviceInput
+        captureSession.addInput(self.frontVideoDeviceInput)
+        
+        guard let micDeviceInput = try? AVCaptureDeviceInput(device: micDevice!), captureSession.canAddInput(micDeviceInput) else
+        {
+            alertDelegate.alert(title: "Error in configuring session", message: "Can't create microphone device input")
+            return
+        }
+        self.micDeviceInput = micDeviceInput
+        captureSession.addInput(self.micDeviceInput)
+        
+        
+        
+        captureSession.commitConfiguration()
     }
     
+    
+    // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
+    {
+        print("")
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
+    {
+        print("Dropped frame!")
+    }
     
 }
