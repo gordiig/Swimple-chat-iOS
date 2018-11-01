@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		132833E9218B2BC400340876 /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132833E8218B2BC400340876 /* FrameExtractor.swift */; };
+		132833EC218B480400340876 /* FrameExtractorOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132833EB218B480400340876 /* FrameExtractorOutputDelegate.swift */; };
 		132D6836217C9F810069DCFE /* ChatRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6835217C9F810069DCFE /* ChatRooms.swift */; };
 		132D6838217C9FC10069DCFE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6837217C9FC10069DCFE /* Message.swift */; };
 		132D683A217CA5320069DCFE /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6839217CA5320069DCFE /* ChatRoom.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		132833E8218B2BC400340876 /* FrameExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameExtractor.swift; sourceTree = "<group>"; };
+		132833EB218B480400340876 /* FrameExtractorOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameExtractorOutputDelegate.swift; sourceTree = "<group>"; };
 		132D6835217C9F810069DCFE /* ChatRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRooms.swift; sourceTree = "<group>"; };
 		132D6837217C9FC10069DCFE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		132D6839217CA5320069DCFE /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		132833EA218B47E500340876 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				132833EB218B480400340876 /* FrameExtractorOutputDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		132D6843217CDC670069DCFE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 		1338A0F021656FA200C4ECCF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				132833EA218B47E500340876 /* Delegates */,
 				1338A0EB21656AA800C4ECCF /* Alertable.swift */,
 			);
 			path = Protocols;
@@ -414,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				132D683A217CA5320069DCFE /* ChatRoom.swift in Sources */,
+				132833EC218B480400340876 /* FrameExtractorOutputDelegate.swift in Sources */,
 				1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */,
 				1341B2E9217DBC6E004503AE /* WebSocketHandler.swift in Sources */,
 				13FB0DE621676B860059280C /* MyViewController.swift in Sources */,
