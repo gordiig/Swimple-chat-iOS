@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132833E9218B2BC400340876 /* FrameExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132833E8218B2BC400340876 /* FrameExtractor.swift */; };
 		132D6836217C9F810069DCFE /* ChatRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6835217C9F810069DCFE /* ChatRooms.swift */; };
 		132D6838217C9FC10069DCFE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6837217C9FC10069DCFE /* Message.swift */; };
 		132D683A217CA5320069DCFE /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132D6839217CA5320069DCFE /* ChatRoom.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		132833E8218B2BC400340876 /* FrameExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameExtractor.swift; sourceTree = "<group>"; };
 		132D6835217C9F810069DCFE /* ChatRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRooms.swift; sourceTree = "<group>"; };
 		132D6837217C9FC10069DCFE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		132D6839217CA5320069DCFE /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				132D6841217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift */,
 				1341B2E6217DBB8E004503AE /* ServerMessage.swift */,
 				1341B2E8217DBC6E004503AE /* WebSocketHandler.swift */,
+				132833E8218B2BC400340876 /* FrameExtractor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				13FB0DE621676B860059280C /* MyViewController.swift in Sources */,
 				13B872952174A6EE00022C37 /* CameraPreviewView.swift in Sources */,
 				132D6838217C9FC10069DCFE /* Message.swift in Sources */,
+				132833E9218B2BC400340876 /* FrameExtractor.swift in Sources */,
 				134F64DB2189D618009CA1A4 /* SignUpViewController.swift in Sources */,
 				1338A0BA21654BF900C4ECCF /* ChatListViewController.swift in Sources */,
 				1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */,
