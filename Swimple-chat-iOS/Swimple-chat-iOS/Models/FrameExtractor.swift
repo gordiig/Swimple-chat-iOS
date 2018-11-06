@@ -169,6 +169,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         guard let outputDelegate = self.outputDelegate else
         {
             sendAlertInMainQueue(title: "Error in output delegate", message: "Output delegate is missing")
+            self.stop()
             return
         }
         
