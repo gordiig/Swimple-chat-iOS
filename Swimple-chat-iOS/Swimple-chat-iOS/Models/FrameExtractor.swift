@@ -13,11 +13,9 @@ import AVFoundation
 class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     private let captureSession = AVCaptureSession()
-    private let backVideoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
-    private let frontVideoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+    private var videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
     private let micDevice = AVCaptureDevice.default(.builtInMicrophone, for: .audio, position: .unspecified)
-    private var backVideoDeviceInput: AVCaptureDeviceInput!
-    private var frontVideoDeviceInput: AVCaptureDeviceInput!
+    private var videoDeviceInput: AVCaptureDeviceInput!
     private var micDeviceInput: AVCaptureDeviceInput!
     private let extractorQueue = DispatchQueue(label: "extractorQueue")
     
@@ -68,21 +66,13 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         captureSession.beginConfiguration()
         
-        guard let backVideoDeviceInput = try? AVCaptureDeviceInput(device: backVideoDevice!), captureSession.canAddInput(backVideoDeviceInput) else
+        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), captureSession.canAddInput(videoDeviceInput) else
         {
-            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create back camera device input")
+            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create camera device input")
             return
         }
-        self.backVideoDeviceInput = backVideoDeviceInput
-        captureSession.addInput(self.backVideoDeviceInput)
-        
-        guard let frontVideoDeviceInput = try? AVCaptureDeviceInput(device: frontVideoDevice!), captureSession.canAddInput(frontVideoDeviceInput) else
-        {
-            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create front camera device input")
-            return
-        }
-        self.frontVideoDeviceInput = frontVideoDeviceInput
-        captureSession.addInput(self.frontVideoDeviceInput)
+        self.videoDeviceInput = videoDeviceInput
+        captureSession.addInput(self.videoDeviceInput)
         
         guard let micDeviceInput = try? AVCaptureDeviceInput(device: micDevice!), captureSession.canAddInput(micDeviceInput) else
         {
@@ -101,6 +91,31 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         }
         
         captureSession.commitConfiguration()
+    }
+    
+    func flipCamera()
+    {
+        self.captureSession.beginConfiguration()
+        self.captureSession.removeInput(self.videoDeviceInput)
+        
+        if self.videoDevice?.position == .front
+        {
+            self.videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        }
+        else
+        {
+            self.videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+        }
+        
+        guard let videoDeviceInput = try? AVCaptureDeviceInput(device: self.videoDevice!), captureSession.canAddInput(videoDeviceInput) else
+        {
+            sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create camera device input")
+            return
+        }
+        self.videoDeviceInput = videoDeviceInput
+        captureSession.addInput(videoDeviceInput)
+        
+        self.captureSession.commitConfiguration()
     }
     
     
