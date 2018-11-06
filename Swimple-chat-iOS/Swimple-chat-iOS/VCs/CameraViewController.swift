@@ -35,6 +35,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         }
         self.frameExtractor = frameExtractor
         self.frameExtractor.registerPreviewView(previewView)
+        self.frameExtractor.start()
     }
     
     
