@@ -118,6 +118,21 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         self.captureSession.commitConfiguration()
     }
     
+    func registerPreviewView(_ view: CameraPreviewView)
+    {
+        view.videoPreviewLayer.session = self.captureSession
+    }
+    
+    func start()
+    {
+        self.captureSession.startRunning()
+    }
+    
+    func stop()
+    {
+        self.captureSession.stopRunning()
+    }
+    
     
     // MARK: - Alert
     func sendAlertInMainQueue(title: String, message: String)
