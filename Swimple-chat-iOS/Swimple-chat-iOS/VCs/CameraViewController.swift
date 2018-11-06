@@ -15,6 +15,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var changeCamButton: UIButton!
     @IBOutlet weak var changeCamBlurView: UIVisualEffectView!
+    @IBOutlet weak var previewImageView: UIImageView!
     
     override var prefersStatusBarHidden: Bool { return true } 
     
@@ -57,5 +58,6 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     func frameExtractor(didOutputFrame frame: UIImage)
     {
         print("hello")
+        self.previewImageView.image = frame
     }
 }
