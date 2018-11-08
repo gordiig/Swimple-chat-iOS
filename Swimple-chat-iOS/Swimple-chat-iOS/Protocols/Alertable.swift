@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Alerable
+protocol Alerable: AnyObject
 {
     func alert(title: String, message: String)
 }
