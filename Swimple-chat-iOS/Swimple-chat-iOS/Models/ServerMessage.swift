@@ -13,6 +13,7 @@ enum ServerMessageType: String, Codable
 {
     case getMessagesForChatList = "getMessagesForChatList"
     case auth = "auth"
+    case register = "register"
     case send = "send"
     case authNotSuccsess = "AuthNotSuccsess"
     case authSuccsess = "AuthSuccsess"
