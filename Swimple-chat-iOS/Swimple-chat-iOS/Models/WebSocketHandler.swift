@@ -15,23 +15,30 @@ class WebSocketHandler: WebSocketDelegate
     var socketURL: URL
     var socket: WebSocket
     
-    init(url: URL = URL(string: "ws://85.255.1.214:8080")!)
+    private static var _handler: WebSocketHandler?
+    
+    open var main: WebSocketHandler
+    {
+        if WebSocketHandler._handler == nil
+        {
+            WebSocketHandler._handler = WebSocketHandler()
+        }
+        return WebSocketHandler._handler!
+    }
+    
+    private init(url: URL = URL(string: "ws://85.255.1.214:8080/")!)
     {
         socketURL = url
         socket = WebSocket(url: socketURL)
     }
-    init?(urlAsString str: String = "ws://85.255.1.214:8080")
+    
+    var isConnected: Bool
     {
-        let _url = URL(string: str)
-        if _url == nil
-        {
-            return nil
-        }
-            
-        socketURL = _url!
-        socket = WebSocket(url: socketURL)
+        return socket.isConnected
     }
     
+    
+    // MARK: - WebSocketDelegate
     func websocketDidConnect(socket: WebSocketClient)
     {
         print("WebSocket connected on \(socketURL.absoluteString)")
@@ -56,20 +63,15 @@ class WebSocketHandler: WebSocketDelegate
         switch serverMessage.type
         {
             case .authSuccsess:
-                // authSuccsess
-                let a = 1
+                print("Auth succsess")
             case .sendingSuccsess:
-                // sendingSeccsess
-                let a = 2
+                print("Sending succsess")
             case .authNotSuccsess:
-                // authNotSuccsess
-                let a = 3
+                print("Auth not succsess")
             case .error:
-                // Error
-                let a = 4
+                print("Error")
             default:
-                // unknownError
-                let a = 5
+                print("Unknown error")
         }
     }
     
