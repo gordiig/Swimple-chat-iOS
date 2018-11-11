@@ -62,21 +62,66 @@ class WebSocketHandler: WebSocketDelegate
         
         switch serverMessage.type
         {
+            case .send:
+                print("Send")
+                gotMessage(serverMessage)
+            
             case .authSuccsess:
                 print("Auth succsess")
+                authSuccsess(serverMessage)
+            
             case .sendingSuccsess:
                 print("Sending succsess")
+                sendingSuccsess(serverMessage)
+            
             case .authNotSuccsess:
                 print("Auth not succsess")
+                authSuccsess(serverMessage)
+            
             case .error:
                 print("Error")
+                gotError(serverMessage)
+            
             default:
                 print("Unknown error")
+                gotUnknownError(serverMessage)
         }
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data)
     {
         print("WebSocket recieved data!")
+    }
+    
+    
+    // MARK: - Functions by types
+    func gotMessage(_ serverMessage: ServerMessage)
+    {
+        
+    }
+    
+    func authSuccsess(_ serverMessage: ServerMessage)
+    {
+        
+    }
+    
+    func sendingSuccsess(_ serverMessage: ServerMessage)
+    {
+        
+    }
+    
+    func authNotSuccsess(_ serverMessage: ServerMessage)
+    {
+        
+    }
+    
+    func gotError(_ ServerMessage: ServerMessage)
+    {
+        
+    }
+    
+    func gotUnknownError(_ serverMessage: ServerMessage)
+    {
+        
     }
 }
