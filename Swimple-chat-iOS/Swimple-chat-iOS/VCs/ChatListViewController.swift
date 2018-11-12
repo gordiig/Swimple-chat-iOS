@@ -34,21 +34,6 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         ChatRooms.default.appendMessage(msgs[0], toChat: names[0])
         ChatRooms.default.appendMessage(msgs[1], toChat: names[1])
         ChatRooms.default.appendMessage(msgs[2], toChat: names[2])
-        
-        testJSON()
-    }
-    
-    
-    func testJSON()
-    {
-        let msg = "{\"type\":\"Error\"}"
-        let decoder = JSONDecoder()
-        guard let decoded = try? decoder.decode(ServerMessageToRecieve.self, from: msg.data(using: .utf8)!) else
-        {
-            print("Didn't decode")
-            return
-        }
-        print("Decoded!")
     }
     
     
