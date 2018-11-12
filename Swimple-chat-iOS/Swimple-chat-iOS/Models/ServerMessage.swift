@@ -15,13 +15,15 @@ enum ServerMessageType: String, Codable
     case auth = "auth"
     case register = "register"
     case send = "send"
+    case newMessage = "newMessage"
     case authNotSuccsess = "AuthNotSuccsess"
     case authSuccsess = "AuthSuccsess"
     case sendingSuccsess = "SendingSuccsess"
     case error = "Error"
 }
 
-struct ServerMessage: Codable
+// MARK: - Server message that will be send to server
+struct ServerMessageToSend: Codable
 {
     var type: ServerMessageType
     var from: String?
@@ -39,4 +41,30 @@ struct ServerMessage: Codable
         case username
         case password
     }
+}
+
+
+// MARK: - Server message that will be sent from server
+struct RecievedData: Codable
+{
+    var from: String?
+    var to: String?
+    var message: String?
+    var username: String?
+    var password: String?
+    
+    enum CodeKeys: String, CodingKey
+    {
+        case from = "from_who"
+        case to = "to_who"
+        case message
+        case username
+        case password
+    }
+}
+
+struct ServerMessageToRecieve: Codable
+{
+    var type: ServerMessageType
+    var data: [RecievedData]?
 }
