@@ -43,7 +43,7 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     {
         let msg = "{\"type\":\"Error\"}"
         let decoder = JSONDecoder()
-        guard let decoded = try? decoder.decode(ServerMessage.self, from: msg.data(using: .utf8)!) else
+        guard let decoded = try? decoder.decode(ServerMessageToRecieve.self, from: msg.data(using: .utf8)!) else
         {
             print("Didn't decode")
             return

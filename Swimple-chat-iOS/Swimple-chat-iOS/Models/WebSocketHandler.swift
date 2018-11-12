@@ -54,7 +54,7 @@ class WebSocketHandler: WebSocketDelegate
         print("WebSocket recieved message! \(text)")
         
         let decoder = JSONDecoder()
-        guard let serverMessage = try? decoder.decode(ServerMessage.self, from: text.data(using: .utf8)!) else
+        guard let serverMessage = try? decoder.decode(ServerMessageToRecieve.self, from: text.data(using: .utf8)!) else
         {
             print("Can't decode server message")
             return
@@ -62,9 +62,9 @@ class WebSocketHandler: WebSocketDelegate
         
         switch serverMessage.type
         {
-            case .send:
+            case .newMessage:
                 print("Send")
-                gotMessage(serverMessage)
+                newMessage(serverMessage)
             
             case .authSuccsess:
                 print("Auth succsess")
@@ -95,32 +95,32 @@ class WebSocketHandler: WebSocketDelegate
     
     
     // MARK: - Functions by types
-    func gotMessage(_ serverMessage: ServerMessage)
+    func newMessage(_ serverMessage: ServerMessageToRecieve)
     {
         
     }
     
-    func authSuccsess(_ serverMessage: ServerMessage)
+    func authSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
         
     }
     
-    func sendingSuccsess(_ serverMessage: ServerMessage)
+    func sendingSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
         
     }
     
-    func authNotSuccsess(_ serverMessage: ServerMessage)
+    func authNotSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
         
     }
     
-    func gotError(_ ServerMessage: ServerMessage)
+    func gotError(_ ServerMessage: ServerMessageToRecieve)
     {
         
     }
     
-    func gotUnknownError(_ serverMessage: ServerMessage)
+    func gotUnknownError(_ serverMessage: ServerMessageToRecieve)
     {
         
     }
