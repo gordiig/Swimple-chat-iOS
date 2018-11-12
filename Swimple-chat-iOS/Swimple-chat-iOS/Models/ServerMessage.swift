@@ -26,41 +26,23 @@ enum ServerMessageType: String, Codable
 struct ServerMessageToSend: Codable
 {
     var type: ServerMessageType
-    var from: String?
-    var to: String?
-    var message: String?
+    var from_who: String?
+    var to_who: String?
+    var text: String?
     var username: String?
     var password: String?
-    
-    enum CodeKeys: String, CodingKey
-    {
-        case type
-        case from = "from_who"
-        case to = "to_who"
-        case message
-        case username
-        case password
-    }
 }
 
 
 // MARK: - Server message that will be sent from server
 struct RecievedData: Codable
 {
-    var from: String?
-    var to: String?
-    var message: String?
+    var id: Int?
+    var from_who: String?
+    var to_who: String?
+    var text: String?
     var username: String?
     var password: String?
-    
-    enum CodeKeys: String, CodingKey
-    {
-        case from = "from_who"
-        case to = "to_who"
-        case message
-        case username
-        case password
-    }
 }
 
 struct ServerMessageToRecieve: Codable
