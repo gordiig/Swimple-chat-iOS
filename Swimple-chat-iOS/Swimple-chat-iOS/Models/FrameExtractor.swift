@@ -18,6 +18,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     private var videoDeviceInput: AVCaptureDeviceInput!
     private var micDeviceInput: AVCaptureDeviceInput!
     private let extractorQueue = DispatchQueue(label: "extractorQueue")
+    private var outputDevice = AVCaptureVideoDataOutput()
     
     private let context = CIContext()
     
@@ -82,12 +83,21 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         self.micDeviceInput = micDeviceInput
         captureSession.addInput(self.micDeviceInput)
         
-        let outputDevice = AVCaptureVideoDataOutput()
-        outputDevice.setSampleBufferDelegate(self, queue: self.extractorQueue)
-        outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
-        if captureSession.canAddOutput(outputDevice)
+        self.outputDevice.setSampleBufferDelegate(self, queue: self.extractorQueue)
+        self.outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
+        if captureSession.canAddOutput(self.outputDevice)
         {
-            captureSession.addOutput(outputDevice)
+            captureSession.addOutput(self.outputDevice)
+        }
+        
+        guard let connection = self.outputDevice.connection(with: AVMediaType.video) else { return }
+        if connection.isVideoOrientationSupported
+        {
+            connection.videoOrientation = .portrait
+        }
+        if connection.isVideoMirroringSupported
+        {
+            connection.isVideoMirrored = self.videoDevice?.position == .front
         }
         
         captureSession.commitConfiguration()
@@ -114,6 +124,16 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         }
         self.videoDeviceInput = videoDeviceInput
         captureSession.addInput(videoDeviceInput)
+        
+        guard let connection = self.outputDevice.connection(with: AVMediaType.video) else { return }
+        if connection.isVideoOrientationSupported
+        {
+            connection.videoOrientation = .portrait
+        }
+        if connection.isVideoMirroringSupported
+        {
+            connection.isVideoMirrored = self.videoDevice?.position == .front
+        }
         
         self.captureSession.commitConfiguration()
     }
