@@ -39,8 +39,6 @@ class SignUpViewController: MyViewController
             return
         }
         
-//        alert(title: "Not implemented yet!", message: "Username: \(username) \nPassword: \(password)")
-        
         guard self.webSocketHandler.sendMessage(type: .register, username: username, password: password) else
         {
             self.alert(title: "Web socket error", message: "Registration message wasn't sent!")
@@ -56,10 +54,12 @@ class SignUpViewController: MyViewController
         self.registerButton.isEnabled = true
         
         let ans = notification.userInfo!["type"] as! String
-        if ans != "registerSuccsess"
+        if ans != "registerSuccess"
         {
             alert(title: "Web socket error", message: "Can't register")
         }
+        
+        _ = self.webSocketHandler.sendMessage(type: .auth, username: self.usernameForLogIn, password: self.passwordForLogIn)
         
         let cUser = CurrentUser.current
         cUser.configure(username: usernameForLogIn, password: passwordForLogIn, avatarImg: UIImage(named: User.stdImageName))
