@@ -59,8 +59,6 @@ class SignUpViewController: MyViewController
             alert(title: "Web socket error", message: "Can't register")
         }
         
-        _ = self.webSocketHandler.sendMessage(type: .auth, username: self.usernameForLogIn, password: self.passwordForLogIn)
-        
         let cUser = CurrentUser.current
         cUser.configure(username: usernameForLogIn, password: passwordForLogIn, avatarImg: UIImage(named: User.stdImageName))
         

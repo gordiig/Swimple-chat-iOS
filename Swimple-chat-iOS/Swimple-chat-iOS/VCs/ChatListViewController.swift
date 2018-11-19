@@ -18,6 +18,9 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     {
         super.viewDidLoad()
         
+        // For is_online flag on server (this VC is entry point from login, signup VCs and from start of an app if already signed in
+        _ = self.webSocketHandler.sendMessage(type: .auth, username: CurrentUser.current.username, password: CurrentUser.current.password)
+        
         refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
