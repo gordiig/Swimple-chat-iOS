@@ -137,6 +137,7 @@ class WebSocketHandler: WebSocketDelegate
     func authNotSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
         print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketAuthNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
     }
     
     func gotError(_ ServerMessage: ServerMessageToRecieve)
@@ -146,7 +147,7 @@ class WebSocketHandler: WebSocketDelegate
     
     func gotUnknownError(_ serverMessage: ServerMessageToRecieve)
     {
-        
+        print("Web sockrt got unknown error")
     }
     
     

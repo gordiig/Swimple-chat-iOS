@@ -15,9 +15,13 @@ class LogInViewController: MyViewController
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
+    var usernameForLogin = ""
+    var passwordForLogin = ""
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.authServerResponse), name: .webSocketAuthNotif, object: nil)
     }
     
     @IBAction func logInButtonPressed(_ sender: Any)
@@ -36,9 +40,29 @@ class LogInViewController: MyViewController
             return
         }
         
-        let cUser = CurrentUser.current
-        cUser.configure(username: username, password: password, avatarImg: UIImage(named: User.stdImageName))
+        guard self.webSocketHandler.sendMessage(type: .auth, username: username, password: password) else
+        {
+            alert(title: "Web socket error", message: "Can't send auth message")
+            return
+        }
+        self.logInButton.isEnabled = false
+        self.usernameForLogin = username
+        self.passwordForLogin = password
+    }
+    
+    @objc func authServerResponse(notification: Notification)
+    {
+        self.logInButton.isEnabled = true
         
+        let response = notification.userInfo!["type"] as! String
+        if response == "AuthNotSuccsess"
+        {
+            alert(title: "Log in error", message: "Wrong username or password")
+            return
+        }
+        
+        let cUser = CurrentUser.current
+        cUser.configure(username: usernameForLogin, password: passwordForLogin, avatarImg: UIImage(named: User.stdImageName))
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
         {
             print("Can't instatiate VC!")
@@ -46,11 +70,6 @@ class LogInViewController: MyViewController
             return
         }
         self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func signUpButtonPressed(_ sender: Any)
-    {
-//        alert(title: "Not implemented yet", message: "Not implemented yet!")
     }
     
     
