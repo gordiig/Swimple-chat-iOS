@@ -21,8 +21,8 @@ enum ServerMessageType: String, Codable
     case newMessage = "newMessage"
     case authNotSuccsess = "authNotSuccess"
     case authSuccsess = "authSuccess"
-    case sendingSuccsess = "SendingSuccess"
-    case error = "Error"
+    case sendingSuccsess = "sendingSuccess"
+    case error = "error"
 }
 
 // MARK: - Server message that will be send to server
