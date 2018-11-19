@@ -403,7 +403,6 @@
                                 <rect key="frame" x="161.5" y="629" width="52" height="30"/>
                                 <state key="normal" title="Sign up"/>
                                 <connections>
-                                    <action selector="signUpButtonPressed:" destination="gwf-Y5-by7" eventType="touchUpInside" id="k5T-1C-Rky"/>
                                     <segue destination="7A8-g0-dgs" kind="show" id="b4R-SD-srS"/>
                                 </connections>
                             </button>
