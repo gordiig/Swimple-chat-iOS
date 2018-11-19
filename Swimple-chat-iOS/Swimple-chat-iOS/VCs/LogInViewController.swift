@@ -52,4 +52,10 @@ class LogInViewController: MyViewController
     {
 //        alert(title: "Not implemented yet", message: "Not implemented yet!")
     }
+    
+    
+    @IBAction func reconnectSocketButtonPressed(_ sender: Any)
+    {
+        self.webSocketHandler.socket.connect()
+    }
 }

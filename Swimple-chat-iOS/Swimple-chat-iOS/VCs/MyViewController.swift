@@ -46,5 +46,4 @@ class MyViewController: UIViewController, Alerable
     {
         self.alert(title: "Disconnected", message: "Web socket did disconnect!")
     }
-
 }

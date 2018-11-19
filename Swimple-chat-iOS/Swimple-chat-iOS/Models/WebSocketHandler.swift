@@ -70,6 +70,10 @@ class WebSocketHandler: WebSocketDelegate
                 print("Send")
                 newMessage(serverMessage)
             
+            case .registerSuccsess:
+                print("Register succsess")
+                registerSuccsess(serverMessage)
+            
             case .authSuccsess:
                 print("Auth succsess")
                 authSuccsess(serverMessage)
@@ -77,6 +81,10 @@ class WebSocketHandler: WebSocketDelegate
             case .sendingSuccsess:
                 print("Sending succsess")
                 sendingSuccsess(serverMessage)
+            
+            case .registerNotSuccsess:
+                print("Register not succsess")
+                registerNotSuccsess(serverMessage)
             
             case .authNotSuccsess:
                 print("Auth not succsess")
@@ -109,9 +117,21 @@ class WebSocketHandler: WebSocketDelegate
         print(serverMessage.type.rawValue)
     }
     
+    func registerSuccsess(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketRegistrationNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
+    }
+    
     func sendingSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
         print(serverMessage.type.rawValue)
+    }
+    
+    func registerNotSuccsess(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketRegistrationNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
     }
     
     func authNotSuccsess(_ serverMessage: ServerMessageToRecieve)
@@ -127,5 +147,40 @@ class WebSocketHandler: WebSocketDelegate
     func gotUnknownError(_ serverMessage: ServerMessageToRecieve)
     {
         
+    }
+    
+    
+    // MARK: - Sending
+    func sendMessage(type: ServerMessageType, from_who: String? = nil, to_who: String? = nil, text: String? = nil,
+                           username: String? = nil, password: String? = nil) -> Bool
+    {
+        var serverMessage = ServerMessageToSend(type: type)
+        switch type
+        {
+        case .auth:
+            guard let username = username, let password = password else { return false }
+            serverMessage.username = username
+            serverMessage.password = password
+        case .register:
+            guard let username = username, let password = password else { return false }
+            serverMessage.username = username
+            serverMessage.password = password
+        case .send:
+            guard let from_who = from_who, let to_who = to_who, let text = text else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+            serverMessage.text = text
+        case .getMessagesForChatList:
+            guard let username = username else { return false }
+            serverMessage.username = username
+        default:
+            break
+        }
+        
+        guard let encoded = try? JSONEncoder().encode(serverMessage) else { return false }
+        guard let encodedStr = String(data: encoded, encoding: .utf8) else { return false }
+        self.socket.write(string: encodedStr)
+        
+        return true
     }
 }

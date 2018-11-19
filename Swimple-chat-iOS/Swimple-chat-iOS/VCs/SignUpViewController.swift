@@ -14,9 +14,13 @@ class SignUpViewController: MyViewController
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     
+    var usernameForLogIn: String = ""
+    var passwordForLogIn: String = ""
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.serverAns), name: .webSocketRegistrationNotif, object: nil)
     }
     
     @IBAction func registerButtonPressed(_ sender: Any)
@@ -35,6 +39,37 @@ class SignUpViewController: MyViewController
             return
         }
         
-        alert(title: "Not implemented yet!", message: "Username: \(username) \nPassword: \(password)")
+//        alert(title: "Not implemented yet!", message: "Username: \(username) \nPassword: \(password)")
+        
+        guard self.webSocketHandler.sendMessage(type: .register, username: username, password: password) else
+        {
+            self.alert(title: "Web socket error", message: "Registration message wasn't sent!")
+            return 
+        }
+        self.usernameForLogIn = username
+        self.passwordForLogIn = password
+        self.registerButton.isEnabled = false
+    }
+    
+    @objc func serverAns(notification: Notification)
+    {
+        self.registerButton.isEnabled = true
+        
+        let ans = notification.userInfo!["type"] as! String
+        if ans != "registerSuccsess"
+        {
+            alert(title: "Web socket error", message: "Can't register")
+        }
+        
+        let cUser = CurrentUser.current
+        cUser.configure(username: usernameForLogIn, password: passwordForLogIn, avatarImg: UIImage(named: User.stdImageName))
+        
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
+        {
+            print("Can't instatiate VC!")
+            alert(title: "Error in instatiate", message: "Can't instatiate ChatListVC")
+            return
+        }
+        self.present(vc, animated: true, completion: nil)
     }
 }

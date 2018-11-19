@@ -300,6 +300,14 @@
                                                     <action selector="logOutButtonPressed:" destination="BQ3-hE-IkC" eventType="touchUpInside" id="ezc-At-bRE"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEz-yE-vsd">
+                                                <rect key="frame" x="126" y="401" width="123" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Reconnect socket"/>
+                                                <connections>
+                                                    <action selector="reconnectSocketButtonPressed:" destination="BQ3-hE-IkC" eventType="touchUpInside" id="C3m-dB-SSZ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -397,6 +405,14 @@
                                 <connections>
                                     <action selector="signUpButtonPressed:" destination="gwf-Y5-by7" eventType="touchUpInside" id="k5T-1C-Rky"/>
                                     <segue destination="7A8-g0-dgs" kind="show" id="b4R-SD-srS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5s-ag-RK3">
+                                <rect key="frame" x="123" y="491" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reconnect socket"/>
+                                <connections>
+                                    <action selector="reconnectSocketButtonPressed:" destination="gwf-Y5-by7" eventType="touchUpInside" id="xPG-mn-I2o"/>
                                 </connections>
                             </button>
                         </subviews>

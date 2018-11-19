@@ -14,6 +14,8 @@ enum ServerMessageType: String, Codable
     case getMessagesForChatList = "getMessagesForChatList"
     case auth = "auth"
     case register = "register"
+    case registerSuccsess = "registerSuccsess"
+    case registerNotSuccsess = "registerNotSuccsess"
     case send = "send"
     case newMessage = "newMessage"
     case authNotSuccsess = "AuthNotSuccsess"
@@ -26,11 +28,16 @@ enum ServerMessageType: String, Codable
 struct ServerMessageToSend: Codable
 {
     var type: ServerMessageType
-    var from_who: String?
-    var to_who: String?
-    var text: String?
-    var username: String?
-    var password: String?
+    var from_who: String? = nil
+    var to_who: String? = nil
+    var text: String? = nil
+    var username: String? = nil
+    var password: String? = nil
+    
+    init(type: ServerMessageType)
+    {
+        self.type = type
+    }
 }
 
 
