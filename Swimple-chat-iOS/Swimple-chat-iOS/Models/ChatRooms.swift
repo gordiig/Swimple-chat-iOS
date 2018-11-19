@@ -109,4 +109,16 @@ class ChatRooms
             self.appendMessage(message, toChat: user)
         }
     }
+    
+    func newMessages(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.data)
+        guard let messageData = serverMessage.data else { return }
+        for message in messageData
+        {
+            let newMessage = Message(id: message.id!, from: message.from_who!, to: message.to_who!, msg: message.text!)
+            let user = (message.from_who! == CurrentUser.current.username) ? User(username: message.to_who!) : User(username: message.from_who!)
+            self.appendMessage(newMessage, toChat: user)
+        }
+    }
 }

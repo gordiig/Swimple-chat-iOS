@@ -104,7 +104,8 @@ class WebSocketHandler: WebSocketDelegate
     // MARK: - Functions by types
     func newMessage(_ serverMessage: ServerMessageToRecieve)
     {
-        print(serverMessage.data)
+        print(serverMessage.type.rawValue)
+        ChatRooms.default.newMessages(serverMessage)
     }
     
     func getMessagesForChatList(_ serverMessage: ServerMessageToRecieve)
@@ -150,7 +151,7 @@ class WebSocketHandler: WebSocketDelegate
     
     func gotUnknownError(_ serverMessage: ServerMessageToRecieve)
     {
-        print("Web sockrt got unknown error")
+        print("Web socket got unknown error")
     }
     
     

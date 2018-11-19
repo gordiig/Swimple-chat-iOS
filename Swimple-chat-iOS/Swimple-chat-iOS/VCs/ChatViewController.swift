@@ -160,6 +160,12 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
     {
         let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let newMessage = Message(id: -1, from: CurrentUser.current.username, to: room.interlocutor.username, msg: text)
+        
+        guard self.webSocketHandler.sendMessage(type: .send, from_who: newMessage.from, to_who: newMessage.to, text: newMessage.msg) else
+        {
+            alert(title: "Web socket error", message: "Can't send message!")
+            return
+        }
         room.appendMessage(newMessage)
     }
     
