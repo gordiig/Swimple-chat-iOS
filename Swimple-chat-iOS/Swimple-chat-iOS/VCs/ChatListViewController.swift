@@ -12,10 +12,14 @@ class ChatListViewController: MyViewController, UITableViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         
         chatRoomsMediator = ChatRoomsDataSourceMediator(tableView)
         tableView.delegate = self
@@ -44,6 +48,12 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         }
     }
     
+    
+    // MARK: - RefreshControl
+    @objc func refreshControlValueChanged(_ sender: Any?)
+    {
+        self.refreshControl.endRefreshing()
+    }
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
