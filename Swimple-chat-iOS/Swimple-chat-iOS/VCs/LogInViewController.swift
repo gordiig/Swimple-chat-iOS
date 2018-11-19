@@ -69,7 +69,7 @@ class LogInViewController: MyViewController
         self.logInButton.isEnabled = true
         
         let response = notification.userInfo!["type"] as! String
-        if response == "AuthNotSuccsess"
+        if response == "authNotSuccess"
         {
             alert(title: "Log in error", message: "Wrong username or password")
             return

@@ -67,35 +67,27 @@ class WebSocketHandler: WebSocketDelegate
         switch serverMessage.type
         {
             case .newMessage:
-                print("Send")
                 newMessage(serverMessage)
             
             case .registerSuccsess:
-                print("Register succsess")
                 registerSuccsess(serverMessage)
             
             case .authSuccsess:
-                print("Auth succsess")
                 authSuccsess(serverMessage)
             
             case .sendingSuccsess:
-                print("Sending succsess")
                 sendingSuccsess(serverMessage)
             
             case .registerNotSuccsess:
-                print("Register not succsess")
                 registerNotSuccsess(serverMessage)
             
             case .authNotSuccsess:
-                print("Auth not succsess")
                 authSuccsess(serverMessage)
             
             case .error:
-                print("Error")
                 gotError(serverMessage)
             
             default:
-                print("Unknown error")
                 gotUnknownError(serverMessage)
         }
     }
@@ -115,6 +107,7 @@ class WebSocketHandler: WebSocketDelegate
     func authSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
         print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketAuthNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
     }
     
     func registerSuccsess(_ serverMessage: ServerMessageToRecieve)
@@ -180,6 +173,7 @@ class WebSocketHandler: WebSocketDelegate
         
         guard let encoded = try? JSONEncoder().encode(serverMessage) else { return false }
         guard let encodedStr = String(data: encoded, encoding: .utf8) else { return false }
+        print(encodedStr)
         self.socket.write(string: encodedStr)
         
         return true
