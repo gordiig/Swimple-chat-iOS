@@ -69,6 +69,9 @@ class WebSocketHandler: WebSocketDelegate
             case .newMessage:
                 newMessage(serverMessage)
             
+            case .getMessagesForChatListResult:
+                getMessagesForChatList(serverMessage)
+            
             case .registerSuccsess:
                 registerSuccsess(serverMessage)
             
@@ -102,6 +105,13 @@ class WebSocketHandler: WebSocketDelegate
     func newMessage(_ serverMessage: ServerMessageToRecieve)
     {
         print(serverMessage.data)
+    }
+    
+    func getMessagesForChatList(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        ChatRooms.default.configureWithFetchedChatLists(serverMessage)
+        NotificationCenter.default.post(name: .webSocketGetMessagesForChatList, object: nil, userInfo: nil)
     }
     
     func authSuccsess(_ serverMessage: ServerMessageToRecieve)
@@ -154,11 +164,11 @@ class WebSocketHandler: WebSocketDelegate
         case .auth:
             guard let username = username, let password = password else { return false }
             serverMessage.username = username
-            serverMessage.password = password
+            serverMessage.passsword = password
         case .register:
             guard let username = username, let password = password else { return false }
             serverMessage.username = username
-            serverMessage.password = password
+            serverMessage.passsword = password
         case .send:
             guard let from_who = from_who, let to_who = to_who, let text = text else { return false }
             serverMessage.from_who = from_who

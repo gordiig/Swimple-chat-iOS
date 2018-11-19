@@ -90,4 +90,23 @@ class ChatRooms
         rooms = []
         NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
     }
+    
+    func configureWithFetchedChatLists(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.data)
+        
+        guard let serverMessageData = serverMessage.data else
+        {
+            print("Error, data is empty!")
+            return
+        }
+        
+        self.clear()
+        for _serverMessage in serverMessageData
+        {
+            let user = User(username: _serverMessage.chat_name!)
+            let message = Message(id: _serverMessage.id!, from: _serverMessage.from_who!, to: _serverMessage.chat_name!, msg: _serverMessage.text!)
+            self.appendMessage(message, toChat: user)
+        }
+    }
 }

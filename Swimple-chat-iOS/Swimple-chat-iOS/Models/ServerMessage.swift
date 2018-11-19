@@ -12,6 +12,7 @@ import Foundation
 enum ServerMessageType: String, Codable
 {
     case getMessagesForChatList = "getMessagesForChatList"
+    case getMessagesForChatListResult = "getMessagesForChatListResult"
     case auth = "auth"
     case register = "register"
     case registerSuccsess = "registerSuccess"
@@ -32,7 +33,7 @@ struct ServerMessageToSend: Codable
     var to_who: String? = nil
     var text: String? = nil
     var username: String? = nil
-    var password: String? = nil
+    var passsword: String? = nil
     
     init(type: ServerMessageType)
     {
@@ -49,7 +50,9 @@ struct RecievedData: Codable
     var to_who: String?
     var text: String?
     var username: String?
-    var password: String?
+    var passsword: String?
+    var chat_name: String?
+    var is_read: Int?
 }
 
 struct ServerMessageToRecieve: Codable

@@ -24,6 +24,8 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         chatRoomsMediator = ChatRoomsDataSourceMediator(tableView)
         tableView.delegate = self
         self.testSetUp()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotChatList), name: .webSocketGetMessagesForChatList, object: nil)
     }
     
     
@@ -52,7 +54,17 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     // MARK: - RefreshControl
     @objc func refreshControlValueChanged(_ sender: Any?)
     {
+        guard self.webSocketHandler.sendMessage(type: .getMessagesForChatList, username: CurrentUser.current.username) else
+        {
+            self.refreshControl.endRefreshing()
+            alert(title: "Web socket error", message: "Can't send message for fetching messages")
+            return
+        }
+    }
+    @objc func gotChatList(_ sender: Any?)
+    {
         self.refreshControl.endRefreshing()
+        self.tableView.reloadData()
     }
     
     // MARK: - UITableViewDelegate
