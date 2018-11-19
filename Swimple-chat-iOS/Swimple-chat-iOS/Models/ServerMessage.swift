@@ -14,13 +14,13 @@ enum ServerMessageType: String, Codable
     case getMessagesForChatList = "getMessagesForChatList"
     case auth = "auth"
     case register = "register"
-    case registerSuccsess = "registerSuccsess"
-    case registerNotSuccsess = "registerNotSuccsess"
+    case registerSuccsess = "registerSuccess"
+    case registerNotSuccsess = "registerNotSuccess"
     case send = "send"
     case newMessage = "newMessage"
-    case authNotSuccsess = "AuthNotSuccsess"
-    case authSuccsess = "AuthSuccsess"
-    case sendingSuccsess = "SendingSuccsess"
+    case authNotSuccsess = "authNotSuccess"
+    case authSuccsess = "authSuccess"
+    case sendingSuccsess = "SendingSuccess"
     case error = "Error"
 }
 
