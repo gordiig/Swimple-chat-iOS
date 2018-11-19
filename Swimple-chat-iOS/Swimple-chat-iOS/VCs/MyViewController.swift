@@ -10,6 +10,8 @@ import UIKit
 
 class MyViewController: UIViewController, Alerable
 {
+    var webSocketHandler = WebSocketHandler.main
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -44,4 +46,5 @@ class MyViewController: UIViewController, Alerable
     {
         self.alert(title: "Disconnected", message: "Web socket did disconnect!")
     }
+
 }

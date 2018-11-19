@@ -13,8 +13,6 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
     
-    let webSocketHandler = WebSocketHandler.main
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
