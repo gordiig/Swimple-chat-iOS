@@ -17,6 +17,9 @@ class MyViewController: UIViewController, Alerable
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.onTap))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidConnect), name: .webSocketDidConnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidDisconnect), name: .webSocketDidDisconnect, object: nil)
     }
     
     func alert(title: String, message: String)
@@ -32,4 +35,13 @@ class MyViewController: UIViewController, Alerable
         self.view.endEditing(true)
     }
     
+    @objc func webSocketDidConnect(notification: Notification)
+    {
+        self.alert(title: "Connected", message: "Web socket did connect!")
+    }
+    
+    @objc func webSocketDidDisconnect(notification: Notification)
+    {
+        self.alert(title: "Disconnected", message: "Web socket did disconnect!")
+    }
 }

@@ -12,4 +12,6 @@ extension Notification.Name
 {
     static let chatRoomsWereChanged = Notification.Name("chatRoomsWereChanged")
     static let newMessage = Notification.Name("newMessage")
+    static let webSocketDidConnect = Notification.Name("webSocketDidConnect")
+    static let webSocketDidDisconnect = Notification.Name("webSocketDidDisconnect")
 }

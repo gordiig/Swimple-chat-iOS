@@ -17,7 +17,7 @@ class WebSocketHandler: WebSocketDelegate
     
     private static var _handler: WebSocketHandler?
     
-    open var main: WebSocketHandler
+    static var main: WebSocketHandler
     {
         if WebSocketHandler._handler == nil
         {
@@ -30,6 +30,8 @@ class WebSocketHandler: WebSocketDelegate
     {
         socketURL = url
         socket = WebSocket(url: socketURL)
+        socket.delegate = self
+        socket.connect()
     }
     
     var isConnected: Bool
@@ -42,11 +44,13 @@ class WebSocketHandler: WebSocketDelegate
     func websocketDidConnect(socket: WebSocketClient)
     {
         print("WebSocket connected on \(socketURL.absoluteString)")
+        NotificationCenter.default.post(name: .webSocketDidConnect, object: nil, userInfo: nil)
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?)
     {
         print("WebSocket disconnected!")
+        NotificationCenter.default.post(name: .webSocketDidDisconnect, object: nil, userInfo: nil)
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String)
