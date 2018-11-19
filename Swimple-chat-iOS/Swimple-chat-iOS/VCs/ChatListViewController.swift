@@ -13,27 +13,35 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     @IBOutlet weak var tableView: UITableView!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
     
-    var names = [
-        User(username: "Username1"),
-        User(username: "Long-long-long username"),
-        User(username: "And another name for testing notifications ans etc")
-    ]
-    var msgs = [
-        Message(id: 0, from: "hehe", to: "gege", msg: "Last message"),
-        Message(id: 1, from: "hehehe", to: "gege", msg: "long-long-long last message"),
-        Message(id: 2, from: "hehehe", to: "gege", msg: "Just show this text")
-    ]
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         chatRoomsMediator = ChatRoomsDataSourceMediator(tableView)
         tableView.delegate = self
+        self.testSetUp()
+    }
+    
+    
+    // MARK: - Test
+    func testSetUp()
+    {
+        var names = [
+            User(username: "Username1"),
+            User(username: "Long-long-long username"),
+            User(username: "And another name for testing notifications ans etc")
+        ]
+        var msgs = [
+            Message(id: 0, from: "hehe", to: "gege", msg: "Last message"),
+            Message(id: 1, from: "hehehe", to: "gege", msg: "long-long-long last message"),
+            Message(id: 2, from: "hehehe", to: "gege", msg: "Just show this text")
+        ]
         
-        ChatRooms.default.appendMessage(msgs[0], toChat: names[0])
-        ChatRooms.default.appendMessage(msgs[1], toChat: names[1])
-        ChatRooms.default.appendMessage(msgs[2], toChat: names[2])
+        let chatList = ChatRooms.default
+        for i in 0 ..< names.count
+        {
+            chatList.appendMessage(msgs[i], toChat: names[i])
+        }
     }
     
     
@@ -61,7 +69,8 @@ class ChatListViewController: MyViewController, UITableViewDelegate
             return
         }
         
-        vc.navigationItem.title = room.interlocutor.username
+        vc.user = room.interlocutor
+        vc.roomNum = idx
     }
     
 }

@@ -251,9 +251,9 @@
 			children = (
 				13B84E47216B705700AEF305 /* User.swift */,
 				13B84E49216B714200AEF305 /* CurrentUser.swift */,
-				132D6835217C9F810069DCFE /* ChatRooms.swift */,
 				132D6837217C9FC10069DCFE /* Message.swift */,
 				132D6839217CA5320069DCFE /* ChatRoom.swift */,
+				132D6835217C9F810069DCFE /* ChatRooms.swift */,
 				132D6841217CD86C0069DCFE /* ChatRoomsDataSourceMediator.swift */,
 				1341B2E6217DBB8E004503AE /* ServerMessage.swift */,
 				1341B2E8217DBC6E004503AE /* WebSocketHandler.swift */,

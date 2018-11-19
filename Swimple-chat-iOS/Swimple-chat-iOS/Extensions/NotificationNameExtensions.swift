@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name
 {
     static let chatRoomsWereChanged = Notification.Name("chatRoomsWereChanged")
+    static let newMessage = Notification.Name("newMessage")
 }

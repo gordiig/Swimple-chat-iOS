@@ -97,27 +97,27 @@ class WebSocketHandler: WebSocketDelegate
     // MARK: - Functions by types
     func newMessage(_ serverMessage: ServerMessageToRecieve)
     {
-        
+        print(serverMessage.data)
     }
     
     func authSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
-        
+        print(serverMessage.type.rawValue)
     }
     
     func sendingSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
-        
+        print(serverMessage.type.rawValue)
     }
     
     func authNotSuccsess(_ serverMessage: ServerMessageToRecieve)
     {
-        
+        print(serverMessage.type.rawValue)
     }
     
     func gotError(_ ServerMessage: ServerMessageToRecieve)
     {
-        
+        print(ServerMessage.type.rawValue)
     }
     
     func gotUnknownError(_ serverMessage: ServerMessageToRecieve)
