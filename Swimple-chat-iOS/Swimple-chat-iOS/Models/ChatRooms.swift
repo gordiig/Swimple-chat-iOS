@@ -31,16 +31,18 @@ class ChatRooms
     
     
     // MARK: - Private
-    private func addNewRoom(withUser user: User, andAppendMessage msg: Message? = nil)
+    private func addNewRoom(withUser user: User, andAppendMessage msg: Message? = nil) -> ChatRoom
     {
-        rooms.append(ChatRoom(username: user))
+        let newRoom = ChatRoom(username: user)
+        rooms.append(newRoom)
         
         if let msg = msg
         {
-            rooms.last?.appendMessage(msg)
+            newRoom.appendMessage(msg)
         }
         
         NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
+        return newRoom
     }
     
     private func searchForRoom(withName searchName: String) -> ChatRoom?
@@ -67,7 +69,7 @@ class ChatRooms
         }
         else
         {
-            addNewRoom(withUser: user, andAppendMessage: msg)
+            _ = addNewRoom(withUser: user, andAppendMessage: msg)
         }
     }
     
@@ -83,6 +85,20 @@ class ChatRooms
             return nil
         }
         return rooms[idx]
+    }
+    
+    func getRoom(for user: User, createIfNone: Bool = true) -> ChatRoom?
+    {
+        guard let room = searchForRoom(withUser: user) else
+        {
+            if createIfNone
+            {
+                let newRoom = self.addNewRoom(withUser: user)
+                return newRoom
+            }
+            return nil
+        }
+        return room
     }
     
     func clear()
