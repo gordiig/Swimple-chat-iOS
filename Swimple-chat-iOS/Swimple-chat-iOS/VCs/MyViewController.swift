@@ -22,7 +22,7 @@ class MyViewController: UIViewController, Alerable
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidConnect), name: .webSocketDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidDisconnect), name: .webSocketDidDisconnect, object: nil)
-        NotificationCenter.default.addObserver(self., selector: #selector(self.webSocketError), name: .webSocketError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketError), name: .webSocketError, object: nil)
     }
     
     func alert(title: String, message: String)
