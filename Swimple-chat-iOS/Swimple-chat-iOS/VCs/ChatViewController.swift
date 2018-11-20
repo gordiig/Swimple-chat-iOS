@@ -16,7 +16,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var user: User!
-    var roomNum: Int!
+//    var roomNum: Int!
     var room: ChatRoom!
     
     override func viewDidLoad()
@@ -45,7 +45,6 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         
         self.title = user.username
-        self.room = ChatRooms.default.getRoom(at: roomNum)
     }
     
     

@@ -98,7 +98,7 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         }
         
         vc.user = room.interlocutor
-        vc.roomNum = idx
+        vc.room = ChatRooms.default.getRoom(for: room.interlocutor)
     }
     
 }
