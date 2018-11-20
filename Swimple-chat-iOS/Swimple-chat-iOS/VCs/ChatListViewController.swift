@@ -27,11 +27,11 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         
         chatRoomsMediator = ChatRoomsDataSourceMediator(tableView)
         tableView.delegate = self
-        self.testSetUp()
+//        self.testSetUp()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.gotChatList), name: .webSocketGetMessagesForChatList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getChatList), name: .webSocketDidConnect, object: nil)
     }
-    
     
     // MARK: - Test
     func testSetUp()
@@ -57,6 +57,10 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     
     // MARK: - RefreshControl
     @objc func refreshControlValueChanged(_ sender: Any?)
+    {
+        getChatList()
+    }
+    @objc func getChatList(_ sender: Any? = nil)
     {
         guard self.webSocketHandler.sendMessage(type: .getMessagesForChatList, username: CurrentUser.current.username) else
         {
