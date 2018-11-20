@@ -147,11 +147,13 @@ class WebSocketHandler: WebSocketDelegate
     func gotError(_ ServerMessage: ServerMessageToRecieve)
     {
         print(ServerMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketError, object: nil, userInfo: ["type": "known"])
     }
     
     func gotUnknownError(_ serverMessage: ServerMessageToRecieve)
     {
         print("Web socket got unknown error")
+        NotificationCenter.default.post(name: .webSocketError, object: nil, userInfo: ["type": "unknown"])
     }
     
     

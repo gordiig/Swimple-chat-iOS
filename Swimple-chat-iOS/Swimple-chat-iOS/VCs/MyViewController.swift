@@ -22,6 +22,7 @@ class MyViewController: UIViewController, Alerable
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidConnect), name: .webSocketDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidDisconnect), name: .webSocketDidDisconnect, object: nil)
+        NotificationCenter.default.addObserver(self., selector: #selector(self.webSocketError), name: .webSocketError, object: nil)
     }
     
     func alert(title: String, message: String)
@@ -45,5 +46,12 @@ class MyViewController: UIViewController, Alerable
     @objc func webSocketDidDisconnect(notification: Notification)
     {
         self.alert(title: "Disconnected", message: "Web socket did disconnect!")
+    }
+    
+    @objc func webSocketError(notification: Notification)
+    {
+        let type = notification.userInfo!["type"] as! String
+        let msg = ((type == "known") ? ("Error came to web socket!") : ("Unknown error came to web socket!"))
+        self.alert(title: "Web socket error", message: msg)
     }
 }
