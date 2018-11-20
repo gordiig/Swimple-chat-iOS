@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication)
     {
         WebSocketHandler.main.socket.disconnect()
+        print("Socket disconnected on terminate")
     }
 }
 

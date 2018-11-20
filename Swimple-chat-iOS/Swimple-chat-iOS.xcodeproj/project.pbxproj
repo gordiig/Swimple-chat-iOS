@@ -30,6 +30,7 @@
 		1341B2E7217DBB8E004503AE /* ServerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341B2E6217DBB8E004503AE /* ServerMessage.swift */; };
 		1341B2E9217DBC6E004503AE /* WebSocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341B2E8217DBC6E004503AE /* WebSocketHandler.swift */; };
 		134F64DB2189D618009CA1A4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F64DA2189D618009CA1A4 /* SignUpViewController.swift */; };
+		137699F621A440C0005459A5 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137699F521A440C0005459A5 /* SearchUserViewController.swift */; };
 		1377A76D21768284006FDE2C /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137B4BF121768278001B9BB0 /* Starscream.framework */; };
 		13B84E48216B705700AEF305 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E47216B705700AEF305 /* User.swift */; };
 		13B84E4A216B714200AEF305 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E49216B714200AEF305 /* CurrentUser.swift */; };
@@ -87,6 +88,7 @@
 		1341B2E6217DBB8E004503AE /* ServerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMessage.swift; sourceTree = "<group>"; };
 		1341B2E8217DBC6E004503AE /* WebSocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketHandler.swift; sourceTree = "<group>"; };
 		134F64DA2189D618009CA1A4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		137699F521A440C0005459A5 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 		137B4BF121768278001B9BB0 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		13B84E47216B705700AEF305 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		13B84E49216B714200AEF305 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				1338A0F3216572E000C4ECCF /* ChatViewController.swift */,
 				13B8728F21745E5200022C37 /* CameraViewController.swift */,
 				134F64DA2189D618009CA1A4 /* SignUpViewController.swift */,
+				137699F521A440C0005459A5 /* SearchUserViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				132D683A217CA5320069DCFE /* ChatRoom.swift in Sources */,
+				137699F621A440C0005459A5 /* SearchUserViewController.swift in Sources */,
 				132833EC218B480400340876 /* FrameExtractorOutputDelegate.swift in Sources */,
 				1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */,
 				1341B2E9217DBC6E004503AE /* WebSocketHandler.swift in Sources */,

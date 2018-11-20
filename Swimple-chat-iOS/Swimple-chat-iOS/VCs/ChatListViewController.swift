@@ -11,6 +11,7 @@ import UIKit
 class ChatListViewController: MyViewController, UITableViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addChatButton: UIBarButtonItem!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
     let refreshControl = UIRefreshControl()
     
@@ -81,10 +82,12 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     // MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        if segue.identifier == "addNewChatSegue" { return }
+        
         let idx = tableView.indexPathForSelectedRow?.row ?? 0
         guard let vc = segue.destination as? ChatViewController else
         {
-            alert(title: "Segue error", message: "Something wrong in pewpare for segue!")
+            alert(title: "Segue error", message: "Something wrong in pepare for segue!")
             return
         }
         
