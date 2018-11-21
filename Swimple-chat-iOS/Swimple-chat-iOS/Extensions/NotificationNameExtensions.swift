@@ -17,5 +17,6 @@ extension Notification.Name
     static let webSocketRegistrationNotif = Notification.Name("webSocketRegistrationNotif")
     static let webSocketAuthNotif = Notification.Name("webSocketAuthNotif")
     static let webSocketGetMessagesForChatList = Notification.Name("webSocketGetMessagesForChatList")
+    static let webSocketGetUsers = Notification.Name("webSocketGetUsers")
     static let webSocketError = Notification.Name("webSocketError")
 }

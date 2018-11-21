@@ -68,28 +68,22 @@ class WebSocketHandler: WebSocketDelegate
         {
             case .newMessage:
                 newMessage(serverMessage)
-            
             case .getMessagesForChatListResult:
                 getMessagesForChatList(serverMessage)
-            
+            case .getUsersResult:
+                getUsersResult(serverMessage)
             case .registerSuccsess:
                 registerSuccsess(serverMessage)
-            
             case .authSuccsess:
                 authSuccsess(serverMessage)
-            
             case .sendingSuccsess:
                 sendingSuccsess(serverMessage)
-            
             case .registerNotSuccsess:
                 registerNotSuccsess(serverMessage)
-            
             case .authNotSuccsess:
                 authSuccsess(serverMessage)
-            
             case .error:
                 gotError(serverMessage)
-            
             default:
                 gotUnknownError(serverMessage)
         }
@@ -113,6 +107,17 @@ class WebSocketHandler: WebSocketDelegate
         print(serverMessage.type.rawValue)
         ChatRooms.default.configureWithFetchedChatLists(serverMessage)
         NotificationCenter.default.post(name: .webSocketGetMessagesForChatList, object: nil, userInfo: nil)
+    }
+    
+    func getUsersResult(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        var users: [String] = []
+        for messageData in serverMessage.data!
+        {
+            users.append(messageData.username!)
+        }
+        NotificationCenter.default.post(name: .webSocketGetUsers, object: nil, userInfo: ["users": users])
     }
     
     func authSuccsess(_ serverMessage: ServerMessageToRecieve)
