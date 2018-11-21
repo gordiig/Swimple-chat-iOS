@@ -34,6 +34,7 @@ struct ServerMessageToSend: Codable
     var text: String? = nil
     var username: String? = nil
     var passsword: String? = nil
+    var message: String? = nil
     
     init(type: ServerMessageType)
     {

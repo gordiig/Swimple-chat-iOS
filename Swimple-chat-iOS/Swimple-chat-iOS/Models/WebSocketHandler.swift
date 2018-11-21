@@ -176,7 +176,7 @@ class WebSocketHandler: WebSocketDelegate
             guard let from_who = from_who, let to_who = to_who, let text = text else { return false }
             serverMessage.from_who = from_who
             serverMessage.to_who = to_who
-            serverMessage.text = text
+            serverMessage.message = text
         case .getMessagesForChatList:
             guard let username = username else { return false }
             serverMessage.username = username
