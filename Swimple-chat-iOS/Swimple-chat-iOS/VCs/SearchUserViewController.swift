@@ -38,18 +38,32 @@ class SearchUserViewController: MyViewController, UITableViewDelegate, UITableVi
         usersTableView.dataSource = self
         usersTableView.refreshControl = refreshControl
         usersTableView.keyboardDismissMode = .interactive
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotUsers), name: .webSocketGetUsers, object: nil)
     }
     
     
     // MARK: - Refresh control
     @objc func refreshControlValueChanged(_ sender: Any?)
     {
-        loadUsers()
-        self.refreshControl.endRefreshing()
+        NotificationCenter.default.post(name: .webSocketGetUsers, object: nil, userInfo: ["users": ["User1", "Admin", "Ванечка ебаный"]])
+        
+        // FIXME: - Когда ваня сделает, раскоментить, а сверху убрать все
+//        loadUsers()
     }
     func loadUsers()
     {
-        // TODO
+        guard webSocketHandler.sendMessage(type: .getUsers) else
+        {
+            alert(title: "Web socket error", message: "Can't send getUser query to server")
+            self.refreshControl.endRefreshing()
+            return
+        }
+    }
+    @objc func gotUsers(_ notification: Notification)
+    {
+        self.foundUsers = notification.userInfo!["users"] as! [String]
+        self.refreshControl.endRefreshing()
     }
     
     
