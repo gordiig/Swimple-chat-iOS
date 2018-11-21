@@ -23,6 +23,9 @@ enum ServerMessageType: String, Codable
     case authSuccsess = "authSuccess"
     case sendingSuccsess = "sendingSuccess"
     case error = "error"
+    // FIXME: - Когда Ваня все скинет
+    case getUsers = "getUsers"
+    case getUsersResult = "getUsersResult"
 }
 
 // MARK: - Server message that will be send to server
