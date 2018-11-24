@@ -38,6 +38,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: .newMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getMessagesForChat), name: .webSocketGetMessagesForChat, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -45,6 +46,11 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         
         self.title = user.username
+        guard self.webSocketHandler.sendMessage(type: .getMessagesForChat, from_who: self.user.username, to_who: CurrentUser.current.username) else
+        {
+            alert(title: "Web socket error", message: "Can't get messages for chat, try to refresh later!")
+            return
+        }
     }
     
     
@@ -155,6 +161,8 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         selected?.isSelected = false
     }
     
+    
+    // MARK: - Button pressed
     @IBAction func sendButtonPressed(_ sender: Any)
     {
         let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -168,10 +176,15 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         room.appendMessage(newMessage)
     }
     
+    
+    // MARK: - Selectors
     @objc func newMessage(notification: Notification)
     {
         self.chatTableView.reloadData()
         self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: room.messages.count-1), at: .bottom, animated: true)
     }
     
+    @objc func getMessagesForChat(notification: Notification)
+    {
+    }
 }

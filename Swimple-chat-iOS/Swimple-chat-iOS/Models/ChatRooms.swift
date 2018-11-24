@@ -109,7 +109,7 @@ class ChatRooms
     
     func configureWithFetchedChatLists(_ serverMessage: ServerMessageToRecieve)
     {
-        print(serverMessage.data)
+        print(serverMessage.data ?? "")
         
         guard let serverMessageData = serverMessage.data else
         {
@@ -128,7 +128,7 @@ class ChatRooms
     
     func newMessages(_ serverMessage: ServerMessageToRecieve)
     {
-        print(serverMessage.data)
+        print(serverMessage.data ?? "")
         guard let messageData = serverMessage.data else { return }
         for message in messageData
         {

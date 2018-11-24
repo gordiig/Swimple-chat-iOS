@@ -70,6 +70,8 @@ class WebSocketHandler: WebSocketDelegate
                 newMessage(serverMessage)
             case .getMessagesForChatListResult:
                 getMessagesForChatList(serverMessage)
+            case .getMessagesForChatResult:
+                getMessagesForChat(serverMessage)
             case .getUsersResult:
                 getUsersResult(serverMessage)
             case .registerSuccsess:
@@ -107,6 +109,13 @@ class WebSocketHandler: WebSocketDelegate
         print(serverMessage.type.rawValue)
         ChatRooms.default.configureWithFetchedChatLists(serverMessage)
         NotificationCenter.default.post(name: .webSocketGetMessagesForChatList, object: nil, userInfo: nil)
+    }
+    
+    func getMessagesForChat(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        print(serverMessage.data ?? "No data!")
+        NotificationCenter.default.post(name: .webSocketGetMessagesForChat, object: nil)
     }
     
     func getUsersResult(_ serverMessage: ServerMessageToRecieve)

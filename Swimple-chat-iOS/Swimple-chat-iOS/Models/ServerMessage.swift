@@ -14,6 +14,7 @@ enum ServerMessageType: String, Codable
     case getMessagesForChatList = "getMessagesForChatList"
     case getMessagesForChatListResult = "getMessagesForChatListResult"
     case getMessagesForChat = "getMessagesForChat"
+    case getMessagesForChatResult = "getMessagesForChatResult"
     case auth = "auth"
     case register = "register"
     case registerSuccsess = "registerSuccess"
