@@ -114,7 +114,7 @@ class WebSocketHandler: WebSocketDelegate
     func getMessagesForChat(_ serverMessage: ServerMessageToRecieve)
     {
         print(serverMessage.type.rawValue)
-        print(serverMessage.data ?? "No data!")
+        ChatRooms.default.configureRoomWithFetchedChatLists(serverMessage)
         NotificationCenter.default.post(name: .webSocketGetMessagesForChat, object: nil)
     }
     

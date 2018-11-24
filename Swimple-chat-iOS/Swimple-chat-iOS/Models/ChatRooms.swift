@@ -109,8 +109,6 @@ class ChatRooms
     
     func configureWithFetchedChatLists(_ serverMessage: ServerMessageToRecieve)
     {
-        print(serverMessage.data ?? "")
-        
         guard let serverMessageData = serverMessage.data else
         {
             print("Error, data is empty!")
@@ -125,10 +123,19 @@ class ChatRooms
             self.appendMessage(message, toChat: user)
         }
     }
+    func configureRoomWithFetchedChatLists(_ serverMessage: ServerMessageToRecieve)
+    {
+        guard let serverMessageData = serverMessage.data else
+        {
+            print("Error, data is empty!")
+            return
+        }
+        
+        // TODO: - HERE
+    }
     
     func newMessages(_ serverMessage: ServerMessageToRecieve)
     {
-        print(serverMessage.data ?? "")
         guard let messageData = serverMessage.data else { return }
         for message in messageData
         {
