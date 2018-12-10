@@ -10,9 +10,9 @@ import UIKit
 
 class MyChatBubbleTableViewCell: UITableViewCell
 {
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var firstLetterLabel: UILabel!
+    @IBOutlet weak var imgView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
-    
     
     override func awakeFromNib()
     {
@@ -28,13 +28,10 @@ class MyChatBubbleTableViewCell: UITableViewCell
         super.setSelected(selected, animated: animated)
     }
 
-    func configure(message: String, img: UIImage? = nil)
+    func configure(message: String, username: String)
     {
         messageLabel.text = message
-        if let img = img
-        {
-            avatarImageView.image = img
-        }
+        firstLetterLabel.text = String(username.first ?? Character("U"))
     }
     
 }

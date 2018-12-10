@@ -10,7 +10,8 @@ import UIKit
 
 class ChatListTableViewCell: UITableViewCell
 {
-    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var firstLetterLabel: UILabel!
+    @IBOutlet weak var chatImgView: UIView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var lastMsgLabel: UILabel!
     
@@ -25,13 +26,10 @@ class ChatListTableViewCell: UITableViewCell
         // Configure the view for the selected state
     }
 
-    func configure(username: String, lastMessage: String, image: UIImage? = nil)
+    func configure(username: String, lastMessage: String)
     {
         usernameLabel.text = username
         lastMsgLabel.text = lastMessage
-        if let image = image
-        {
-            img.image = image
-        }
+        firstLetterLabel.text = String(username.first ?? Character("U"))
     }
 }

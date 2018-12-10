@@ -139,7 +139,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
                 alert(title: "Dequeue error", message: "Can't dequeue MyChatBubbleTableViewCell")
                 return UITableViewCell()
             }
-            cell.configure(message: room.messages[row].msg)
+            cell.configure(message: room.messages[row].msg, username: room.messages[row].from)
             return cell
         }
         else
@@ -150,7 +150,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
                 alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
                 return UITableViewCell()
             }
-            cell.configure(message: room.messages[row].msg)
+            cell.configure(message: room.messages[row].msg, username: room.messages[row].from)
             return cell
         }
     }
