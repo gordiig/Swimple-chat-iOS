@@ -31,7 +31,8 @@ class SearchUserViewController: MyViewController, UITableViewDelegate, UITableVi
         searchBar.placeholder = "Search users..."
         navigationItem.titleView = searchBar
         
-        filterUsers()
+//        filterUsers()
+        loadUsers()
 
         searchBar.delegate = self
         usersTableView.delegate = self
@@ -46,14 +47,14 @@ class SearchUserViewController: MyViewController, UITableViewDelegate, UITableVi
     // MARK: - Refresh control
     @objc func refreshControlValueChanged(_ sender: Any?)
     {
-        NotificationCenter.default.post(name: .webSocketGetUsers, object: nil, userInfo: ["users": ["User1", "Admin", "Ванечка ебаный"]])
+//        NotificationCenter.default.post(name: .webSocketGetUsers, object: nil, userInfo: ["users": ["User1", "Admin", "Ванечка ебаный"]])
         
         // FIXME: - Когда ваня сделает, раскоментить, а сверху убрать все
-//        loadUsers()
+        loadUsers()
     }
     func loadUsers()
     {
-        guard webSocketHandler.sendMessage(type: .getUsers) else
+        guard webSocketHandler.sendMessage(type: .getUsers, username: CurrentUser.current.username) else
         {
             alert(title: "Web socket error", message: "Can't send getUser query to server")
             self.refreshControl.endRefreshing()

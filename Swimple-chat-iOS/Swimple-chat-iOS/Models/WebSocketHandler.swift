@@ -210,6 +210,9 @@ class WebSocketHandler: WebSocketDelegate
             guard let from_who = from_who, let to_who = to_who else { return false }
             serverMessage.from_who = from_who
             serverMessage.to_who = to_who
+        case .getUsers:
+            guard let username = username else { return false }
+            serverMessage.username = username
         default:
             break
         }
