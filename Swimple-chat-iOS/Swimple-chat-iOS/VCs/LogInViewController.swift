@@ -22,6 +22,10 @@ class LogInViewController: MyViewController
     {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.authServerResponse), name: .webSocketAuthNotif, object: nil)
+        
+        usernameTextField.accessibilityLabel = "usernameTextField"
+        passwordTextField.accessibilityLabel = "passwordTextField"
+        passwordTextField.accessibilityIdentifier = "passwordTextField"
     }
     
     @IBAction func logInButtonPressed(_ sender: Any)
@@ -59,7 +63,7 @@ class LogInViewController: MyViewController
             alert(title: "Web socket error", message: "Can't send auth message")
             return
         }
-        self.logInButton.isEnabled = false
+//        self.logInButton.isEnabled = false
         self.usernameForLogin = username
         self.passwordForLogin = password
     }
@@ -87,8 +91,7 @@ class LogInViewController: MyViewController
     }
     
     
-    @IBAction func reconnectSocketButtonPressed(_ sender: Any)
+    @IBAction func socketSettingsButtonPressed(_ sender: Any)
     {
-        self.webSocketHandler.socket.connect()
     }
 }

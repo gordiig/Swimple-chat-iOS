@@ -26,7 +26,7 @@ class WebSocketHandler: WebSocketDelegate
         return WebSocketHandler._handler!
     }
     
-    private init(url: URL = URL(string: "ws://85.255.1.214:8080/")!)
+    private init(url: URL = URL(string: /*"ws://85.255.1.214:8080/"*/ "ws://192.168.1.69:8000/ws/")!)
     {
         socketURL = url
         socket = WebSocket(url: socketURL)
@@ -37,6 +37,18 @@ class WebSocketHandler: WebSocketDelegate
     var isConnected: Bool
     {
         return socket.isConnected
+    }
+    
+    func changeHost(host: String, port: String) -> Bool
+    {
+        guard let url = URL(string: "ws://\(host):\(port)/") else
+        {
+            return false
+        }
+        self.socket = WebSocket(url: url)
+        socket.delegate = self
+        socket.connect()
+        return true
     }
     
     

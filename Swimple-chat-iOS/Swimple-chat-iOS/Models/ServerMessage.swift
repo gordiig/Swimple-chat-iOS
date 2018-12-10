@@ -58,7 +58,8 @@ struct RecievedData: Codable
     var username: String?
     var passsword: String?
     var chat_name: String?
-    var is_read: Int?
+    var is_read: Bool?
+    var when_sent: String?
 }
 
 struct ServerMessageToRecieve: Codable

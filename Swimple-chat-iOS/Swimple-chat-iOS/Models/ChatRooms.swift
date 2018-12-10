@@ -131,7 +131,14 @@ class ChatRooms
             return
         }
         
-        // TODO: - HERE
+        if serverMessageData.count == 0 { return }
+        let user = (serverMessageData[0].from_who! == CurrentUser.current.username) ? User(username: serverMessageData[0].to_who!) : User(username: serverMessageData[0].from_who!)
+        self.getRoom(for: user)?.clear()
+        for _serverMessage in serverMessageData
+        {
+            let message = Message(id: _serverMessage.id!, from: _serverMessage.from_who!, to: _serverMessage.to_who!, msg: _serverMessage.text!)
+            self.appendMessage(message, toChat: user)
+        }
     }
     
     func newMessages(_ serverMessage: ServerMessageToRecieve)

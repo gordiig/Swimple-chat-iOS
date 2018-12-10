@@ -31,6 +31,9 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.gotChatList), name: .webSocketGetMessagesForChatList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.getChatList), name: .webSocketDidConnect, object: nil)
+        
+        tableView.accessibilityLabel = "chatListTableView"
+        self.getChatList()
     }
     
     // MARK: - Test

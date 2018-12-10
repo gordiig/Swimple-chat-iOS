@@ -30,6 +30,7 @@ class MyViewController: UIViewController, Alerable
         let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         vc.addAction(alertAction)
+        vc.accessibilityLabel = "AlertVC"
         present(vc, animated: true, completion: nil)
     }
     
@@ -40,7 +41,7 @@ class MyViewController: UIViewController, Alerable
     
     @objc func webSocketDidConnect(notification: Notification)
     {
-        self.alert(title: "Connected", message: "Web socket did connect!")
+//        self.alert(title: "Connected", message: "Web socket did connect!")
     }
     
     @objc func webSocketDidDisconnect(notification: Notification)

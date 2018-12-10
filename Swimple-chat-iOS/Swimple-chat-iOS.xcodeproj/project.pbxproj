@@ -36,6 +36,7 @@
 		13B84E4A216B714200AEF305 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B84E49216B714200AEF305 /* CurrentUser.swift */; };
 		13B8729021745E5200022C37 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B8728F21745E5200022C37 /* CameraViewController.swift */; };
 		13B872952174A6EE00022C37 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B872942174A6EE00022C37 /* CameraPreviewView.swift */; };
+		13BCE6D521BEF38300A6F9B8 /* WebSocketSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BCE6D421BEF38300A6F9B8 /* WebSocketSettingsViewController.swift */; };
 		13FB0DE4216764AD0059280C /* ChatBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB0DE3216764AD0059280C /* ChatBubbleTableViewCell.swift */; };
 		13FB0DE621676B860059280C /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB0DE521676B860059280C /* MyViewController.swift */; };
 		13FB0DE82167B3B70059280C /* MyChatBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FB0DE72167B3B70059280C /* MyChatBubbleTableViewCell.swift */; };
@@ -94,6 +95,7 @@
 		13B84E49216B714200AEF305 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		13B8728F21745E5200022C37 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		13B872942174A6EE00022C37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		13BCE6D421BEF38300A6F9B8 /* WebSocketSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketSettingsViewController.swift; sourceTree = "<group>"; };
 		13FB0DE3216764AD0059280C /* ChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
 		13FB0DE521676B860059280C /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		13FB0DE72167B3B70059280C /* MyChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				13B8728F21745E5200022C37 /* CameraViewController.swift */,
 				134F64DA2189D618009CA1A4 /* SignUpViewController.swift */,
 				137699F521A440C0005459A5 /* SearchUserViewController.swift */,
+				13BCE6D421BEF38300A6F9B8 /* WebSocketSettingsViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				132D6838217C9FC10069DCFE /* Message.swift in Sources */,
 				132833E9218B2BC400340876 /* FrameExtractor.swift in Sources */,
 				134F64DB2189D618009CA1A4 /* SignUpViewController.swift in Sources */,
+				13BCE6D521BEF38300A6F9B8 /* WebSocketSettingsViewController.swift in Sources */,
 				1338A0BA21654BF900C4ECCF /* ChatListViewController.swift in Sources */,
 				1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */,
 				1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */,

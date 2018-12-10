@@ -43,10 +43,4 @@ class SettingsViewController: MyViewController
         present(navigationController, animated: true, completion: nil)
     }
     
-    
-    @IBAction func reconnectSocketButtonPressed(_ sender: Any)
-    {
-        self.webSocketHandler.socket.connect()
-    }
-    
 }
