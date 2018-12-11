@@ -28,6 +28,7 @@ enum ServerMessageType: String, Codable
     case getUsers = "getUsers"
     case getUsersResult = "getUsersResult"
     case startCall = "startCall"
+    case callCalling = "callCalling"
     case cancelCall = "cancelCall"
     case acceptCall = "acceptCall"
     case sendImageFrame = "sendImageFrame"

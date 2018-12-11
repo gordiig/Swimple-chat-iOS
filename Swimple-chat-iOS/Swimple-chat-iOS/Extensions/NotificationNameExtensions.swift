@@ -23,6 +23,7 @@ extension Notification.Name
     static let webSocketGetMessagesForChat = Notification.Name("webSocketGetMessagesForChat")
     
     static let webSocketStartCallNotif = Notification.Name("webSocketStartCallNotif")
+    static let webSocketCallCallingNotif = Notification.Name("webSocketCallCallingNotif")
     static let webSocketCancelCallNotif = Notification.Name("webSocketCancelCallNotif")
     static let webSocketAcceptCallNotif = Notification.Name("webSocketAcceptCallNotif")
     static let webSocketGotFrameBufferNotif = Notification.Name("webSocketGotFrameBufferNotif")
