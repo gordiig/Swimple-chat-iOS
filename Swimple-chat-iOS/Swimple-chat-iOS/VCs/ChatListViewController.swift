@@ -61,7 +61,7 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     }
     @objc func getChatList(_ sender: Any? = nil)
     {
-        self.webSocketHandler.sendMessage(type: .auth, username: CurrentUser.current.username, password: CurrentUser.current.password)
+        _ = self.webSocketHandler.sendMessage(type: .auth, username: CurrentUser.current.username, password: CurrentUser.current.password)
         guard self.webSocketHandler.sendMessage(type: .getMessagesForChatList, username: CurrentUser.current.username) else
         {
             self.refreshControl.endRefreshing()
