@@ -266,6 +266,27 @@ class WebSocketHandler: WebSocketDelegate
         case .getUsers:
             guard let username = username else { return false }
             serverMessage.username = username
+        case .startCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+        case .cancelCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+        case .acceptCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+        case .sendImageFrame:
+            guard let from_who = from_who, let to_who = to_who, let text = text else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+            serverMessage.message = text
+        case .endCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
         default:
             break
         }
