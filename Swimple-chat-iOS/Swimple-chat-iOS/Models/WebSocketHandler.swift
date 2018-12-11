@@ -80,22 +80,39 @@ class WebSocketHandler: WebSocketDelegate
         {
             case .newMessage:
                 newMessage(serverMessage)
+            
             case .getMessagesForChatListResult:
                 getMessagesForChatList(serverMessage)
             case .getMessagesForChatResult:
                 getMessagesForChat(serverMessage)
             case .getUsersResult:
                 getUsersResult(serverMessage)
+            
             case .registerSuccsess:
                 registerSuccsess(serverMessage)
             case .authSuccsess:
                 authSuccsess(serverMessage)
             case .sendingSuccsess:
                 sendingSuccsess(serverMessage)
+            
             case .registerNotSuccsess:
                 registerNotSuccsess(serverMessage)
             case .authNotSuccsess:
                 authSuccsess(serverMessage)
+            
+            case .callCalling:
+                callCalling(serverMessage)
+            case .cancelCall:
+                cancelCall(serverMessage)
+            case .acceptCall:
+                acceptCall(serverMessage)
+            case .callNewBuffer:
+                callNewBuffer(serverMessage)
+            case .endCall:
+                endCall(serverMessage)
+            case .callUserIsOffline:
+                callUserIsOffline(serverMessage)
+            
             case .error:
                 gotError(serverMessage)
             default:
@@ -168,6 +185,42 @@ class WebSocketHandler: WebSocketDelegate
     {
         print(serverMessage.type.rawValue)
         NotificationCenter.default.post(name: .webSocketAuthNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
+    }
+    
+    func callCalling(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketCallCallingNotif, object: nil, userInfo: nil)
+    }
+    
+    func cancelCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketCancelCallNotif, object: nil)
+    }
+    
+    func acceptCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketAcceptCallNotif, object: nil)
+    }
+    
+    func callNewBuffer(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketGotFrameBufferNotif, object: nil, userInfo: ["str64": serverMessage.data![0].text!])
+    }
+    
+    func endCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketEndCall, object: nil)
+    }
+    
+    func callUserIsOffline(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketUserOffline, object: nil)
     }
     
     func gotError(_ ServerMessage: ServerMessageToRecieve)
