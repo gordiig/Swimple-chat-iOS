@@ -64,8 +64,9 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     }
     
     // MARK: - FrameExtractorOutputDelegate
-    func frameExtractor(didOutputFrame frame: UIImage)
+    func frameExtractor(didOutputFrame frame: UIImage, base64: String? = nil)
     {
         self.previewImageView.image = frame
+        print(base64)
     }
 }

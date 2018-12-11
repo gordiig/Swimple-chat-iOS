@@ -12,16 +12,16 @@ import UIKit
 
 extension UIImage
 {
-    func toBase64() -> String?
+    func toBase64(quality: Float) -> String?
     {
-        let data = self.jpegData(compressionQuality: 0.8)
+        let data = self.jpegData(compressionQuality: CGFloat(quality))
         let str64 = data?.base64EncodedString()
         return str64
     }
     
-    static func toBase64(_ image: UIImage) -> String?
+    static func toBase64(_ image: UIImage, quality: Float) -> String?
     {
-        let data = image.jpegData(compressionQuality: 0.8)
+        let data = image.jpegData(compressionQuality: CGFloat(quality))
         let str64 = data?.base64EncodedString()
         return str64
     }
