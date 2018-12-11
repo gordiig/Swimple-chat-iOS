@@ -103,7 +103,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
             alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
             return
         }
-        
+        destVC.setupForOutcomeCall()
         self.present(destVC, animated: true, completion: nil)
     }
     

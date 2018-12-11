@@ -43,6 +43,18 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     }
     
     
+    // MARK: - Pre-view setups
+    func setupForIncomeCall()
+    {
+        
+    }
+    
+    func setupForOutcomeCall()
+    {
+        self.acceptButtonWidthConstraint.constant = 0
+    }
+    
+    
     // MARK: - Buttons
     @IBAction func changeCamButtonPressed(_ sender: Any)
     {
