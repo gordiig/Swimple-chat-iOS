@@ -738,7 +738,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYo-xA-t2E">
-                                                    <rect key="frame" x="102" y="8" width="171" height="78"/>
+                                                    <rect key="frame" x="187" y="8" width="180" height="78"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="55"/>
                                                     <state key="normal" title="Dismiss">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -747,11 +747,28 @@
                                                         <action selector="dismissButtonPressed:" destination="SAy-eA-dBV" eventType="touchUpInside" id="G79-AK-bVc"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2I-3w-dAg">
+                                                    <rect key="frame" x="8" y="8" width="171" height="78"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="171" id="tK2-ZI-rqt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="55"/>
+                                                    <state key="normal" title="Accept">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="acceptButtonPressed:" destination="SAy-eA-dBV" eventType="touchUpInside" id="3tQ-FA-cSF"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="d2I-3w-dAg" secondAttribute="bottom" constant="8" id="Ab4-IV-MTE"/>
+                                                <constraint firstItem="d2I-3w-dAg" firstAttribute="leading" secondItem="j21-d3-GpG" secondAttribute="leading" constant="8" id="Ity-2X-lku"/>
                                                 <constraint firstItem="sYo-xA-t2E" firstAttribute="top" secondItem="j21-d3-GpG" secondAttribute="top" constant="8" id="PTR-MY-0dm"/>
+                                                <constraint firstItem="d2I-3w-dAg" firstAttribute="top" secondItem="j21-d3-GpG" secondAttribute="top" constant="8" id="ebE-BZ-TzN"/>
+                                                <constraint firstItem="sYo-xA-t2E" firstAttribute="leading" secondItem="d2I-3w-dAg" secondAttribute="trailing" constant="8" id="kOG-lP-N1j"/>
                                                 <constraint firstAttribute="bottom" secondItem="sYo-xA-t2E" secondAttribute="bottom" constant="8" id="mhZ-n0-cOv"/>
-                                                <constraint firstItem="sYo-xA-t2E" firstAttribute="centerX" secondItem="j21-d3-GpG" secondAttribute="centerX" id="sv7-Zk-34X"/>
+                                                <constraint firstAttribute="trailing" secondItem="sYo-xA-t2E" secondAttribute="trailing" constant="8" id="tFt-mT-2eX"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="dark"/>
@@ -811,6 +828,8 @@
                         <viewLayoutGuide key="safeArea" id="Qxr-Od-pFK"/>
                     </view>
                     <connections>
+                        <outlet property="acceptButton" destination="d2I-3w-dAg" id="hee-1Z-bqf"/>
+                        <outlet property="acceptButtonWidthConstraint" destination="tK2-ZI-rqt" id="WbV-1D-fMe"/>
                         <outlet property="changeCamBlurView" destination="CfX-4y-taE" id="WdK-O1-SvY"/>
                         <outlet property="changeCamButton" destination="4eS-oh-7xm" id="cvi-sN-zBw"/>
                         <outlet property="dismissButton" destination="sYo-xA-t2E" id="YLb-Im-aa1"/>

@@ -13,9 +13,11 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
 {
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var changeCamButton: UIButton!
     @IBOutlet weak var changeCamBlurView: UIVisualEffectView!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var acceptButtonWidthConstraint: NSLayoutConstraint!
     
     override var prefersStatusBarHidden: Bool { return true } 
     
@@ -53,11 +55,17 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func acceptButtonPressed(_ sender: Any)
+    {
+        self.acceptButtonWidthConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
     
     // MARK: - FrameExtractorOutputDelegate
     func frameExtractor(didOutputFrame frame: UIImage)
     {
-        print("hello")
         self.previewImageView.image = frame
     }
 }
