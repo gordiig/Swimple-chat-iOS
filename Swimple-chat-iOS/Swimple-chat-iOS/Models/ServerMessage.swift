@@ -27,6 +27,13 @@ enum ServerMessageType: String, Codable
     case error = "error"
     case getUsers = "getUsers"
     case getUsersResult = "getUsersResult"
+    case startCall = "startCall"
+    case cancelCall = "cancelCall"
+    case acceptCall = "acceptCall"
+    case sendImageFrame = "sendImageFrame"
+    case callNewBuffer = "callNewBuffer"
+    case endCall = "endCall"
+    case callUserIsOffline = "callUserIsOffline"
 }
 
 // MARK: - Server message that will be send to server
