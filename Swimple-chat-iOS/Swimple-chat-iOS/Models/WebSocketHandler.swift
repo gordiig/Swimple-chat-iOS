@@ -100,6 +100,8 @@ class WebSocketHandler: WebSocketDelegate
             case .authNotSuccsess:
                 authSuccsess(serverMessage)
             
+            case .startCall:
+                startCall(serverMessage)
             case .callCalling:
                 callCalling(serverMessage)
             case .cancelCall:
@@ -185,6 +187,12 @@ class WebSocketHandler: WebSocketDelegate
     {
         print(serverMessage.type.rawValue)
         NotificationCenter.default.post(name: .webSocketAuthNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
+    }
+    
+    func startCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketStartCallNotif, object: nil, userInfo: nil)
     }
     
     func callCalling(_ serverMessage: ServerMessageToRecieve)

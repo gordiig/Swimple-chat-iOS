@@ -23,6 +23,7 @@ class MyViewController: UIViewController, Alerable
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidConnect), name: .webSocketDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidDisconnect), name: .webSocketDidDisconnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketError), name: .webSocketError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.incomeCall), name: .webSocketStartCallNotif, object: nil)
     }
     
     func alert(title: String, message: String)
@@ -54,5 +55,18 @@ class MyViewController: UIViewController, Alerable
         let type = notification.userInfo!["type"] as! String
         let msg = ((type == "known") ? ("Error came to web socket!") : ("Unknown error came to web socket!"))
         self.alert(title: "Web socket error", message: msg)
+    }
+    
+    @objc func incomeCall(notification: Notification)
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let destVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else
+        {
+            print("Can't instatiate VC!")
+            alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
+            return
+        }
+        destVC.callType = .income
+        self.present(destVC, animated: true, completion: nil)
     }
 }

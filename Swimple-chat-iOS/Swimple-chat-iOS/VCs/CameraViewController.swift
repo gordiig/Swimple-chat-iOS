@@ -11,6 +11,12 @@ import AVFoundation
 
 class CameraViewController: MyViewController, FrameExtractorOutputDelegate
 {
+    enum CallType: String
+    {
+        case income = "Income"
+        case outcome = "Outcome"
+    }
+    
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
@@ -22,6 +28,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     override var prefersStatusBarHidden: Bool { return true } 
     
     var frameExtractor: FrameExtractor!
+    var callType: CallType = .income
     
     override func viewDidLoad()
     {
@@ -40,6 +47,19 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         self.frameExtractor.outputDelegate = self
         self.frameExtractor.registerPreviewView(previewView)
         self.frameExtractor.start()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        if self.callType == .income
+        {
+            setupForIncomeCall()
+        }
+        else
+        {
+            setupForOutcomeCall()
+        }
     }
     
     
@@ -79,6 +99,5 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     func frameExtractor(didOutputFrame frame: UIImage, base64: String? = nil)
     {
         self.previewImageView.image = frame
-        print(base64)
     }
 }
