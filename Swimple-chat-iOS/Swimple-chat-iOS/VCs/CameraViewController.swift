@@ -18,6 +18,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     }
     
     @IBOutlet weak var previewView: CameraPreviewView!
+    @IBOutlet weak var incomeBufferImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var changeCamButton: UIButton!
@@ -45,7 +46,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         }
         self.frameExtractor = frameExtractor
         self.frameExtractor.outputDelegate = self
-        self.frameExtractor.registerPreviewView(previewView)
+//        self.frameExtractor.registerPreviewView(previewView)
         self.frameExtractor.start()
     }
     
@@ -66,7 +67,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     // MARK: - Pre-view setups
     func setupForIncomeCall()
     {
-        
+        self.incomeBufferImageView.image = UIImage(named: "testcat")
     }
     
     func setupForOutcomeCall()
@@ -89,6 +90,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     
     @IBAction func acceptButtonPressed(_ sender: Any)
     {
+        self.incomeBufferImageView.image = UIImage(named: "chat_b")
         self.acceptButtonWidthConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
