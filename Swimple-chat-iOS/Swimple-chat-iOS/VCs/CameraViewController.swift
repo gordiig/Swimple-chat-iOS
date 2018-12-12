@@ -61,6 +61,13 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         {
             setupForOutcomeCall()
         }
+        self.frameExtractor.start()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        self.frameExtractor.stop()
     }
     
     
