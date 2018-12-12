@@ -18,6 +18,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     }
     
     @IBOutlet weak var userIsOfflineVIew: UIView!
+    @IBOutlet weak var offlineLabel: UILabel!
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var incomeBufferImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -40,6 +41,9 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         self.changeCamBlurView.clipsToBounds = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.userIsOffline), name: .webSocketUserOffline, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.cancelCall), name: .webSocketCancelCallNotif, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.acceptCall), name: .webSocketAcceptCallNotif, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.endCall), name: .webSocketEndCall, object: nil)
         
         guard let frameExtractor = FrameExtractor(alertDelegate: self) else
         {
@@ -127,7 +131,29 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func userIsOffline(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        self.offlineLabel.text = "User is offline"
         self.userIsOfflineVIew.isHidden = false
-       
     }
+    
+    @objc func cancelCall(_ notification: Notification)
+    {
+        self.frameExtractor.stop()
+        self.offlineLabel.text = "User canceled call"
+        self.userIsOfflineVIew.isHidden = false
+    }
+    
+    @objc func acceptCall(_ notification: Notification)
+    {
+        self.frameExtractor.stop()
+        self.offlineLabel.text = "User accepted call"
+        self.userIsOfflineVIew.isHidden = false
+    }
+    
+    @objc func endCall(_ notification: Notification)
+    {
+        self.frameExtractor.stop()
+        self.offlineLabel.text = "User ended call"
+        self.userIsOfflineVIew.isHidden = false
+    }
+
 }
