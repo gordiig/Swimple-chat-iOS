@@ -104,6 +104,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
             return
         }
         destVC.callType = .outcome
+        destVC.calledUsername = user.username
         self.present(destVC, animated: true, completion: nil)
     }
     

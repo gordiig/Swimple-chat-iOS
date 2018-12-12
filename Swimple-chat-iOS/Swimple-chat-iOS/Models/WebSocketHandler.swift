@@ -26,7 +26,7 @@ class WebSocketHandler: WebSocketDelegate
         return WebSocketHandler._handler!
     }
     
-    private init(url: URL = URL(string: /*"ws://85.255.1.214:8080/"*/ "ws://192.168.1.69:8000/ws/")!)
+    private init(url: URL = URL(string: /*"ws://85.255.1.214:8080/"*/ /*"ws://192.168.1.69:8000/ws/"*/ "ws://172.20.10.5:8000/ws/")!)
     {
         socketURL = url
         socket = WebSocket(url: socketURL)
@@ -192,7 +192,7 @@ class WebSocketHandler: WebSocketDelegate
     func startCall(_ serverMessage: ServerMessageToRecieve)
     {
         print(serverMessage.type.rawValue)
-        NotificationCenter.default.post(name: .webSocketStartCallNotif, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: .webSocketStartCallNotif, object: nil, userInfo: ["from_who": serverMessage.data![0].from_who!])
     }
     
     func callCalling(_ serverMessage: ServerMessageToRecieve)

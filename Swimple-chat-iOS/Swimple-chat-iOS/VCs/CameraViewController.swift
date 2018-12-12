@@ -28,7 +28,8 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var acceptButtonWidthConstraint: NSLayoutConstraint!
     
-    override var prefersStatusBarHidden: Bool { return true } 
+    override var prefersStatusBarHidden: Bool { return true }
+    var calledUsername = "None"
     
     var frameExtractor: FrameExtractor!
     var callType: CallType = .income
@@ -88,6 +89,13 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     func setupForOutcomeCall()
     {
         self.acceptButtonWidthConstraint.constant = 0
+        guard self.webSocketHandler.sendMessage(type: .startCall, from_who: CurrentUser.current.username, to_who: calledUsername) else
+        {
+            self.frameExtractor.stop()
+            self.offlineLabel.text = "Can't call"
+            self.userIsOfflineVIew.isHidden = false
+            return
+        }
     }
     
     
@@ -99,6 +107,14 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     
     @IBAction func dismissButtonPressed(_ sender: Any)
     {
+        if self.callType == .outcome || self.acceptButtonWidthConstraint.constant == 0
+        {
+            _ = self.webSocketHandler.sendMessage(type: .endCall, from_who: CurrentUser.current.username, to_who: calledUsername)
+        }
+        else
+        {
+            _ = self.webSocketHandler.sendMessage(type: .cancelCall, from_who: CurrentUser.current.username, to_who: calledUsername)
+        }
         self.frameExtractor.stop()
         self.dismiss(animated: true, completion: nil)
     }

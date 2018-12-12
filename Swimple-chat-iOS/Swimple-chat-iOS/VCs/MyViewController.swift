@@ -67,6 +67,7 @@ class MyViewController: UIViewController, Alerable
             return
         }
         destVC.callType = .income
+        destVC.calledUsername = notification.userInfo!["from_who"] as! String
         self.present(destVC, animated: true, completion: nil)
     }
 }
