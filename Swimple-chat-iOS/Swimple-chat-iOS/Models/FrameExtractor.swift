@@ -32,12 +32,12 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         guard askPermissions(for: .video) else
         {
-            alertDelegate?.alert(title: "Permissions error!", message: "Camera permissions denied!")
+            alertDelegate?.alert(title: "Permissions error!", message: "Camera permissions denied!", completion: nil)
             return nil
         }
         guard askPermissions(for: .audio) else
         {
-            alertDelegate?.alert(title: "Permissions error!", message: "Microphone permissions denied!")
+            alertDelegate?.alert(title: "Permissions error!", message: "Microphone permissions denied!", completion: nil)
             return nil
         }
         
@@ -167,7 +167,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     func sendAlertInMainQueue(title: String, message: String)
     {
         DispatchQueue.main.async {
-            self.alertDelegate?.alert(title: title, message: message)
+            self.alertDelegate?.alert(title: title, message: message, completion: nil)
         }
     }
     

@@ -808,6 +808,26 @@
                                             <constraint firstAttribute="width" secondItem="sh0-Zi-bKe" secondAttribute="height" multiplier="1:2" id="kt5-dh-Nba"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N18-Nj-OJZ">
+                                        <rect key="frame" x="67.5" y="259.5" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User is offline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwW-bU-oz6">
+                                                <rect key="frame" x="50" y="50" width="141" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="pwW-bU-oz6" secondAttribute="bottom" constant="49" id="Ay0-0W-uZr"/>
+                                            <constraint firstAttribute="width" constant="240" id="EpU-rq-ki8"/>
+                                            <constraint firstItem="pwW-bU-oz6" firstAttribute="leading" secondItem="N18-Nj-OJZ" secondAttribute="leading" constant="50" id="FYW-H8-GIK"/>
+                                            <constraint firstAttribute="trailing" secondItem="pwW-bU-oz6" secondAttribute="trailing" constant="49" id="OzG-30-Lh7"/>
+                                            <constraint firstAttribute="height" constant="128" id="an3-bS-VpZ"/>
+                                            <constraint firstItem="pwW-bU-oz6" firstAttribute="top" secondItem="N18-Nj-OJZ" secondAttribute="top" constant="50" id="e7t-JG-MQm"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -821,7 +841,9 @@
                                     <constraint firstItem="CfX-4y-taE" firstAttribute="top" secondItem="FRJ-mG-G2X" secondAttribute="top" id="cGf-1h-Aau"/>
                                     <constraint firstItem="iXa-SV-9Z1" firstAttribute="top" secondItem="sh0-Zi-bKe" secondAttribute="bottom" constant="8" id="lD9-ft-CfQ"/>
                                     <constraint firstAttribute="trailing" secondItem="CfX-4y-taE" secondAttribute="trailing" id="mvh-Pd-veN"/>
+                                    <constraint firstItem="N18-Nj-OJZ" firstAttribute="centerX" secondItem="FRJ-mG-G2X" secondAttribute="centerX" id="rXZ-Jk-ZJJ"/>
                                     <constraint firstAttribute="trailing" secondItem="sh0-Zi-bKe" secondAttribute="trailing" constant="8" id="sJj-SM-COc"/>
+                                    <constraint firstItem="N18-Nj-OJZ" firstAttribute="centerY" secondItem="FRJ-mG-G2X" secondAttribute="centerY" id="v3g-jN-QQ6"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -843,6 +865,7 @@
                         <outlet property="incomeBufferImageView" destination="bmo-6g-iwP" id="R0z-LW-qyf"/>
                         <outlet property="previewImageView" destination="sh0-Zi-bKe" id="CUy-Ek-c6Z"/>
                         <outlet property="previewView" destination="FRJ-mG-G2X" id="lb8-60-kAk"/>
+                        <outlet property="userIsOfflineVIew" destination="N18-Nj-OJZ" id="6vt-m0-n8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WiX-Nk-qac" userLabel="First Responder" sceneMemberID="firstResponder"/>

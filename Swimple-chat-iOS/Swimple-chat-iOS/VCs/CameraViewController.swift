@@ -17,6 +17,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         case outcome = "Outcome"
     }
     
+    @IBOutlet weak var userIsOfflineVIew: UIView!
     @IBOutlet weak var previewView: CameraPreviewView!
     @IBOutlet weak var incomeBufferImageView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
@@ -37,6 +38,8 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         
         self.changeCamBlurView.layer.cornerRadius = 10
         self.changeCamBlurView.clipsToBounds = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userIsOffline), name: .webSocketUserOffline, object: nil)
         
         guard let frameExtractor = FrameExtractor(alertDelegate: self) else
         {
@@ -61,6 +64,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         {
             setupForOutcomeCall()
         }
+        self.userIsOfflineVIew.isHidden = true
         self.frameExtractor.start()
     }
     
@@ -97,7 +101,15 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     
     @IBAction func acceptButtonPressed(_ sender: Any)
     {
-        self.incomeBufferImageView.image = UIImage(named: "chat_b")
+        let username_from = CurrentUser.current.username
+        let username_to = "HE"
+        guard self.webSocketHandler.sendMessage(type: .acceptCall, from_who: username_from, to_who: username_to) else
+        {
+            alert(title: "Web socket error", message: "Can't send acceptCall")
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         self.acceptButtonWidthConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
@@ -108,5 +120,14 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     func frameExtractor(didOutputFrame frame: UIImage, base64: String? = nil)
     {
         self.previewImageView.image = frame
+    }
+    
+    
+    // MARK: - Selecors
+    @objc func userIsOffline(_ notification: Notification)
+    {
+        self.frameExtractor.stop()
+        self.userIsOfflineVIew.isHidden = false
+       
     }
 }

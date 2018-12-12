@@ -26,13 +26,13 @@ class MyViewController: UIViewController, Alerable
         NotificationCenter.default.addObserver(self, selector: #selector(self.incomeCall), name: .webSocketStartCallNotif, object: nil)
     }
     
-    func alert(title: String, message: String)
+    func alert(title: String, message: String, completion: (() -> Void)? = nil)
     {
         let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         vc.addAction(alertAction)
         vc.accessibilityLabel = "AlertVC"
-        present(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: completion)
     }
     
     @objc func onTap(_ sender: UITapGestureRecognizer)
