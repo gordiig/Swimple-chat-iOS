@@ -32,7 +32,7 @@ class Swimple_chat_iOSUITests: XCTestCase
 
     func login()
     {
-        if !app.buttons["Log in"].isHittable
+        if !app.buttons["Log in"].exists
         {
             return
         }
@@ -51,41 +51,56 @@ class Swimple_chat_iOSUITests: XCTestCase
         }
         
         usernameField.tap()
-        usernameField.typeText("gordiig")
+        usernameField.typeText("admin")
         
         passwordField.tap()
-        passwordField.typeText("qwerty123456")
+        passwordField.typeText("Qweasdzxc123")
         
         loginButton.tap()
         sleep(3)
+    }
+    
+    
+    func testLogin()
+    {
+        login()
     }
     
     func testGoToChatList()
     {
         self.login()
         let table = app.tables["chatListTableView"]
-        let cell = table.staticTexts["admin2"]
+        let cell = table.staticTexts["Robert_Plant"]
         cell.tap()
         
         app.navigationBars.buttons.element(boundBy: 0).tap()
-//        let cell2 = table.staticTexts["admin"]
-//        cell2.tap()
         
-        sleep(2)
+        let cell2 = table.staticTexts["user_1"]
+        cell2.tap()
+        
+//        app.navigationBars.buttons.element(boundBy: 1).tap()
+    }
+    
+    func testSearchUsers()
+    {
+        self.login()
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        
+        let searchField = app.navigationBars.searchFields.element(boundBy: 0)
+        searchField.tap()
+        searchField.typeText("rob")
+        sleep(1)
     }
     
     func testPullToRefresh()
     {
         self.login()
-        let table = app.tables["chatListTableView"]
-//        let start = table.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 10))
-//        let end = table.coordinate(withNormalizedOffset: CGVector(dx: 10, dy: 21))
-        let cell = table.staticTexts["admin2"]
-        let start = cell.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-        let end = cell.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 11))
-        start.press(forDuration: 0, thenDragTo: end)
+        let text = app.staticTexts["Robert_Plant"]
+        let start = text.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let end = text.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 10))
         
-        sleep(2)
+        start.press(forDuration: 0, thenDragTo: end)
+        sleep(1)
     }
 
 }

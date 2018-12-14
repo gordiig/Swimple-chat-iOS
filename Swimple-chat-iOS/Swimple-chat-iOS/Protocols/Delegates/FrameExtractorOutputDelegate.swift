@@ -11,5 +11,5 @@ import UIKit
 
 protocol FrameExtractorOutputDelegate: AnyObject
 {
-    func frameExtractor(didOutputFrame frame: UIImage)
+    func frameExtractor(didOutputFrame frame: UIImage, base64: String?)
 }

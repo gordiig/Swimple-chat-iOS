@@ -10,5 +10,5 @@ import UIKit
 
 protocol Alerable: AnyObject
 {
-    func alert(title: String, message: String)
+    func alert(title: String, message: String, completion: (() -> Void)?)
 }

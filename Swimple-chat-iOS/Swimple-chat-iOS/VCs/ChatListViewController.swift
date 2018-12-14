@@ -19,9 +19,6 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     {
         super.viewDidLoad()
         
-        // For is_online flag on server (this VC is entry point from login, signup VCs and from start of an app if already signed in
-        _ = self.webSocketHandler.sendMessage(type: .auth, username: CurrentUser.current.username, password: CurrentUser.current.password)
-        
         refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
@@ -33,7 +30,6 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(self.getChatList), name: .webSocketDidConnect, object: nil)
         
         tableView.accessibilityLabel = "chatListTableView"
-        self.getChatList()
     }
     
     // MARK: - Test
@@ -65,6 +61,7 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     }
     @objc func getChatList(_ sender: Any? = nil)
     {
+        _ = self.webSocketHandler.sendMessage(type: .auth, username: CurrentUser.current.username, password: CurrentUser.current.password)
         guard self.webSocketHandler.sendMessage(type: .getMessagesForChatList, username: CurrentUser.current.username) else
         {
             self.refreshControl.endRefreshing()

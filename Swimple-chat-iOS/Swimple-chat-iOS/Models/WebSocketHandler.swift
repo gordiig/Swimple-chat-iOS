@@ -26,7 +26,7 @@ class WebSocketHandler: WebSocketDelegate
         return WebSocketHandler._handler!
     }
     
-    private init(url: URL = URL(string: /*"ws://85.255.1.214:8080/"*/ "ws://192.168.1.69:8000/ws/")!)
+    private init(url: URL = URL(string: /*"ws://85.255.1.214:8080/"*/ "ws://192.168.1.69:8000/ws/" /*"ws://172.20.10.3:8000/ws/"*/)!)
     {
         socketURL = url
         socket = WebSocket(url: socketURL)
@@ -67,7 +67,7 @@ class WebSocketHandler: WebSocketDelegate
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String)
     {
-        print("WebSocket recieved message! \(text)")
+        print("WebSocket recieved message!")
         
         let decoder = JSONDecoder()
         guard let serverMessage = try? decoder.decode(ServerMessageToRecieve.self, from: text.data(using: .utf8)!) else
@@ -80,22 +80,41 @@ class WebSocketHandler: WebSocketDelegate
         {
             case .newMessage:
                 newMessage(serverMessage)
+            
             case .getMessagesForChatListResult:
                 getMessagesForChatList(serverMessage)
             case .getMessagesForChatResult:
                 getMessagesForChat(serverMessage)
             case .getUsersResult:
                 getUsersResult(serverMessage)
+            
             case .registerSuccsess:
                 registerSuccsess(serverMessage)
             case .authSuccsess:
                 authSuccsess(serverMessage)
             case .sendingSuccsess:
                 sendingSuccsess(serverMessage)
+            
             case .registerNotSuccsess:
                 registerNotSuccsess(serverMessage)
             case .authNotSuccsess:
                 authSuccsess(serverMessage)
+            
+            case .startCall:
+                startCall(serverMessage)
+            case .callCalling:
+                callCalling(serverMessage)
+            case .cancelCall:
+                cancelCall(serverMessage)
+            case .acceptCall:
+                acceptCall(serverMessage)
+            case .callNewBuffer:
+                callNewBuffer(serverMessage)
+            case .endCall:
+                endCall(serverMessage)
+            case .callUserIsOffline:
+                callUserIsOffline(serverMessage)
+            
             case .error:
                 gotError(serverMessage)
             default:
@@ -170,6 +189,48 @@ class WebSocketHandler: WebSocketDelegate
         NotificationCenter.default.post(name: .webSocketAuthNotif, object: nil, userInfo: ["type": serverMessage.type.rawValue])
     }
     
+    func startCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketStartCallNotif, object: nil, userInfo: ["from_who": serverMessage.data![0].from_who!])
+    }
+    
+    func callCalling(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketCallCallingNotif, object: nil, userInfo: nil)
+    }
+    
+    func cancelCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketCancelCallNotif, object: nil)
+    }
+    
+    func acceptCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketAcceptCallNotif, object: nil)
+    }
+    
+    func callNewBuffer(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketGotFrameBufferNotif, object: nil, userInfo: ["str64": serverMessage.data![0].text!])
+    }
+    
+    func endCall(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketEndCall, object: nil)
+    }
+    
+    func callUserIsOffline(_ serverMessage: ServerMessageToRecieve)
+    {
+        print(serverMessage.type.rawValue)
+        NotificationCenter.default.post(name: .webSocketUserOffline, object: nil)
+    }
+    
     func gotError(_ ServerMessage: ServerMessageToRecieve)
     {
         print(ServerMessage.type.rawValue)
@@ -213,13 +274,34 @@ class WebSocketHandler: WebSocketDelegate
         case .getUsers:
             guard let username = username else { return false }
             serverMessage.username = username
+        case .startCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+        case .cancelCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+        case .acceptCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+        case .sendImageFrame:
+            guard let from_who = from_who, let to_who = to_who, let text = text else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
+            serverMessage.message = text
+        case .endCall:
+            guard let from_who = from_who, let to_who = to_who else { return false }
+            serverMessage.from_who = from_who
+            serverMessage.to_who = to_who
         default:
             break
         }
         
         guard let encoded = try? JSONEncoder().encode(serverMessage) else { return false }
         guard let encodedStr = String(data: encoded, encoding: .utf8) else { return false }
-        print(encodedStr)
+//        print(encodedStr)
         self.socket.write(string: encodedStr)
         
         return true

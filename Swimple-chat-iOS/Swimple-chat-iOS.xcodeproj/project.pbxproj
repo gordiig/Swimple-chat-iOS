@@ -27,6 +27,7 @@
 		1338A0EC21656AA800C4ECCF /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0EB21656AA800C4ECCF /* Alertable.swift */; };
 		1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */; };
 		1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338A0F3216572E000C4ECCF /* ChatViewController.swift */; };
+		1338EDFA21C04C2F002F1C89 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1338EDF921C04C2F002F1C89 /* UIImage.swift */; };
 		1341B2E7217DBB8E004503AE /* ServerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341B2E6217DBB8E004503AE /* ServerMessage.swift */; };
 		1341B2E9217DBC6E004503AE /* WebSocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341B2E8217DBC6E004503AE /* WebSocketHandler.swift */; };
 		134F64DB2189D618009CA1A4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F64DA2189D618009CA1A4 /* SignUpViewController.swift */; };
@@ -51,6 +52,13 @@
 			remoteInfo = "Swimple-chat-iOS";
 		};
 		1338A0D421654BFA00C4ECCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1338A0AC21654BF900C4ECCF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1338A0B321654BF900C4ECCF;
+			remoteInfo = "Swimple-chat-iOS";
+		};
+		13D3581521C12F32008408E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1338A0AC21654BF900C4ECCF /* Project object */;
 			proxyType = 1;
@@ -86,6 +94,7 @@
 		1338A0EB21656AA800C4ECCF /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		1338A0ED21656D8500C4ECCF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1338A0F3216572E000C4ECCF /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1338EDF921C04C2F002F1C89 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		1341B2E6217DBB8E004503AE /* ServerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMessage.swift; sourceTree = "<group>"; };
 		1341B2E8217DBC6E004503AE /* WebSocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketHandler.swift; sourceTree = "<group>"; };
 		134F64DA2189D618009CA1A4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +105,7 @@
 		13B8728F21745E5200022C37 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		13B872942174A6EE00022C37 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		13BCE6D421BEF38300A6F9B8 /* WebSocketSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketSettingsViewController.swift; sourceTree = "<group>"; };
+		13D3581021C12F32008408E0 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13FB0DE3216764AD0059280C /* ChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
 		13FB0DE521676B860059280C /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		13FB0DE72167B3B70059280C /* MyChatBubbleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatBubbleTableViewCell.swift; sourceTree = "<group>"; };
@@ -124,6 +134,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		13D3580D21C12F32008408E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -139,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				132D6844217CDC880069DCFE /* NotificationNameExtensions.swift */,
+				1338EDF921C04C2F002F1C89 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -160,6 +178,7 @@
 				1338A0B421654BF900C4ECCF /* Swimple-chat-iOS.app */,
 				1338A0C821654BFA00C4ECCF /* Swimple-chat-iOSTests.xctest */,
 				1338A0D321654BFA00C4ECCF /* Swimple-chat-iOSUITests.xctest */,
+				13D3581021C12F32008408E0 /* UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -333,13 +352,31 @@
 			productReference = 1338A0D321654BFA00C4ECCF /* Swimple-chat-iOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		13D3580F21C12F32008408E0 /* UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13D3581921C12F32008408E0 /* Build configuration list for PBXNativeTarget "UITests" */;
+			buildPhases = (
+				13D3580C21C12F32008408E0 /* Sources */,
+				13D3580D21C12F32008408E0 /* Frameworks */,
+				13D3580E21C12F32008408E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13D3581621C12F32008408E0 /* PBXTargetDependency */,
+			);
+			name = UITests;
+			productName = UITests;
+			productReference = 13D3581021C12F32008408E0 /* UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1338A0AC21654BF900C4ECCF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = gordiig;
 				TargetAttributes = {
@@ -352,6 +389,10 @@
 					};
 					1338A0D221654BFA00C4ECCF = {
 						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 1338A0B321654BF900C4ECCF;
+					};
+					13D3580F21C12F32008408E0 = {
+						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 1338A0B321654BF900C4ECCF;
 					};
 				};
@@ -372,6 +413,7 @@
 				1338A0B321654BF900C4ECCF /* Swimple-chat-iOS */,
 				1338A0C721654BFA00C4ECCF /* Swimple-chat-iOSTests */,
 				1338A0D221654BFA00C4ECCF /* Swimple-chat-iOSUITests */,
+				13D3580F21C12F32008408E0 /* UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -395,6 +437,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1338A0D121654BFA00C4ECCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13D3580E21C12F32008408E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -443,6 +492,7 @@
 				13BCE6D521BEF38300A6F9B8 /* WebSocketSettingsViewController.swift in Sources */,
 				1338A0BA21654BF900C4ECCF /* ChatListViewController.swift in Sources */,
 				1338A0F4216572E000C4ECCF /* ChatViewController.swift in Sources */,
+				1338EDFA21C04C2F002F1C89 /* UIImage.swift in Sources */,
 				1338A0EE21656D8500C4ECCF /* SettingsViewController.swift in Sources */,
 				13FB0DE82167B3B70059280C /* MyChatBubbleTableViewCell.swift in Sources */,
 				1338A0E82165509600C4ECCF /* ChatListTableViewCell.swift in Sources */,
@@ -476,6 +526,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		13D3580C21C12F32008408E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -488,6 +545,11 @@
 			isa = PBXTargetDependency;
 			target = 1338A0B321654BF900C4ECCF /* Swimple-chat-iOS */;
 			targetProxy = 1338A0D421654BFA00C4ECCF /* PBXContainerItemProxy */;
+		};
+		13D3581621C12F32008408E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1338A0B321654BF900C4ECCF /* Swimple-chat-iOS */;
+			targetProxy = 13D3581521C12F32008408E0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -753,6 +815,46 @@
 			};
 			name = Release;
 		};
+		13D3581721C12F32008408E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JY87QHRL3J;
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = gordiig.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Swimple-chat-iOS";
+			};
+			name = Debug;
+		};
+		13D3581821C12F32008408E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JY87QHRL3J;
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = gordiig.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Swimple-chat-iOS";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -788,6 +890,15 @@
 			buildConfigurations = (
 				1338A0E321654BFA00C4ECCF /* Debug */,
 				1338A0E421654BFA00C4ECCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13D3581921C12F32008408E0 /* Build configuration list for PBXNativeTarget "UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13D3581721C12F32008408E0 /* Debug */,
+				13D3581821C12F32008408E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

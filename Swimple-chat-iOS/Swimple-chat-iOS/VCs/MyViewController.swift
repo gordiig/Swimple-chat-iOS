@@ -23,15 +23,16 @@ class MyViewController: UIViewController, Alerable
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidConnect), name: .webSocketDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketDidDisconnect), name: .webSocketDidDisconnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketError), name: .webSocketError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.incomeCall), name: .webSocketStartCallNotif, object: nil)
     }
     
-    func alert(title: String, message: String)
+    func alert(title: String, message: String, completion: (() -> Void)? = nil)
     {
         let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         vc.addAction(alertAction)
         vc.accessibilityLabel = "AlertVC"
-        present(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: completion)
     }
     
     @objc func onTap(_ sender: UITapGestureRecognizer)
@@ -54,5 +55,19 @@ class MyViewController: UIViewController, Alerable
         let type = notification.userInfo!["type"] as! String
         let msg = ((type == "known") ? ("Error came to web socket!") : ("Unknown error came to web socket!"))
         self.alert(title: "Web socket error", message: msg)
+    }
+    
+    @objc func incomeCall(notification: Notification)
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let destVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as? CameraViewController else
+        {
+            print("Can't instatiate VC!")
+            alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
+            return
+        }
+        destVC.callType = .income
+        destVC.calledUsername = notification.userInfo!["from_who"] as! String
+        self.present(destVC, animated: true, completion: nil)
     }
 }
