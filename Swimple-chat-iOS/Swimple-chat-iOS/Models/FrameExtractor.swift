@@ -18,6 +18,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     private var videoDeviceInput: AVCaptureDeviceInput!
     private var micDeviceInput: AVCaptureDeviceInput!
     private let extractorQueue = DispatchQueue(label: "extractorQueue")
+    private var outputDevice = AVCaptureVideoDataOutput()
     
     private let context = CIContext()
     
@@ -31,16 +32,18 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         guard askPermissions(for: .video) else
         {
-            alertDelegate?.alert(title: "Permissions error!", message: "Camera permissions denied!")
+            alertDelegate?.alert(title: "Permissions error!", message: "Camera permissions denied!", completion: nil)
             return nil
         }
         guard askPermissions(for: .audio) else
         {
-            alertDelegate?.alert(title: "Permissions error!", message: "Microphone permissions denied!")
+            alertDelegate?.alert(title: "Permissions error!", message: "Microphone permissions denied!", completion: nil)
             return nil
         }
         
-        self.configureCaptureSession()
+        extractorQueue.async {
+            self.configureCaptureSession()
+        }
     }
     
     private func askPermissions(for device: AVMediaType) -> Bool
@@ -66,6 +69,8 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         captureSession.beginConfiguration()
         
+        captureSession.sessionPreset = AVCaptureSession.Preset.medium
+        
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), captureSession.canAddInput(videoDeviceInput) else
         {
             sendAlertInMainQueue(title: "Error in configuring session", message: "Can't create camera device input")
@@ -82,12 +87,21 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         self.micDeviceInput = micDeviceInput
         captureSession.addInput(self.micDeviceInput)
         
-        let outputDevice = AVCaptureVideoDataOutput()
-        outputDevice.setSampleBufferDelegate(self, queue: self.extractorQueue)
-        outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
-        if captureSession.canAddOutput(outputDevice)
+        self.outputDevice.setSampleBufferDelegate(self, queue: self.extractorQueue)
+//        self.outputDevice.videoSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
+        if captureSession.canAddOutput(self.outputDevice)
         {
-            captureSession.addOutput(outputDevice)
+            captureSession.addOutput(self.outputDevice)
+        }
+        
+        guard let connection = self.outputDevice.connection(with: AVMediaType.video) else { return }
+        if connection.isVideoOrientationSupported
+        {
+            connection.videoOrientation = .portrait
+        }
+        if connection.isVideoMirroringSupported
+        {
+            connection.isVideoMirrored = self.videoDevice?.position == .front
         }
         
         captureSession.commitConfiguration()
@@ -115,6 +129,16 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         self.videoDeviceInput = videoDeviceInput
         captureSession.addInput(videoDeviceInput)
         
+        guard let connection = self.outputDevice.connection(with: AVMediaType.video) else { return }
+        if connection.isVideoOrientationSupported
+        {
+            connection.videoOrientation = .portrait
+        }
+        if connection.isVideoMirroringSupported
+        {
+            connection.isVideoMirrored = self.videoDevice?.position == .front
+        }
+        
         self.captureSession.commitConfiguration()
     }
     
@@ -125,12 +149,17 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     
     func start()
     {
-        self.captureSession.startRunning()
+        extractorQueue.async {
+            self.captureSession.startRunning()
+        }
     }
     
     func stop()
     {
-        self.captureSession.stopRunning()
+        extractorQueue.async {
+            self.captureSession.stopRunning()
+        }
+        self.extractorQueue.suspend()
     }
     
     
@@ -138,7 +167,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     func sendAlertInMainQueue(title: String, message: String)
     {
         DispatchQueue.main.async {
-            self.alertDelegate?.alert(title: title, message: message)
+            self.alertDelegate?.alert(title: title, message: message, completion: nil)
         }
     }
     
@@ -175,9 +204,10 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         if let img = convertToUIImage(buffer: sampleBuffer)
         {
+            let str64 = img.toBase64(quality: 0.3)
             DispatchQueue.main.async
             {
-                outputDelegate.frameExtractor(didOutputFrame: img)
+                outputDelegate.frameExtractor(didOutputFrame: img, base64: str64)
             }
         }
     }

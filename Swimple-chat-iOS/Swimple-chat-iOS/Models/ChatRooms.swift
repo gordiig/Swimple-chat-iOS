@@ -31,16 +31,18 @@ class ChatRooms
     
     
     // MARK: - Private
-    private func addNewRoom(withUser user: User, andAppendMessage msg: Message? = nil)
+    private func addNewRoom(withUser user: User, andAppendMessage msg: Message? = nil) -> ChatRoom
     {
-        rooms.append(ChatRoom(username: user))
+        let newRoom = ChatRoom(username: user)
+        rooms.append(newRoom)
         
         if let msg = msg
         {
-            rooms.last?.appendMessage(msg)
+            newRoom.appendMessage(msg)
         }
         
         NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
+        return newRoom
     }
     
     private func searchForRoom(withName searchName: String) -> ChatRoom?
@@ -67,7 +69,7 @@ class ChatRooms
         }
         else
         {
-            addNewRoom(withUser: user, andAppendMessage: msg)
+            _ = addNewRoom(withUser: user, andAppendMessage: msg)
         }
     }
     
@@ -85,9 +87,68 @@ class ChatRooms
         return rooms[idx]
     }
     
+    func getRoom(for user: User, createIfNone: Bool = true) -> ChatRoom?
+    {
+        guard let room = searchForRoom(withUser: user) else
+        {
+            if createIfNone
+            {
+                let newRoom = self.addNewRoom(withUser: user)
+                return newRoom
+            }
+            return nil
+        }
+        return room
+    }
+    
     func clear()
     {
         rooms = []
         NotificationCenter.default.post(name: .chatRoomsWereChanged, object: nil)
+    }
+    
+    func configureWithFetchedChatLists(_ serverMessage: ServerMessageToRecieve)
+    {
+        guard let serverMessageData = serverMessage.data else
+        {
+            print("Error, data is empty!")
+            return
+        }
+        
+        self.clear()
+        for _serverMessage in serverMessageData
+        {
+            let user = User(username: _serverMessage.chat_name!)
+            let message = Message(id: _serverMessage.id!, from: _serverMessage.from_who!, to: _serverMessage.chat_name!, msg: _serverMessage.text!)
+            self.appendMessage(message, toChat: user)
+        }
+    }
+    func configureRoomWithFetchedChatLists(_ serverMessage: ServerMessageToRecieve)
+    {
+        guard let serverMessageData = serverMessage.data else
+        {
+            print("Error, data is empty!")
+            return
+        }
+        
+        if serverMessageData.count == 0 { return }
+        let user = (serverMessageData[0].from_who! == CurrentUser.current.username) ? User(username: serverMessageData[0].to_who!) : User(username: serverMessageData[0].from_who!)
+        self.getRoom(for: user)?.clear()
+        for _serverMessage in serverMessageData
+        {
+            let message = Message(id: _serverMessage.id!, from: _serverMessage.from_who!, to: _serverMessage.to_who!, msg: _serverMessage.text!)
+            self.appendMessage(message, toChat: user)
+        }
+    }
+    
+    func newMessages(_ serverMessage: ServerMessageToRecieve)
+    {
+        guard let messageData = serverMessage.data else { return }
+        for message in messageData
+        {
+            let newMessage = Message(id: message.id!, from: message.from_who!, to: message.to_who!, msg: message.text!)
+            let user = (message.from_who! == CurrentUser.current.username) ? User(username: message.to_who!) : User(username: message.from_who!)
+            self.appendMessage(newMessage, toChat: user)
+        }
     }
 }

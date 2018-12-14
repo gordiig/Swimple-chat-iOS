@@ -42,4 +42,5 @@ class SettingsViewController: MyViewController
         let navigationController = UINavigationController(rootViewController: vc)
         present(navigationController, animated: true, completion: nil)
     }
+    
 }

@@ -21,5 +21,11 @@ class ChatRoom
     func appendMessage(_ msg: Message)
     {
         messages.append(msg)
+        NotificationCenter.default.post(name: .newMessage, object: nil, userInfo: ["from_who": msg.from, "to_who": msg.to, "text": msg.msg])
+    }
+    
+    func clear()
+    {
+        messages = []
     }
 }

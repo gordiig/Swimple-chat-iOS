@@ -11,31 +11,69 @@ import UIKit
 class ChatListViewController: MyViewController, UITableViewDelegate
 {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addChatButton: UIBarButtonItem!
     var chatRoomsMediator: ChatRoomsDataSourceMediator!
-    
-    var names = [
-        User(username: "Username1"),
-        User(username: "Long-long-long username"),
-        User(username: "And another name for testing notifications ans etc")
-    ]
-    var msgs = [
-        Message(id: 0, from: "hehe", to: "gege", msg: "Last message"),
-        Message(id: 1, from: "hehehe", to: "gege", msg: "long-long-long last message"),
-        Message(id: 2, from: "hehehe", to: "gege", msg: "Just show this text")
-    ]
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         chatRoomsMediator = ChatRoomsDataSourceMediator(tableView)
         tableView.delegate = self
+//        self.testSetUp()
         
-        ChatRooms.default.appendMessage(msgs[0], toChat: names[0])
-        ChatRooms.default.appendMessage(msgs[1], toChat: names[1])
-        ChatRooms.default.appendMessage(msgs[2], toChat: names[2])
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotChatList), name: .webSocketGetMessagesForChatList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getChatList), name: .webSocketDidConnect, object: nil)
+        
+        tableView.accessibilityLabel = "chatListTableView"
     }
     
+    // MARK: - Test
+    func testSetUp()
+    {
+        var names = [
+            User(username: "Username1"),
+            User(username: "Long-long-long username"),
+            User(username: "And another name for testing notifications ans etc")
+        ]
+        var msgs = [
+            Message(id: 0, from: "hehe", to: "gege", msg: "Last message"),
+            Message(id: 1, from: "hehehe", to: "gege", msg: "long-long-long last message"),
+            Message(id: 2, from: "hehehe", to: "gege", msg: "Just show this text")
+        ]
+        
+        let chatList = ChatRooms.default
+        for i in 0 ..< names.count
+        {
+            chatList.appendMessage(msgs[i], toChat: names[i])
+        }
+    }
+    
+    
+    // MARK: - RefreshControl
+    @objc func refreshControlValueChanged(_ sender: Any?)
+    {
+        getChatList()
+    }
+    @objc func getChatList(_ sender: Any? = nil)
+    {
+        _ = self.webSocketHandler.sendMessage(type: .auth, username: CurrentUser.current.username, password: CurrentUser.current.password)
+        guard self.webSocketHandler.sendMessage(type: .getMessagesForChatList, username: CurrentUser.current.username) else
+        {
+            self.refreshControl.endRefreshing()
+            alert(title: "Web socket error", message: "Can't send message for fetching messages")
+            return
+        }
+    }
+    @objc func gotChatList(_ sender: Any?)
+    {
+        self.refreshControl.endRefreshing()
+        self.tableView.reloadData()
+    }
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -48,10 +86,12 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     // MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        if segue.identifier == "addNewChatSegue" { return }
+        
         let idx = tableView.indexPathForSelectedRow?.row ?? 0
         guard let vc = segue.destination as? ChatViewController else
         {
-            alert(title: "Segue error", message: "Something wrong in pewpare for segue!")
+            alert(title: "Segue error", message: "Something wrong in pepare for segue!")
             return
         }
         
@@ -61,7 +101,8 @@ class ChatListViewController: MyViewController, UITableViewDelegate
             return
         }
         
-        vc.navigationItem.title = room.interlocutor.username
+        vc.user = room.interlocutor
+        vc.room = ChatRooms.default.getRoom(for: room.interlocutor)
     }
     
 }

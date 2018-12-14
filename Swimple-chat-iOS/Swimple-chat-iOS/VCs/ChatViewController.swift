@@ -7,30 +7,17 @@
 //
 
 import UIKit
-import Starscream
 
-class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate // , WebSocketDelegate
+class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate
 {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var msgTextField: UITextView!
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    var messages: [String] = [
-        "Hi, glad to see you again! How is your head?",
-        "Long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message",
-        "Q, GG, WP",
-        "Anoteher long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long-long message"
-    ]
-    {
-        didSet(val)
-        {
-            chatTableView.reloadData()
-            self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
-        }
-    }
-    
-//    let socket = WebSocket(url: URL(string: "ws://85.255.1.214:8082")!)
+    var user: User!
+//    var roomNum: Int!
+    var room: ChatRoom!
     
     override func viewDidLoad()
     {
@@ -50,8 +37,20 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-//        socket.delegate = self
-//        socket.connect()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: .newMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getMessagesForChat), name: .webSocketGetMessagesForChat, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.title = user.username
+        guard self.webSocketHandler.sendMessage(type: .getMessagesForChat, from_who: self.user.username, to_who: CurrentUser.current.username) else
+        {
+            alert(title: "Web socket error", message: "Can't get messages for chat, try to refresh later!")
+            return
+        }
     }
     
     
@@ -70,7 +69,7 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         {
             self.view.layoutIfNeeded()
         }
-        self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: self.messages.count-1), at: .bottom, animated: true)
+        self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: room.messages.count-1), at: .bottom, animated: true)
     }
     
     @objc func keyboardWillHide(notification: Notification)
@@ -104,7 +103,8 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
             alert(title: "Error in instatiate", message: "Can't instatiate CameraVC")
             return
         }
-        
+        destVC.callType = .outcome
+        destVC.calledUsername = user.username
         self.present(destVC, animated: true, completion: nil)
     }
     
@@ -112,14 +112,13 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
     // MARK: - UITableView
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return messages.count
+        return room.messages.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 1
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         return 4
@@ -132,19 +131,8 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let row = indexPath.section
-        
-        if row % 2 == 1
-        {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
-            {
-                print("Can't dequeue ChatBubbleTableViewCell")
-                alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
-                return UITableViewCell()
-            }
-            cell.configure(message: messages[row])
-            return cell
-        }
-        else
+        let message = room.messages[row]
+        if message.from == CurrentUser.current.username
         {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyChatBubbleTableViewCell") as? MyChatBubbleTableViewCell else
             {
@@ -152,7 +140,18 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
                 alert(title: "Dequeue error", message: "Can't dequeue MyChatBubbleTableViewCell")
                 return UITableViewCell()
             }
-            cell.configure(message: messages[row])
+            cell.configure(message: room.messages[row].msg, username: room.messages[row].from)
+            return cell
+        }
+        else
+        {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatBubbleTableViewCell") as? ChatBubbleTableViewCell else
+            {
+                print("Can't dequeue ChatBubbleTableViewCell")
+                alert(title: "Dequeue error", message: "Can't dequeue ChatBubbleTableViewCell")
+                return UITableViewCell()
+            }
+            cell.configure(message: room.messages[row].msg, username: room.messages[row].from)
             return cell
         }
     }
@@ -163,38 +162,30 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         selected?.isSelected = false
     }
     
+    
+    // MARK: - Button pressed
     @IBAction func sendButtonPressed(_ sender: Any)
     {
         let text = msgTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        messages.append(text)
-//        self.socket.write(string: text)
+        let newMessage = Message(id: -1, from: CurrentUser.current.username, to: room.interlocutor.username, msg: text)
+        
+        guard self.webSocketHandler.sendMessage(type: .send, from_who: newMessage.from, to_who: newMessage.to, text: newMessage.msg) else
+        {
+            alert(title: "Web socket error", message: "Can't send message!")
+            return
+        }
+        room.appendMessage(newMessage)
     }
     
     
-//    // Mark: Websockets
-//    func websocketDidConnect(socket: WebSocketClient)
-//    {
-//        alert(title: "Websocket connected", message: "Websocket has connected to server!")
-//        print("Websocket has connected to server!")
-//    }
-//    
-//    func websocketDidDisconnect(socket: WebSocketClient, error: Error?)
-//    {
-//        alert(title: "Websocket connected", message: "Websocket has connected to server!")
-//        print("Websocket has connected to server!")
-//    }
-//    
-//    func websocketDidReceiveMessage(socket: WebSocketClient, text: String)
-//    {
-//        alert(title: "Websocket", message: "Websocket has recieved message!")
-//        print("Websocket has recieved message!")
-//        self.messages.append(text)
-//    }
-//    
-//    func websocketDidReceiveData(socket: WebSocketClient, data: Data)
-//    {
-//        alert(title: "Websocket", message: "Websocket has recieved data!")
-//        print("Websocket has recieved data!")
-//    }
+    // MARK: - Selectors
+    @objc func newMessage(notification: Notification)
+    {
+        self.chatTableView.reloadData()
+        self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: room.messages.count-1), at: .bottom, animated: true)
+    }
     
+    @objc func getMessagesForChat(notification: Notification)
+    {
+    }
 }
