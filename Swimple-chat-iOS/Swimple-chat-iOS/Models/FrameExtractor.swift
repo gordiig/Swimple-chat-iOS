@@ -69,7 +69,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         captureSession.beginConfiguration()
         
-        captureSession.sessionPreset = AVCaptureSession.Preset.low
+        captureSession.sessionPreset = AVCaptureSession.Preset.medium
         
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), captureSession.canAddInput(videoDeviceInput) else
         {
@@ -204,7 +204,7 @@ class FrameExtractor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         
         if let img = convertToUIImage(buffer: sampleBuffer)
         {
-            let str64 = img.toBase64(quality: 1)
+            let str64 = img.toBase64(quality: 0.3)
             DispatchQueue.main.async
             {
                 outputDelegate.frameExtractor(didOutputFrame: img, base64: str64)
