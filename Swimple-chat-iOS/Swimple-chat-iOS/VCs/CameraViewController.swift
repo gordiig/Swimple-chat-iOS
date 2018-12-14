@@ -30,6 +30,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     
     override var prefersStatusBarHidden: Bool { return true }
     var calledUsername = "None"
+    var didAccept: Bool = false
     
     var frameExtractor: FrameExtractor!
     var callType: CallType = .income
@@ -45,6 +46,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(self.cancelCall), name: .webSocketCancelCallNotif, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.acceptCall), name: .webSocketAcceptCallNotif, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.endCall), name: .webSocketEndCall, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotNewFrame), name: .webSocketGotFrameBufferNotif, object: nil)
         
         guard let frameExtractor = FrameExtractor(alertDelegate: self) else
         {
@@ -70,6 +72,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
             setupForOutcomeCall()
         }
         self.userIsOfflineVIew.isHidden = true
+        self.didAccept = false
         self.frameExtractor.start()
     }
     
@@ -130,6 +133,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
             return
         }
         
+        self.didAccept = true
         self.acceptButtonWidthConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
@@ -140,6 +144,13 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     func frameExtractor(didOutputFrame frame: UIImage, base64: String? = nil)
     {
         self.previewImageView.image = frame
+        if self.didAccept
+        {
+            if !self.webSocketHandler.sendMessage(type: .sendImageFrame, from_who: CurrentUser.current.username, to_who: calledUsername, text: base64)
+            {
+                print("Frame not sent!")
+            }
+        }
     }
     
     
@@ -147,6 +158,12 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func userIsOffline(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        
+        self.acceptButtonWidthConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+        
         self.offlineLabel.text = "User is offline"
         self.userIsOfflineVIew.isHidden = false
     }
@@ -154,6 +171,12 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func cancelCall(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        
+        self.acceptButtonWidthConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+        
         self.offlineLabel.text = "User canceled call"
         self.userIsOfflineVIew.isHidden = false
     }
@@ -161,15 +184,37 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func acceptCall(_ notification: Notification)
     {
 //        self.frameExtractor.stop()
-        self.offlineLabel.text = "User accepted call"
-        self.userIsOfflineVIew.isHidden = false
+//        self.offlineLabel.text = "User accepted call"
+//        self.userIsOfflineVIew.isHidden = false
+        self.didAccept = true
     }
     
     @objc func endCall(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        
+        self.acceptButtonWidthConstraint.constant = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+        
         self.offlineLabel.text = "User ended call"
         self.userIsOfflineVIew.isHidden = false
+    }
+    
+    @objc func gotNewFrame(_ notification: Notification)
+    {
+        guard let str64 = notification.userInfo?["str64"] as? String else
+        {
+            return
+        }
+        
+        guard let newImg = UIImage.fromBase64(str64) else
+        {
+            return
+        }
+        
+        self.incomeBufferImageView.image = newImg
     }
 
 }
