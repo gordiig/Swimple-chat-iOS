@@ -122,7 +122,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @IBAction func acceptButtonPressed(_ sender: Any)
     {
         let username_from = CurrentUser.current.username
-        let username_to = "HE"
+        let username_to = self.calledUsername
         guard self.webSocketHandler.sendMessage(type: .acceptCall, from_who: username_from, to_who: username_to) else
         {
             alert(title: "Web socket error", message: "Can't send acceptCall")
