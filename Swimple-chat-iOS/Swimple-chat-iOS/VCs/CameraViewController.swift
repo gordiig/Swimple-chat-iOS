@@ -158,6 +158,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func userIsOffline(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        self.didAccept = false
         
         self.acceptButtonWidthConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
@@ -171,6 +172,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func cancelCall(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        self.didAccept = false
         
         self.acceptButtonWidthConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
@@ -192,6 +194,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     @objc func endCall(_ notification: Notification)
     {
         self.frameExtractor.stop()
+        self.didAccept = false
         
         self.acceptButtonWidthConstraint.constant = 0
         UIView.animate(withDuration: 0.5) {
