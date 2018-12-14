@@ -205,17 +205,17 @@ class Swimple_chat_iOSTests: XCTestCase
     }
     
     // MARK: Integrity test 5, gotNewMessage (1 test)
-    func testGotNewMessage()
-    {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationCounterIncrement), name: .newMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationCounterIncrement), name: .chatRoomsWereChanged, object: nil)
-        let counterPrev = self.notificationCounter
-        let webSocketHandler = WebSocketHandler.main
-        
-        let serverMessage = ServerMessageToRecieve(type: .newMessage, data: [RecievedData(id: 1, from_who: "User", to_who: "user", text: "text", username: nil, passsword: nil, chat_name: nil, is_read: 1)])
-        webSocketHandler.newMessage(serverMessage)
-        XCTAssert(counterPrev < self.notificationCounter, "newMessageNotif or chatRoomsWereChangedNotif notification didn't come")
-        
-        NotificationCenter.default.removeObserver(self)
-    }
+//    func testGotNewMessage()
+//    {
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationCounterIncrement), name: .newMessage, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationCounterIncrement), name: .chatRoomsWereChanged, object: nil)
+//        let counterPrev = self.notificationCounter
+//        let webSocketHandler = WebSocketHandler.main
+//        
+//        let serverMessage = ServerMessageToRecieve(type: .newMessage, data: [RecievedData(id: 1, from_who: "User", to_who: "user", text: "text", username: nil, passsword: nil, chat_name: nil, is_read: 1)])
+//        webSocketHandler.newMessage(serverMessage)
+//        XCTAssert(counterPrev < self.notificationCounter, "newMessageNotif or chatRoomsWereChangedNotif notification didn't come")
+//        
+//        NotificationCenter.default.removeObserver(self)
+//    }
 }
