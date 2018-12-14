@@ -160,7 +160,7 @@ class CameraViewController: MyViewController, FrameExtractorOutputDelegate
     
     @objc func acceptCall(_ notification: Notification)
     {
-        self.frameExtractor.stop()
+//        self.frameExtractor.stop()
         self.offlineLabel.text = "User accepted call"
         self.userIsOfflineVIew.isHidden = false
     }
