@@ -203,6 +203,7 @@
                                                         <constraint firstItem="Bcn-Rg-3hd" firstAttribute="top" secondItem="gUl-tS-G6T" secondAttribute="top" constant="3" id="MtF-Lc-em3"/>
                                                         <constraint firstAttribute="trailing" secondItem="Bcn-Rg-3hd" secondAttribute="trailing" constant="3" id="k8L-Er-2mp"/>
                                                         <constraint firstAttribute="width" secondItem="gUl-tS-G6T" secondAttribute="height" multiplier="1:1" id="lxH-Wk-FEN"/>
+                                                        <constraint firstAttribute="height" constant="54" id="mbN-IW-ZWQ"/>
                                                         <constraint firstItem="Bcn-Rg-3hd" firstAttribute="leading" secondItem="gUl-tS-G6T" secondAttribute="leading" constant="3" id="psi-kZ-n0S"/>
                                                     </constraints>
                                                 </view>
@@ -210,9 +211,10 @@
                                             <constraints>
                                                 <constraint firstItem="mXS-Ch-xE8" firstAttribute="leading" secondItem="gUl-tS-G6T" secondAttribute="trailing" constant="8" id="0zk-KO-U1n"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mXS-Ch-xE8" secondAttribute="bottom" constant="8" id="3lq-8O-KPN"/>
-                                                <constraint firstAttribute="bottom" secondItem="gUl-tS-G6T" secondAttribute="bottom" constant="8" id="FIa-E4-FxS"/>
+                                                <constraint firstItem="gUl-tS-G6T" firstAttribute="centerY" secondItem="L8B-Tb-Aca" secondAttribute="centerY" id="6vA-63-OiP"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gUl-tS-G6T" secondAttribute="bottom" constant="8" id="FIa-E4-FxS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mXS-Ch-xE8" secondAttribute="trailing" constant="8" id="OyH-32-ztl"/>
-                                                <constraint firstItem="gUl-tS-G6T" firstAttribute="top" secondItem="L8B-Tb-Aca" secondAttribute="top" constant="8" id="UbE-4Q-hNm"/>
+                                                <constraint firstItem="gUl-tS-G6T" firstAttribute="top" relation="greaterThanOrEqual" secondItem="L8B-Tb-Aca" secondAttribute="top" constant="8" id="UbE-4Q-hNm"/>
                                                 <constraint firstItem="mXS-Ch-xE8" firstAttribute="top" secondItem="L8B-Tb-Aca" secondAttribute="topMargin" constant="8" id="YvI-iK-xU8"/>
                                                 <constraint firstItem="gUl-tS-G6T" firstAttribute="leading" secondItem="L8B-Tb-Aca" secondAttribute="leading" constant="8" id="mXO-kr-RjJ"/>
                                                 <constraint firstItem="gUl-tS-G6T" firstAttribute="width" secondItem="gUl-tS-G6T" secondAttribute="height" multiplier="1:1" id="qgB-eY-u8j"/>
@@ -220,6 +222,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="firstLetterLabel" destination="Bcn-Rg-3hd" id="kfu-bn-8Rl"/>
+                                            <outlet property="firstLetterView" destination="gUl-tS-G6T" id="Ll2-z2-8qO"/>
                                             <outlet property="imgView" destination="gUl-tS-G6T" id="K9u-Bk-2xV"/>
                                             <outlet property="messageLabel" destination="mXS-Ch-xE8" id="Ts1-T3-Mr5"/>
                                         </connections>
@@ -254,22 +257,25 @@
                                                         <constraint firstAttribute="width" secondItem="lH8-l8-ks4" secondAttribute="height" multiplier="1:1" id="jLc-h7-bTV"/>
                                                         <constraint firstAttribute="trailing" secondItem="Nj1-bI-2KT" secondAttribute="trailing" constant="3" id="nlF-SD-1pw"/>
                                                         <constraint firstItem="Nj1-bI-2KT" firstAttribute="leading" secondItem="lH8-l8-ks4" secondAttribute="leading" constant="3" id="q6Z-i7-J67"/>
+                                                        <constraint firstAttribute="height" constant="54" id="x0o-Bp-MMg"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="lH8-l8-ks4" secondAttribute="bottom" constant="8" id="9at-lD-5Q3"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lH8-l8-ks4" secondAttribute="bottom" constant="8" id="9at-lD-5Q3"/>
                                                 <constraint firstItem="xce-84-7qn" firstAttribute="leading" secondItem="WFe-ln-lVz" secondAttribute="leadingMargin" constant="8" id="DnL-S4-xlG"/>
                                                 <constraint firstItem="lH8-l8-ks4" firstAttribute="width" secondItem="lH8-l8-ks4" secondAttribute="height" multiplier="1:1" id="Jbi-dY-RHN"/>
                                                 <constraint firstItem="lH8-l8-ks4" firstAttribute="leading" secondItem="xce-84-7qn" secondAttribute="trailing" constant="8" id="UZ0-Na-ygr"/>
                                                 <constraint firstItem="xce-84-7qn" firstAttribute="top" secondItem="WFe-ln-lVz" secondAttribute="topMargin" constant="8" id="Uv9-ga-QBc"/>
-                                                <constraint firstItem="lH8-l8-ks4" firstAttribute="top" secondItem="WFe-ln-lVz" secondAttribute="top" constant="8" id="Xaw-f9-f27"/>
+                                                <constraint firstItem="lH8-l8-ks4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WFe-ln-lVz" secondAttribute="top" constant="8" id="Xaw-f9-f27"/>
                                                 <constraint firstAttribute="trailing" secondItem="lH8-l8-ks4" secondAttribute="trailing" constant="8" id="Z1f-7e-NOx"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="xce-84-7qn" secondAttribute="bottom" constant="8" id="fsg-sh-PYn"/>
+                                                <constraint firstItem="lH8-l8-ks4" firstAttribute="centerY" secondItem="WFe-ln-lVz" secondAttribute="centerY" id="was-nF-9t4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="firstLetterLabel" destination="Nj1-bI-2KT" id="euO-Is-SkX"/>
+                                            <outlet property="firstLetterView" destination="lH8-l8-ks4" id="dzK-NQ-TDi"/>
                                             <outlet property="imgView" destination="lH8-l8-ks4" id="jYh-eH-JhG"/>
                                             <outlet property="messageLabel" destination="xce-84-7qn" id="NsP-1d-uPx"/>
                                         </connections>

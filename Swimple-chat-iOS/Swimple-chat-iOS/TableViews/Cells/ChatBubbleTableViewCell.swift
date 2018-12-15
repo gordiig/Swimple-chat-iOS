@@ -13,7 +13,7 @@ class ChatBubbleTableViewCell: UITableViewCell
     @IBOutlet weak var firstLetterLabel: UILabel!
     @IBOutlet weak var imgView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
-    
+    @IBOutlet weak var firstLetterView: UIView!
     
     override func awakeFromNib()
     {
@@ -21,6 +21,7 @@ class ChatBubbleTableViewCell: UITableViewCell
         self.layer.cornerRadius = 20
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.lightGray.cgColor
+        self.firstLetterView.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)
