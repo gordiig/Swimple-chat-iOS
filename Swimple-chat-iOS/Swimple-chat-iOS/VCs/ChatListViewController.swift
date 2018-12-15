@@ -28,6 +28,7 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.gotChatList), name: .webSocketGetMessagesForChatList, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.getChatList), name: .webSocketDidConnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.logOut), name: .webSocketAuthNotif, object: nil)
         
         tableView.accessibilityLabel = "chatListTableView"
         
@@ -81,6 +82,22 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     {
         super.webSocketError(notification: notification)
         self.refreshControl.endRefreshing()
+    }
+    
+    @objc func logOut(_ notification: Notification)
+    {
+        if notification.userInfo?["type"] as! String != "authNotSuccess" { return }
+        
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
+        {
+            alert(title: "Error in instatiate", message: "Can't instatiate LogInVC")
+            return
+        }
+        let navigationController = UINavigationController(rootViewController: vc)
+        present(navigationController, animated: true)
+        {
+            self.alert(title: "Auth error", message: "Can't log in, try again!")
+        }
     }
     
     // MARK: - UITableViewDelegate
