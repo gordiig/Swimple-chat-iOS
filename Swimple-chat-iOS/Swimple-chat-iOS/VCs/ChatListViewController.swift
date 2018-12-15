@@ -88,6 +88,7 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     {
         if notification.userInfo?["type"] as! String != "authNotSuccess" { return }
         
+        CurrentUser.current.clear()
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
         {
             alert(title: "Error in instatiate", message: "Can't instatiate LogInVC")
