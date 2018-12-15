@@ -28,8 +28,41 @@ class ChatListTableViewCell: UITableViewCell
 
     func configure(username: String, lastMessage: String)
     {
-        usernameLabel.text = username
-        lastMsgLabel.text = lastMessage
         firstLetterLabel.text = String(username.first ?? Character("U"))
+        
+        if !username.isEmpty
+        {
+            var shownUsername = ""
+            var i = 0
+            for chr in username
+            {
+                shownUsername.append(chr)
+                i += 1
+                if i >= 15
+                {
+                    shownUsername += "..."
+                    break
+                }
+            }
+            usernameLabel.text = username
+        }
+        
+        if !lastMessage.isEmpty
+        {
+            var shownMessage = ""
+            var i = 0
+            for chr in lastMessage
+            {
+                shownMessage.append(chr)
+                i += 1
+                if i >= 20
+                {
+                    shownMessage += "..."
+                    break
+                }
+
+            }
+            lastMsgLabel.text = shownMessage
+        }
     }
 }

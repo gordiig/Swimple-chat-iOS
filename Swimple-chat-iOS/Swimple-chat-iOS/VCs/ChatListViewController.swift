@@ -30,6 +30,8 @@ class ChatListViewController: MyViewController, UITableViewDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(self.getChatList), name: .webSocketDidConnect, object: nil)
         
         tableView.accessibilityLabel = "chatListTableView"
+        
+        self.getChatList()
     }
     
     // MARK: - Test
@@ -73,6 +75,12 @@ class ChatListViewController: MyViewController, UITableViewDelegate
     {
         self.refreshControl.endRefreshing()
         self.tableView.reloadData()
+    }
+    
+    override func webSocketError(notification: Notification)
+    {
+        super.webSocketError(notification: notification)
+        self.refreshControl.endRefreshing()
     }
     
     // MARK: - UITableViewDelegate

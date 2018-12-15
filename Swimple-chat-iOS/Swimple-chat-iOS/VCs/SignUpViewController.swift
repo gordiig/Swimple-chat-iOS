@@ -52,22 +52,13 @@ class SignUpViewController: MyViewController
     @objc func serverAns(notification: Notification)
     {
         self.registerButton.isEnabled = true
-        
+//
         let ans = notification.userInfo!["type"] as! String
         if ans != "registerSuccess"
         {
             alert(title: "Web socket error", message: "Can't register")
         }
         
-        let cUser = CurrentUser.current
-        cUser.configure(username: usernameForLogIn, password: passwordForLogIn, avatarImg: UIImage(named: User.stdImageName))
-        
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MainTapBarController") as? UITabBarController else
-        {
-            print("Can't instatiate VC!")
-            alert(title: "Error in instatiate", message: "Can't instatiate ChatListVC")
-            return
-        }
-        self.present(vc, animated: true, completion: nil)
+        alert(title: "Register success", message: "You can log in now")
     }
 }

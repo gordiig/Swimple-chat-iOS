@@ -69,7 +69,9 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
         {
             self.view.layoutIfNeeded()
         }
-        self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: room.messages.count-1), at: .bottom, animated: true)
+        if !room.messages.isEmpty{
+            self.chatTableView.scrollToRow(at: IndexPath(row: 0, section: room.messages.count-1), at: .bottom, animated: true)
+        }
     }
     
     @objc func keyboardWillHide(notification: Notification)
@@ -83,7 +85,12 @@ class ChatViewController: MyViewController, UITableViewDataSource, UITableViewDe
     
     @objc func hideKeyboard(_ sender: UITapGestureRecognizer)
     {
-        self.msgTextField.resignFirstResponder()
+//        self.msgTextField.resignFirstResponder()
+//        self.view.endEditing(true)
+    }
+    
+    override func onTap(_ sender: UITapGestureRecognizer) {
+        
     }
     
     func textViewDidChange(_ textView: UITextView)

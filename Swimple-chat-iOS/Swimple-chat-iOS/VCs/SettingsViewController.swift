@@ -10,7 +10,6 @@ import UIKit
 
 class SettingsViewController: MyViewController
 {
-    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
@@ -25,7 +24,6 @@ class SettingsViewController: MyViewController
         let cUser = CurrentUser.current
         usernameLabel.text = cUser.username
         passwordLabel.text = cUser.password
-        avatarImageView.image = cUser.avatarImg
     }
     
 
@@ -34,13 +32,19 @@ class SettingsViewController: MyViewController
         let cUser = CurrentUser.current
         cUser.clear()
         
+        let chatRooms = ChatRooms.default
+        chatRooms.clear()
+        
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "LogInVC") as? LogInViewController else
         {
             alert(title: "Error in instatiate", message: "Can't instatiate LogInVC")
             return
         }
         let navigationController = UINavigationController(rootViewController: vc)
-        present(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true)
+        {
+//            WebSocketHandler.main.socket.disconnect()
+        }
     }
     
 }
