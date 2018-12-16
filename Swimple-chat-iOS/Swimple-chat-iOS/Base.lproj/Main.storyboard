@@ -634,7 +634,7 @@
                                 <accessibility key="accessibilityConfiguration" identifier="passwordTextField"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zts-HN-peB">
                                 <rect key="frame" x="134" y="629" width="107" height="30"/>
@@ -986,7 +986,7 @@
         <image name="send" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ujk-mN-MVb"/>
+        <segue reference="VPO-yO-BDo"/>
         <segue reference="UUN-sA-MhS"/>
     </inferredMetricsTieBreakers>
 </document>
